@@ -8,7 +8,7 @@
     <body>      
         <header>
         <div class= "bigflexheader">
-            <div><map src="images/logo.png" class="responsivelogotop" alt="logo de la web"></div>
+            <div><img src="images/logo.png" class="responsivelogotop" alt="logo de la web"></div>
             <div style="margin-left: -15%;">Home</div>
             <div>About</div>
             <div>Contact</div>
@@ -19,7 +19,10 @@
 
         <!--Primera seccion-->
         <section>
-            <p class="midp"> <img src="images/tierra_media.jpeg" class="responsiveimg" alt="mapa de la tierra media"></p>
+            <p class="midp"> <img src="images/tierra_media.jpeg" class="responsiveimg" alt="mapa de la tierra media" usemap="#mainmap"></p>
+            <map name="mainmap">
+                <area shape="circle" coords="34,44,200" alt="Computer" href="web1.html">
+            </map>
         </section>
 
         <!--Segunda seccion-->
@@ -34,7 +37,7 @@
             <header class="title">Experiences</header>
             <!--Primera linea-->
             <div class="experiences">
-                <div class="experiencesborders">
+                <div class="experiencesleft">
                     <img src="images/rivendel.jpg" class="responsiveimg" alt="imagen de Rivendel">
                     <p class="titlesubtitle">Relax en Rivendel</p>
                     <p class="subtitle">Rivendel es una paraiso del descanso, los amantes de los balnearios y los coffe shops estaran como en casa en este lugar.</p>
@@ -44,7 +47,7 @@
                     <p class="titlesubtitle">Caminata por Isengard</p>
                     <p class="subtitle">Disfruta de una tarde de naturaleza en Isengard, la terraza de su torre tiene unas vistas magnificas del Bosque Negro.</p>
                 </div>
-                <div class="experiencesborders">
+                <div class="experiencesright">
                     <img src="images/comarca.jpg" class="responsiveimg" alt="imagen de la Comarca">
                     <p class="titlesubtitle">Gastronomia en la Comarca</p>
                     <p class="subtitle">Si te gusta la cerveza, andar descalzo, las praderas verdes y no eres una persona especialmente alto este es tu sitio.</p>
@@ -52,7 +55,7 @@
             </div>
             <!--Segunda linea-->
             <div class="experiences">
-                <div class="experiencesbordersnext">
+                <div class="experiencesleftnext">
                     <img src="images/argonath.jpg" class="responsiveimg" alt="imagen de los Argonath">
                     <p class="titlesubtitle">Piragua por los Argonath</p>
                     <p class="subtitle">Realiza uno de los descensos mas famosos del mundo, con un final de ensueño en las estatuas de los antiguos reyes.</p>
@@ -62,7 +65,7 @@
                     <p class="titlesubtitle">Vulcanologia en Mordor</p>
                     <p class="subtitle">Con una temperatura mas que agradable, Mordor es el sueño de cualquier aficcionado a los volcanes activos.</p>
                 </div>
-                <div class="experiencesbordersnext">
+                <div class="experiencesrightnext">
                     <img src="images/fangorn.jpg" class="responsiveimg" alt="imagen de Fangorn">
                     <p class="titlesubtitle">Hable con los arboles en Fangorn</p>
                     <p class="subtitle">Descubre a los habitantes mas especiales de la Tierra Media en esta visita al bosque de Fangorn.</p>
@@ -70,7 +73,7 @@
             </div>
             <!--Tercera linea-->
             <div class="experiences">
-                <div class="experiencesbordersnext">
+                <div class="experiencesleftnext">
                     <img src="images/minasTirith.jpg" class="responsiveimg" alt="imagen de Minas Tirith">
                     <p class="titlesubtitle">De compras en Minas Tirith</p>
                     <p class="subtitle">Con mas de 1000 tiendas de marcas reconocidas Minas Tirith hará las delicias de los amantes de la moda.</p>
@@ -80,7 +83,7 @@
                     <p class="titlesubtitle">Escala la Montaña Solitaria</p>
                     <p class="subtitle">Si no le tienes miedo a las alturas y te gustan los grandes desafíos este es tu sitio.</p>
                 </div>
-                <div class="experiencesbordersnext">
+                <div class="experiencesrightnext">
                     <img src="images/moria.jpg" class="responsiveimg" alt="imagen de Moria">
                     <p class="titlesubtitle">Espeleologia en Moria</p>
                     <p class="subtitle">No sabemos si esos enanos llegaron al mismisimo centro de la tierra, lo que es seguro es su impactante profundidad.</p>
@@ -88,25 +91,26 @@
             </div>
             <!--Cuarta linea-->
             <div class="experiences">
-                <div class="experiencesbordersnext"></div>
+                <div class="experiencesleftnext"></div>
                 <div class="experiencesmidnext">
                     <img src="images/heml.jpg" class="responsiveimg" alt="imagen del Abismo de Heml">
                     <p class="titlesubtitle">Asalta el abismo de Helm</p>
                     <p class="subtitle">Revive esta apasionante batalla de la mano de nuestros especialistas y sienteté un autentico caballero de Rohan.</p>
                 </div>
-                <div class="experiencesbordersnext"></div>
+                <div class="experiencesrightnext"></div>
             </div>
         </section>
 
         <!--Pie de pagina-->
         <footer style="margin-top: 10%;">
             <div class= "bigflexfooter">
-                <div style="max-width: 20%; min-width: 20%;"><img src="images/logo.png" class="responsivelogobot" alt="logo de la web"></div>
-                <div style="margin-left: 40%; margin-top: -3%;"><img class= "imgfacebook" alt="logo facebook"></div>
-                <div style="margin-left: -8%; margin-top: -3%"><img class= "imgtwitter"  alt="logo facebook"></div>
-                <div style="margin-left: -8%; margin-top: -3%"><img class= "imginsta"  alt="logo facebook"></div>
+                <div style="max-width: 20%; min-width: 20%; display: flex;"><img src="images/logo.png" class="responsivelogobot" alt="logo de la web"></div>
+                <div style="margin-left: 50%;"></div>
+                <div style="margin-top: -3%; display: flex;"><img class= "imgfacebook" alt="logo facebook"></div>
+                <div style="margin-top: -3%; display: flex;"><img class= "imgtwitter"  alt="logo facebook"></div>
+                <div style="margin-top: -3%; display: flex; margin-right: 3%;"><img class= "imginsta"  alt="logo facebook"></div>
             </div>
-            <div style="margin-left: 77%; margin-top: -1.5%">Terms and conditions</div>    
+            <div style="margin-top: -3%; margin-right: 5.5%;"> <p style="font-size: calc(0.45em + 0.65vw); color: white; text-align: right;"> Terms and conditions</div></p> 
         <embed src="urukhai.mp3" autostart="true" hidden="true"></embed>
         </footer>          
     </body>
