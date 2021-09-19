@@ -1,0 +1,212 @@
+/* Estilo cuerpo */
+body {
+    font-family: 'Helvetica';
+    background-color: black;
+    color: white;
+}
+
+/* Estilo de cabecera */
+header {
+    background-color: black;
+    color: white;
+}
+
+/* Estilo parrafos justificados centro */
+.midp {
+    margin-top: -1%;
+    text-align: center;
+}
+
+/* Estilo parrafos seccion experiences*/
+.experiencesp{
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+/* Estilo del cuadro de busqueda */
+.textToSearch{
+    margin:1%;
+    padding:0.75%;
+    font-size:small;
+    width:25%;
+    color: slategrey;
+    font-family:'Geneva';
+}
+
+/* Estilo del boton de busqueda */
+.submitbutton{
+    margin:0.5%;
+    padding:0.6%;
+    font-size:medium;
+    background-color:slategrey;
+    border:0;
+    color:white;
+
+}
+/* Estilo de los titulos en los subtitulos */
+.titlesubtitle {
+    text-align: left;
+    font-family: 'Helvetica';
+    font-size: calc(0.6em + 0.6vw);;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+/* Estilo de los subtitulos */
+.subtitle {
+    text-align: left;
+    font-family: 'Geneva';
+    font-weight: lighter;
+    font-size: calc(0.5em + 0.5vw);
+    text-align-last: left;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+/* Titulos dentro de las secciones */
+header.title {
+    font-family: 'Helvetica';
+    font-weight: lighter;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    font-size: calc(0.8em + 0.8vw); ;
+}
+
+/* Imagenes experiencias */
+img.responsiveimg { 
+    max-width: 100%;
+    height: auto; 
+}
+
+/* Logos */
+img.responsivelogotop { 
+    max-width: 50%;
+    height: auto; 
+}
+
+img.responsivelogobot { 
+    max-width: 100%;
+    height: auto; 
+}
+/* Estilo elementos flex */
+/* Boxes header */
+.bigflexheader {
+    margin-bottom: 2%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.bigflexheader > div {
+    background-color: black;
+    padding: 2%;
+    font-size: calc(0.7em + 0.7vw);
+    font-family: 'Helvetica';
+    font-weight: lighter;
+    color: white;
+
+}
+
+/*Boxes footer*/
+.bigflexfooter {
+    margin-left: 5%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.bigflexfooter > div {
+    font-size: large;
+    font-family: 'Helvetica';
+    color: black;
+}
+
+/*Boxes experience section*/
+.experiences {
+    width: 100%;
+    display: flex;
+}
+
+/* Primera linea de imagenes y texto */
+.experiencesmid {
+    width: 30%;
+    text-align: center;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.experiencesborders {
+    margin-top: 25%;
+    width: 30%;
+    text-align: center;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+/* Sucesivas */
+.experiencesnext {
+    width: 100%;
+    display: flex;
+}
+
+.experiencesbordersnext {
+    width: 30%;
+    margin-top: 4%;
+    text-align: center;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.experiencesmidnext {
+    width: 30%;
+    text-align: center;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-top: -21%;
+}
+
+/* Logo twitter animado */
+.imgtwitter{
+    content: url('images/twitter.png');
+    align-items: center;
+    max-width: 50%;
+    height: auto; 
+ }
+
+.imgtwitter:hover{
+    content: url('images/twitter.gif');
+    align-items: center;
+    max-width: 50%;
+    height: auto; 
+}
+
+/* Logo insta animado */
+.imginsta{
+    content: url('images/insta.png');
+    align-items: center;
+    max-width: 50%;
+    height: auto; 
+ }
+
+.imginsta:hover{
+    content: url('images/insta.gif');
+    align-items: center;
+    max-width: 50%;
+    height: auto; 
+}
+
+/* Logo facebook animado */
+.imgfacebook{
+    content: url('images/facebook.png');
+    align-items: center;
+    max-width: 50%;
+    height: auto; 
+ }
+
+.imgfacebook:hover{
+    content: url('images/facebook.gif');
+    align-items: center;
+    max-width: 50%;
+    height: auto; 
+}
