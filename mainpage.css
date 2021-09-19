@@ -155,10 +155,6 @@ img.responsivelogobot {
 }
 
 /* Sucesivas */
-.experiencesnext {
-    width: 100%;
-    display: flex;
-}
 
 .experiencesleftnext {
     margin-left: 10%;
@@ -235,4 +231,101 @@ img.responsivelogobot {
     max-width: 85%;
     min-width: 60%;
     height: auto; 
+}
+
+/* Paginas secundarias */
+.secondaryDiv{
+    margin-top: 7%;
+    width: 60%;
+    margin-left: 20%;
+}
+
+/* Estilo de los titulos en los subtitulos */
+.secondaryTitle {
+    font-family: 'Helvetica';
+    font-size: calc(0.75em + 0.75vw);;
+    padding-left: 1%;
+    padding-right: 1%;
+    text-align: center;
+}
+
+/* Estilo de los subtitulos */
+.secondarySubtitle {
+    font-family: 'Geneva';
+    font-weight: lighter;
+    font-size: calc(0.6em + 0.6vw);
+    padding-left: 1%;
+    padding-right: 1%;
+    text-align: center;
+}
+
+
+/* Primera linea de imagenes y texto */
+.secondaryexperiencesmid {
+    width: 20%;
+    text-align: center;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.secondarydiferentmid {
+    margin-top: 2%;
+    width: 20%;
+    text-align: center;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.secondaryexperiencesleft {
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 20%;
+    text-align: center;
+    padding-left: 2%;
+    padding-right: 1%;
+}
+
+.secondaryexperiencesright {
+    margin-top: 2%;
+    margin-right: 2%;
+    width: 20%;
+    text-align: center;
+    padding-left: 1%;
+    padding-right: 2%;
+}
+
+/* Sucesivas */
+
+
+.secondaryexperiencesleftnext {
+    margin-left: 2%;
+    width: 20%;
+    margin-top: 2%;
+    text-align: center;
+    padding-left: 2%;
+    padding-right: 1%;
+}
+
+.secondaryexperiencesrightnext {
+    margin-right: 2%;
+    width: 20%;
+    margin-top: 2%;
+    text-align: center;
+    padding-left: 1%;
+    padding-right: 2%;
+}
+
+.secondaryexperiencesmidnext {
+    width: 20%;
+    text-align: center;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.secondarydiferentmidnext {
+    margin-top: 2%;
+    width: 20%;
+    text-align: center;
+    padding-left: 1%;
+    padding-right: 1%;
 }
