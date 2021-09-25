@@ -209,10 +209,10 @@ img.responsivelogobot {
     .experiencesleft {
         width: 70%;
         text-align: center;
-        margin-left: 15%;
+        margin-left: 14%;
         margin-right: 15%;
         margin-bottom: 0%;
-        margin-top: 5%;
+        margin-top: 1%;
     }
     
     .experiencesright {
@@ -252,7 +252,6 @@ img.responsivelogobot {
     }
     
 }
-
 
 /* Logo twitter animado */
 .imgtwitter{
@@ -305,7 +304,7 @@ img.responsivelogobot {
     height: auto; 
 }
 
-/* Paginas secundarias */
+/* ///////////Paginas secundarias//////////// */
 .secondaryDiv{
     margin-top: 7%;
     width: 60%;
@@ -400,6 +399,82 @@ img.responsivelogobot {
     padding-right: 1%;
 }
 
+/* Cambio a una columna en versiones movil */
+@media screen and (max-width: 640px){
+    .secondaryexperiencesmid {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+    .secondarydiferentmid {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+    .secondaryexperiencesleft {
+        width: 70%;
+        text-align: center;
+        margin-left: 14%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+    .secondaryexperiencesright {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+    /* Sucesivas */
+    .secondaryexperiencesleftnext {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+    .secondaryexperiencesrightnext {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+    .secondaryexperiencesmidnext {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+    .secondarydiferentmidnext {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+}
 /* Estilo de los videos */
 
 iframe{
@@ -432,4 +507,34 @@ iframe{
     text-align: center;
     padding-left: 2%;
     padding-right: 1%;
+}
+
+/* Cambio a una columna en versiones movil */
+@media screen and (max-width: 640px){   
+    .videosRight {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+
+    .videosMid {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+
+    .videosLeft {
+        width: 70%;
+        text-align: center;
+        margin-left: 14%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
 }
