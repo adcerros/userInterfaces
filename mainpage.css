@@ -164,7 +164,6 @@ img.responsivelogobot {
 }
 
 /* Sucesivas */
-
 .experiencesleftnext {
     margin-left: 10%;
     width: 30%;
@@ -190,6 +189,70 @@ img.responsivelogobot {
     padding-right: 1%;
     margin-top: -21%;
 }
+
+
+/* Cambio a una columna en versiones movil */
+@media screen and (max-width: 640px){
+    .experiences {
+        width: 100%;
+        display: inline-block;
+    }
+    .experiencesmid {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+    .experiencesleft {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+    .experiencesright {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+
+    .experiencesleftnext {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+    .experiencesrightnext {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+    .experiencesmidnext {
+        width: 70%;
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 0%;
+        margin-top: 5%;
+    }
+    
+}
+
 
 /* Logo twitter animado */
 .imgtwitter{
@@ -304,8 +367,6 @@ img.responsivelogobot {
 }
 
 /* Sucesivas */
-
-
 .secondaryexperiencesleftnext {
     margin-left: 2%;
     width: 20%;
