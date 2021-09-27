@@ -255,7 +255,7 @@ img.responsivelogobot {
 
 /* Logo twitter animado */
 .imgtwitter{
-    content: url('images/twitter.png');
+    content: url('../images/twitter.png');
     align-items: center;
     max-width: 85%;
     min-width: 60%;
@@ -263,7 +263,7 @@ img.responsivelogobot {
  }
 
 .imgtwitter:hover{
-    content: url('images/twitter.gif');
+    content: url('../images/twitter.gif');
     align-items: center;
     max-width: 85%;
     min-width: 60%;
@@ -272,7 +272,7 @@ img.responsivelogobot {
 
 /* Logo insta animado */
 .imginsta{
-    content: url('images/insta.png');
+    content: url('../images/insta.png');
     align-items: center;
     max-width: 85%;
     min-width: 60%;
@@ -280,7 +280,7 @@ img.responsivelogobot {
  }
 
 .imginsta:hover{
-    content: url('images/insta.gif');
+    content: url('../images/insta.gif');
     align-items: center;
     max-width: 85%;
     min-width: 60%;
@@ -289,7 +289,7 @@ img.responsivelogobot {
 
 /* Logo facebook animado */
 .imgfacebook{
-    content: url('images/facebook.png');
+    content: url('../images/facebook.png');
     align-items: center;
     max-width: 85%;
     min-width: 60%;
@@ -297,7 +297,7 @@ img.responsivelogobot {
  }
 
 .imgfacebook:hover{
-    content: url('images/facebook.gif');
+    content: url('../images/facebook.gif');
     align-items: center;
     max-width: 85%;
     min-width: 60%;
