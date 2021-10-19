@@ -2,10 +2,21 @@
 <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
 <html>
     <head>
+        <script src="jquery-3.6.0.min.js"></script>
+        <script src="mainpage.js"></script>
         <link rel="stylesheet" href="style/mainpage.css" type="text/css" media="all">
         <title>Visit middle earth</title>
     </head>
-    <body>
+    <body> 
+        <!-- Popup de logIn -->
+        <div id="logIn-popup">
+            <div><p id="clslogIn-popup" class="cross-p" style="margin-left:85%;">X</p></div>
+            <div><p class="logIn-p" style="margin-top:5%;"> Usuario: </p></div>
+            <div><p class="logIn-p"><input class="logInTextBoxes" type="search" name="areaBusqueda" placeholder="Text to search"></p></div>
+            <div><p class="logIn-p"> Contraseña: </p></div>
+            <div><p class="logIn-p"><input class="logInTextBoxes" type="search" name="areaBusqueda" placeholder="Text to search"></p></div>
+            <div><p class="logIn-p" style="margin-bottom:10%;"><input class="submitLogIn" type="submit" value="LOG IN"></div>   
+        </div>  
         <!--Cabecera-->   
         <header>
         <div class= "bigflexheader">
@@ -15,7 +26,7 @@
             <div>About</div>
             <div>Contact</div>
             <div style="width: 15%;"></div>
-            <div><a style="color: white; text-decoration: none;" href="mainpage.html">LOG IN</a></div>
+            <div id="logIn-btn"><p style="color: white; text-decoration: none;">LOG IN</a></div>
             <div><a style="color: white; text-decoration: none;" href="mainpage.html">SIGN UP</a></div>
         </div>
         </header>
@@ -111,6 +122,6 @@
             </div>
             <div style="margin-top: -4%; margin-right: 5%;"><a style="color: white; text-decoration: none;" href="https://www.youtube.com/watch?v=OgIRAjnnJzI"><p style="font-size: calc(0.45em + 0.65vw); color: white; text-align: right;"> Terms and conditions</a></p> </div>
             <div style="margin-top: -1%; margin-right: 5%;"><a style="color: white; text-decoration: none;" href="https://www.youtube.com/watch?v=xm3YgoEiEDc"><p style="font-size: calc(0.45em + 0.65vw); color: white; text-align: right;"> Copyright</a></p> </div>
-        </footer>          
+        </footer>       
     </body>
 </html>

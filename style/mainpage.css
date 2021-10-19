@@ -314,7 +314,7 @@ img.responsivelogobot {
 /* Estilo de los titulos en los subtitulos */
 .secondaryTitle {
     font-family: 'Helvetica';
-    font-size: calc(0.75em + 0.75vw);;
+    font-size: calc(0.75em + 0.75vw);
     padding-left: 1%;
     padding-right: 1%;
     text-align: center;
@@ -537,4 +537,54 @@ iframe{
         margin-bottom: 0%;
         margin-top: 5%;
     }
+}
+
+
+/* POP-UPS */
+#logIn-popup{
+    background-color:white;
+    display : none;
+    position: absolute;
+    margin-top: 15%;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius:5%;
+}
+
+.logIn-p{
+    font-family: 'Helvetica';
+    font-size: calc(0.65em + 0.65vw);
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 3%;
+    text-align: center;
+    color: black;
+}
+
+.logInTextBoxes{
+    margin:1%;
+    padding:0.75%;
+    font-size: calc(0.65em + 0.65vw);
+    width:90%;
+    color: slategrey;
+    font-family:'Geneva';
+}
+
+/* Estilo del boton de logIn */
+.submitLogIn{
+    margin:1%;
+    padding:3%;
+    font-size: calc(0.70em + 0.70vw);
+    background-color:slategrey;
+    border-radius: 5%;
+    color:white;
+
+}
+
+.cross-p{
+    font-family: 'Helvetica';
+    font-size: calc(0.85em + 0.95vw);
+    text-align: center;
+    color: black;
 }
