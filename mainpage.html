@@ -9,14 +9,52 @@
     </head>
     <body> 
         <!-- Popup de logIn -->
-        <div id="logIn-popup">
+        <div id="logIn-popup" class="standard-popup">
             <div><p id="clslogIn-popup" class="cross-p" style="margin-left:85%;">X</p></div>
-            <div><p class="logIn-p" style="margin-top:5%;"> Usuario: </p></div>
-            <div><p class="logIn-p"><input class="logInTextBoxes" type="search" name="areaBusqueda" placeholder="Text to search"></p></div>
-            <div><p class="logIn-p"> Contraseña: </p></div>
-            <div><p class="logIn-p"><input class="logInTextBoxes" type="search" name="areaBusqueda" placeholder="Text to search"></p></div>
-            <div><p class="logIn-p" style="margin-bottom:10%;"><input class="submitLogIn" type="submit" value="LOG IN"></div>   
-        </div>  
+            <div><p class="form-p" style="margin-top:5%;">Usuario</p></div>
+            <div><p class="form-p"><input id="logInId" class="formTextBoxes" type="text" name="Usuario"></p></div>
+            <div><p class="form-p">Contraseña</p></div>
+            <div><p class="form-p"><input id="logInPass" class="formTextBoxes" type="text" name="Contraseña"></p></div>
+            <div><p class="form-p" style="margin-bottom:10%;"><input class="submit-btn" type="submit" value="LOG IN"></div>   
+        </div> 
+        <!-- Popup de signIn -->
+        <div id="signUp-popup" class="signUp-popup" style="border-radius: 1.5%;">
+            <div><p id="clsSignUp-popup" class="cross-p" style="margin-left:85%;">X</p></div>
+            <div><p class="form-p" style="margin-top:5%;">Nombre de usuario</p></div>
+            <div><p class="form-input"><input id="userId" class="formTextBoxes" type="text" placeholder="(Obligatorio)"></p></div>
+            <div><p class="form-p">Contraseña</p></div>
+            <div><p class="form-input"><input id="userPass" class="formTextBoxes" type="text" placeholder="(Obligatorio)"></p></div>
+            <div><p class="form-p">Nombre y apellidos</p></div>
+            <div><p class="form-input"><input id="userName" class="formTextBoxes" type="text" placeholder="(Obligatorio)"></p></div>
+            <div><p class="form-p">Email</p></div>
+            <div><p class="form-input"><input id="userEmail" class="formTextBoxes" type="text" placeholder="(Obligatorio)"></p></div>
+            <div><p class="form-p">Fecha de nacimiento</p></div>
+            <div><p class="form-input"><input id="userBornDate" class="formTextBoxes" type="text" placeholder="(Obligatorio)"></p></div>
+            <div><p class="form-p">Foto de perfil</p></div>
+            <div><p class="form-input">
+                <input id="userProfileImage" type="file" id="userProfileImg" style="display: none"/>
+                <button class="submit-btn">
+                    <label for="userProfileImage">Select file</label>
+                </button>
+            </p></div>
+            <div><p class="form-p" style="margin-bottom:5%; margin-top:5%;">Intereses personales</p></div>
+            <div><p class="checklist"><input id="chckMusica" type="checkbox" value="true"><label for="chck1">Musica popular de Gondor</label></p></div>
+            <div><p class="checklist"><input id="chckCombates" type="checkbox" value="true"><label for="chck2">Combates a espada</label></p></div>
+            <div><p class="checklist"><input id="chckHobbits" type="checkbox" value="true"><label for="chck3">Hierba de los hobbits</label></p></div>
+            <div><p class="checklist"><input id="chckUc3m" type="checkbox" value="true><label for="chck4">Soy profesor/a de la Uc3m</label></p></div>
+            <div><p class="form-p" style="margin-top:7%; margin-bottom:-2%;"><input id="chckTerms" type="checkbox" value="true"><label for="chck5">He leido y acepto los terminos y condiciones</label></p></div>
+            <div><p class="form-p" style="margin-bottom:5%;">
+                <input id="saveSignUpData-btn" class="submit-btn" type="submit" value="GUARDAR">
+                <input id="deleteSignUpData-btn"class="submit-btn" style="background-color: darkgrey" type="submit" value="BORRAR">
+            </p></div>   
+            <div id="obFields" class="errOnField"><p>Por favor, introduce todos los campos obligatorios</p></div> 
+            <div id="dupEmail" class="errOnField"><p>Ya hay una cuenta asociada a ese correo electronico</p></div> 
+        </div> 
+        <!-- Registro con exito-->
+        <div id="signInOk-popup" class="standard-popup" style="margin-top:80%;">
+            <div><p id="clsSignInOk-popup" class="cross-p" style="margin-left:85%;">X</p></div>
+            <div><p class="form-p" style="margin-top:5%; margin-bottom:20%;">Te has registrado con exito</p></div>  
+        </div> 
         <!--Cabecera-->   
         <header>
         <div class= "bigflexheader">
@@ -27,7 +65,7 @@
             <div>Contact</div>
             <div style="width: 15%;"></div>
             <div id="logIn-btn"><p style="color: white; text-decoration: none;">LOG IN</a></div>
-            <div><a style="color: white; text-decoration: none;" href="mainpage.html">SIGN UP</a></div>
+            <div id="signUp-btn"><p style="color: white; text-decoration: none;">SIGN UP</p></div>
         </div>
         </header>
         <!--Primera seccion-->
@@ -38,7 +76,7 @@
         <!--Segunda seccion-->
         <section> 
             <header class="title">Search area</header>
-            <p class="midp"><input class="textToSearch" type="search" name="areaBusqueda" placeholder="Text to search">
+            <p class="midp"><input class="textToSearch" type="search" placeholder="Text to search">
             <input class="submitbutton" type="submit" value="Search"></p>
         </section>
 

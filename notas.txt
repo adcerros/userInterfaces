@@ -1,0 +1,3 @@
+1. Comprobar que los datos estan en el formato que se indica en el enunciado con expresiones regulares
+2. Añadir cierre de pop ups pulsando fuera de el
+3. Poner la miniatura de la imagen de perfil cuando se carga en el registro o un tick como que se ha cargado bien

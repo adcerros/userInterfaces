@@ -541,7 +541,7 @@ iframe{
 
 
 /* POP-UPS */
-#logIn-popup{
+.standard-popup{
     background-color:white;
     display : none;
     position: absolute;
@@ -552,31 +552,65 @@ iframe{
     border-radius:5%;
 }
 
-.logIn-p{
+.signUp-popup{
+    background-color:white;
+    display : none;
+    position: absolute;
+    margin-top: 15%;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius:5%;
+}
+
+.errOnField{
+    display: none;
+    font-family: 'Helvetica';
+    font-size: calc(0.5em + 0.5vw);
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    color: rgb(212,42,42);
+}
+
+.form-p{
+    font-family: 'Helvetica';
+    font-size: calc(0.65em + 0.65vw);
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 5%;
+    text-align: center;
+    color: black;
+}
+
+.form-input{
     font-family: 'Helvetica';
     font-size: calc(0.65em + 0.65vw);
     padding-left: 5%;
     padding-right: 5%;
     margin-bottom: 3%;
+    margin-top: -1%;
     text-align: center;
     color: black;
 }
 
-.logInTextBoxes{
-    margin:1%;
-    padding:0.75%;
-    font-size: calc(0.65em + 0.65vw);
+.formTextBoxes{
+    font-size: calc(0.5em + 0.5vw);
+    padding: 1%;
     width:90%;
-    color: slategrey;
+    color: black;
+    border-color: black;
     font-family:'Geneva';
+    text-align: center;
 }
 
+
 /* Estilo del boton de logIn */
-.submitLogIn{
+.submit-btn{
     margin:1%;
-    padding:3%;
-    font-size: calc(0.70em + 0.70vw);
-    background-color:slategrey;
+    padding:1.5%;
+    font-size: calc(0.65em + 0.65vw);
+    background-color:grey;
     border-radius: 5%;
     color:white;
 
@@ -585,6 +619,17 @@ iframe{
 .cross-p{
     font-family: 'Helvetica';
     font-size: calc(0.85em + 0.95vw);
+    text-align: center;
+    color: black;
+}
+
+.checklist{
+    font-family: 'Helvetica';
+    font-size: calc(0.55em + 0.55vw);
+    margin-top: -1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 3%;
     text-align: center;
     color: black;
 }
