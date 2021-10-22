@@ -647,5 +647,14 @@ iframe{
     color: black;
 }
 
+.final-frodo-div{
+    margin-top: -8%;
+    justify-content: center;
+    height: auto; 
+    display: flex;
+    width: 100%;
+    margin: 0%;
+    border-radius: 7%;
+}
 /* Formato de los errores de validacion */
 span.error{color: red; font-size: 0.7em; }

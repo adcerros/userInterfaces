@@ -53,26 +53,61 @@ $(document).ready(function(){
         $("#signUp-form").trigger("submit");
     }); 
 
+
+
+    //Funciones para la validacion de expresiones regulares
+    $.validator.addMethod(
+        "userPass",
+        function(value, element) {
+            return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
+        },
+        "<br>El formato no es valido, se admiten letras y numeros (8 maximo)"
+    );
+
+    $.validator.addMethod(
+        "userEmail",
+        function(value, element) {
+            return this.optional(element) || /^[a-zA-Z0-9]+@{1}[a-zA-Z0-9]+(\.{1})[a-zA-Z0-9]+$/.test(value);
+        },
+        "<br>El formato no es valido, debe ser del tipo: nombre@dominio.extensión"
+    );
+
+    $.validator.addMethod(
+        "userBornDate",
+        function(value, element) {
+            return this.optional(element) || /^^([0-2][0-9]|3[0-1])(\/)(0[1-9]|1[0-2])\2(\d{4})$/.test(value);
+        },
+        "<br>El formato no es valido, debe ser del tipo: dd/mm/aaaa"
+    );
+    
     //Validacion del formulario de alta
     var validator = $("#signUp-form").validate({
         submitHandler: function(){
             $("#signUp-form").hide(); 
-            $("#signUpOk-form").show();  
+            $("#signUpOk-form").show();
+            $("#signUp-form").trigger("reset"); 
         },
         rules: {
             userId: "required",
-            userPass: "required",
+            userPass: {
+                required: true, 
+                userPass: true,
+                maxlength: 8
+            },
             userName: "required",
-            userEmail: "required",
-            userBornDate: "required",
+            userEmail: {
+                required: true, 
+                userEmail: true,
+            },
+            userBornDate: {
+                required: true, 
+                userBornDate: true,
+            },
             chckTerms: "required"
         },
         messages: {
-            userId: "<br>Por favor, introduce tu nombre de usuario valido",
-            userPass: "<br>Por favor, introduce una constraseña valida",
+            userId: "<br>Por favor, introduce tu nombre de usuario",
             userName: "<br>Por favor, introduce tu nombre y tus apellidos",
-            userEmail: "<br>Por favor, introduce un email valido",
-            userBornDate: "<br>Por favor, introduce una fecha de nacimiento valida",
             chckTerms: "Tienes que aceptar los terminos de uso<br>"
         },
         errorElement : 'span'  
