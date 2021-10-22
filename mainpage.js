@@ -107,7 +107,10 @@ $(document).ready(function(){
         },
         messages: {
             userId: "<br>Por favor, introduce tu nombre de usuario",
+            userPass: "<br>Por favor, introduce una contraseña (letras y numeros, 8 maximo)",
             userName: "<br>Por favor, introduce tu nombre y tus apellidos",
+            userEmail: "<br>Por favor, introduce un mail valido (nombre@dominio.extensión)",
+            userBornDate: "<br>Por favor, introduce tu fecha de nacimiento (dd/mm/aaaa)",
             chckTerms: "Tienes que aceptar los terminos de uso<br>"
         },
         errorElement : 'span'  
