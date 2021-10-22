@@ -114,7 +114,18 @@ img.responsivelogobot {
     font-family: 'Helvetica';
     font-weight: lighter;
     color: white;
+}
 
+/* Estilo de los botones del header*/
+.header-btn{
+    font-size: calc(0.7em + 0.7vw);
+    background-color:black;
+    border: none;
+    border-radius: none;
+    border-style: none;
+    font-family: 'Helvetica';
+    font-weight: lighter;
+    color: white;
 }
 
 /*Boxes footer*/
@@ -541,7 +552,7 @@ iframe{
 
 
 /* POP-UPS */
-.standard-popup{
+.standard-form{
     background-color:white;
     display : none;
     position: absolute;
@@ -552,7 +563,7 @@ iframe{
     border-radius:5%;
 }
 
-.signUp-popup{
+.signUp-form{
     background-color:white;
     display : none;
     position: absolute;
@@ -613,14 +624,16 @@ iframe{
     background-color:grey;
     border-radius: 5%;
     color:white;
-
 }
 
 .cross-p{
+    margin-top: 3%;
     font-family: 'Helvetica';
-    font-size: calc(0.85em + 0.95vw);
+    font-size: calc(0.85em + 0.85vw);
     text-align: center;
     color: black;
+    border: none;
+    background-color: transparent;
 }
 
 .checklist{
@@ -633,3 +646,6 @@ iframe{
     text-align: center;
     color: black;
 }
+
+/* Formato de los errores de validacion */
+span.error{color: red; font-size: 0.7em; }

@@ -25,79 +25,63 @@ $(document).ready(function(){
 
     // Boton de login
     $("#logIn-btn").click(function(){
-        $("#logIn-popup").show(); 
+        $("#logIn-form").show(); 
     });
-    $("#clslogIn-popup").click(function(){
-        $("#logIn-popup").hide(); 
+    //Cierre
+    $("#clslogIn-btn").click(function(){
+        $("#logIn-form").hide(); 
     });
+
 
     // Boton de singUp
     $("#signUp-btn").click(function(){
-        $("#signUp-popup").show(); 
+        $("#signUp-form").show(); 
     });
-    $("#clsSignUp-popup").click(function(){
-        $("#signUp-popup").hide();
-        $("#obFields").hide(); 
-        $("#dupEmail").hide();  
+    //Cierre
+    $("#clsSignUp-btn").click(function(){
+        $("#signUp-form").hide();
+    });  
+
+    //Boton de borrar formulario de signUp
+    $("#deleteSignUpData-btn").click(function(){
+        $("#signUp-form").trigger("reset");
+        validator.resetForm();
+    }); 
+    
+    //Boton de submit formulario de signUp
+    $("#saveSignUpData-btn").click(function(){
+        $("#signUp-form").trigger("submit");
+    }); 
+
+    //Validacion del formulario de alta
+    var validator = $("#signUp-form").validate({
+        submitHandler: function(){
+            $("#signUp-form").hide(); 
+            $("#signUpOk-form").show();  
+        },
+        rules: {
+            userId: "required",
+            userPass: "required",
+            userName: "required",
+            userEmail: "required",
+            userBornDate: "required",
+            chckTerms: "required"
+        },
+        messages: {
+            userId: "<br>Por favor, introduce tu nombre de usuario valido",
+            userPass: "<br>Por favor, introduce una constraseña valida",
+            userName: "<br>Por favor, introduce tu nombre y tus apellidos",
+            userEmail: "<br>Por favor, introduce un email valido",
+            userBornDate: "<br>Por favor, introduce una fecha de nacimiento valida",
+            chckTerms: "Tienes que aceptar los terminos de uso<br>"
+        },
+        errorElement : 'span'  
     });
 
-    //Creación de la cookie de registro
-    $("#saveSignUpData-btn").click(function(){
-        var userId = $("#userId").val();
-        var userPass = $("#userPass").val();
-        var userName = $("#userName").val();
-        var userEmail = $("#userEmail").val();
-        var userBornDate = $("#userBornDate").val();
-        var userProfileImg = $("#userProfileImg").val();
-        var chckMusica = false;
-        var chckCombates = false;
-        var chckHobbits = false;
-        var chckUc3m = false;
-        var checkTerms = false;
-        if ($("#chckMusica").prop("checked") == undefined) {
-            chckMusica = true;
-        }       
-        if ($("#chckCombates").prop("checked") == undefined) {
-            chckCombates = true;
-        }
-        if ($("#chckHobbits").prop("checked") == undefined) {
-            chckHobbits = true;
-        }
-        if ($("#chckUc3m").prop("checked") == undefined) {
-            chckUc3m = true;
-        }
-        if ($("#checkTerms").prop("checked") == true) {
-            checkTerms = true;
-        }
-        let auxEmail = getCookie("userEmail");
-        if (userEmail != "" & userEmail== auxEmail){
-            //Messaje de error
-            $("#dupEmail").show(); 
-        }
-        else if (userId == "" | userPass == "" |userName == "" | userEmail == "" | userBornDate == "" | checkTerms == false){
-            //Messaje de error
-            $("#obFields").show(); 
-        }
-        else{
-            setCookie("userId", userId);
-            setCookie("userPass", userPass);
-            setCookie("userName", userName);
-            setCookie("userEmail", userEmail);
-            setCookie("userBornDate", userBornDate);
-            setCookie("userProfileImg", userProfileImg);
-            setCookie("chckMusica", chckMusica);
-            setCookie("chckCombates", chckCombates);
-            setCookie("chckHobbits", chckHobbits);
-            setCookie("chckUc3m", chckUc3m);
-            setCookie("checkTerms", checkTerms);
-            $("#signUp-popup").hide();
-            $("#obFields").hide(); 
-            $("#dupEmail").hide(); 
-            $("#signInOk-popup").show(); 
-        }
-    });
-    //Boton de cierre de la confirmacion del registro
-    $("#clsSignInOk-popup").click(function(){
-        $("#signInOk-popup").hide(); 
-    });    
+    //Cierre boton confirmacion registro
+    $("#clsSignInOk-form").click(function(){
+        $("#signUpOk-form").hide();
+    });  
 });
+
+

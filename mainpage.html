@@ -4,68 +4,67 @@
     <head>
         <script src="jquery-3.6.0.min.js"></script>
         <script src="mainpage.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
         <link rel="stylesheet" href="style/mainpage.css" type="text/css" media="all">
         <title>Visit middle earth</title>
     </head>
     <body> 
-        <!-- Popup de logIn -->
-        <div id="logIn-popup" class="standard-popup">
-            <div><p id="clslogIn-popup" class="cross-p" style="margin-left:85%;">X</p></div>
-            <div><p class="form-p" style="margin-top:5%;">Usuario</p></div>
-            <div><p class="form-p"><input id="logInId" class="formTextBoxes" type="text" name="Usuario"></p></div>
-            <div><p class="form-p">Contraseña</p></div>
-            <div><p class="form-p"><input id="logInPass" class="formTextBoxes" type="text" name="Contraseña"></p></div>
-            <div><p class="form-p" style="margin-bottom:10%;"><input class="submit-btn" type="submit" value="LOG IN"></div>   
-        </div> 
-        <!-- Popup de signIn -->
-        <div id="signUp-popup" class="signUp-popup" style="border-radius: 1.5%;">
-            <div><p id="clsSignUp-popup" class="cross-p" style="margin-left:85%;">X</p></div>
-            <div><p class="form-p" style="margin-top:5%;">Nombre de usuario</p></div>
-            <div><p class="form-input"><input id="userId" class="formTextBoxes" type="text" placeholder="(Obligatorio)"></p></div>
-            <div><p class="form-p">Contraseña</p></div>
-            <div><p class="form-input"><input id="userPass" class="formTextBoxes" type="text" placeholder="(Obligatorio)"></p></div>
-            <div><p class="form-p">Nombre y apellidos</p></div>
-            <div><p class="form-input"><input id="userName" class="formTextBoxes" type="text" placeholder="(Obligatorio)"></p></div>
-            <div><p class="form-p">Email</p></div>
-            <div><p class="form-input"><input id="userEmail" class="formTextBoxes" type="text" placeholder="(Obligatorio)"></p></div>
-            <div><p class="form-p">Fecha de nacimiento</p></div>
-            <div><p class="form-input"><input id="userBornDate" class="formTextBoxes" type="text" placeholder="(Obligatorio)"></p></div>
-            <div><p class="form-p">Foto de perfil</p></div>
-            <div><p class="form-input">
-                <input id="userProfileImage" type="file" id="userProfileImg" style="display: none"/>
-                <button class="submit-btn">
-                    <label for="userProfileImage">Select file</label>
-                </button>
-            </p></div>
-            <div><p class="form-p" style="margin-bottom:5%; margin-top:5%;">Intereses personales</p></div>
-            <div><p class="checklist"><input id="chckMusica" type="checkbox" value="true"><label for="chck1">Musica popular de Gondor</label></p></div>
-            <div><p class="checklist"><input id="chckCombates" type="checkbox" value="true"><label for="chck2">Combates a espada</label></p></div>
-            <div><p class="checklist"><input id="chckHobbits" type="checkbox" value="true"><label for="chck3">Hierba de los hobbits</label></p></div>
-            <div><p class="checklist"><input id="chckUc3m" type="checkbox" value="true><label for="chck4">Soy profesor/a de la Uc3m</label></p></div>
-            <div><p class="form-p" style="margin-top:7%; margin-bottom:-2%;"><input id="chckTerms" type="checkbox" value="true"><label for="chck5">He leido y acepto los terminos y condiciones</label></p></div>
+        <!-- form de logIn -->
+        <form id="logIn-form" class="standard-form">
+            <button id="clslogIn-btn" class="cross-p" style="margin-left:86%;" type="button"><label for="clslogIn-form">X</label></button>
+            <p class="form-p" style="margin-top:5%;">Usuario</p>
+            <p class="form-p"><input id="logInId" class="formTextBoxes" type="text" name="Usuario"></p>
+            <p class="form-p">Contraseña</p>
+            <p class="form-p"><input id="logInPass" class="formTextBoxes" type="text" name="Contraseña"></p>
+            <div><p class="form-p" style="margin-bottom:10%;"><input class="submit-btn" type="button" value="CONFIRMAR"></p></div>
+        </form> 
+
+        <form id="signUp-form" class="signUp-form" style="border-radius: 1.5%;">
+            <button id="clsSignUp-btn" class="cross-p" style="margin-left:87%;" type="button"><label for="clsSignUp-form">X</label></button>
+            <p class="form-p" style="margin-top:5%;">Nombre de usuario</p>
+            <p class="form-input"><input id="userId" name="userId" class="formTextBoxes" type="text" placeholder="(Obligatorio)" required></p>
+            <p class="form-p">Contraseña</p>
+            <p class="form-input"><input id="userPass" name="userPass" class="formTextBoxes" type="password" placeholder="(Obligatorio)" required></p>
+            <p class="form-p">Nombre y apellidos</p>
+            <p class="form-input"><input id="userName" name="userName" class="formTextBoxes" type="text" placeholder="(Obligatorio)" required></p>
+            <p class="form-p">Email</p>
+            <p class="form-input"><input id="userEmail" name="userEmail" class="formTextBoxes" type="text" placeholder="(Obligatorio)" required></p>
+            <p class="form-p">Fecha de nacimiento</p>
+            <p class="form-input"><input name="userBornDate" class="formTextBoxes" type="text" placeholder="(Obligatorio)" required></p>
+            <div>
+                <p class="form-input">
+                    <input id="userProfileImage" name="userProfileImage" type="file" name="userProfileImg" style="display:none;"/>
+                    <button class="submit-btn" type="button"><label for="userProfileImage">Select file</label></button>
+                </p>
+            </div>
+            <p class="form-p" style="margin-bottom:5%; margin-top:5%;">Intereses personales</p>
+            <p class="checklist"><input id="chckMusica" name="chckMusica" type="checkbox" value="true"><label for="chckMusica">Musica popular de Gondor</label></p>
+            <p class="checklist"><input id="chckCombates" name="chckCombates" type="checkbox" value="true"><label for="chckCombates">Combates a espada</label></p>
+            <p class="checklist"><input id="chckHobbits" name="chckHobbits" type="checkbox" value="true"><label for="chckHobbits">Hierba de los hobbits</label></p>
+            <p class="checklist"><input id="chckUc3m" name="chckUc3m" type="checkbox" value="true"><label for="chckUc3m">Soy profesor/a de la Uc3m</label></p>
+            <p class="form-p" style="margin-top:7%; margin-bottom:-2%;"><input id="chckTerms" name="chckTerms" type="checkbox" value="true" required><label for="chckTerms">He leido y acepto los terminos y condiciones</label></p>
             <div><p class="form-p" style="margin-bottom:5%;">
-                <input id="saveSignUpData-btn" class="submit-btn" type="submit" value="GUARDAR">
-                <input id="deleteSignUpData-btn"class="submit-btn" style="background-color: darkgrey" type="submit" value="BORRAR">
-            </p></div>   
-            <div id="obFields" class="errOnField"><p>Por favor, introduce todos los campos obligatorios</p></div> 
-            <div id="dupEmail" class="errOnField"><p>Ya hay una cuenta asociada a ese correo electronico</p></div> 
-        </div> 
+                <button id="saveSignUpData-btn" class="submit-btn" type="button"><label for="saveSignUpData-btn">GUARDAR</label></button>
+                <button id="deleteSignUpData-btn" class="submit-btn" style="background-color: darkgrey;" type="button"><label for="deleteSignUpData-btn">BORRAR</label></button>
+            </p></div> 
+        </form>
+
         <!-- Registro con exito-->
-        <div id="signInOk-popup" class="standard-popup" style="margin-top:80%;">
-            <div><p id="clsSignInOk-popup" class="cross-p" style="margin-left:85%;">X</p></div>
-            <div><p class="form-p" style="margin-top:5%; margin-bottom:20%;">Te has registrado con exito</p></div>  
+        <div id="signUpOk-form" class="standard-form" style="margin-top:70%;">
+            <p id="clsSignInOk-form" class="cross-p" style="margin-left:85%;">X</p>
+            <p class="form-p" style="margin-top:5%; margin-bottom:15%;">Te has registrado con exito</p> 
         </div> 
         <!--Cabecera-->   
         <header>
         <div class= "bigflexheader">
             <div><a href="mainpage.html"><img src="images/logo.png" class="responsivelogotop" alt="logo de la web"></a></div>
             <div style="width: 1%;"></div>
-            <div style="margin-left: -15%;">Home</div>
-            <div>About</div>
-            <div>Contact</div>
-            <div style="width: 15%;"></div>
-            <div id="logIn-btn"><p style="color: white; text-decoration: none;">LOG IN</a></div>
-            <div id="signUp-btn"><p style="color: white; text-decoration: none;">SIGN UP</p></div>
+            <div style="margin-left: -10%;"><button class="header-btn" id="home-btn" type="button"><label for="home-btn">Home</label></button></div>
+            <div><button class="header-btn" id="about-btn" type="button"><label for="about-btn">About</label></button></div>
+            <div><button class="header-btn" id="contact-btn" type="button"><label for="contact-btn">Contact</label></button></div>
+            <div style="width: 7%;"></div>
+            <div><button class="header-btn" id="logIn-btn" type="button"><label for="logIn-btn">LOG IN</label></button></div>
+            <div><button class="header-btn" id="signUp-btn" type="button"><label for="signUp-btn">SIGN UP</label></button></div>
         </div>
         </header>
         <!--Primera seccion-->
