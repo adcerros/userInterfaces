@@ -1,10 +1,14 @@
 
-function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate){
-    Cookies.set("userId", userId, {secure:true});
-    Cookies.set("userPass", userPass, {secure:true});
-    Cookies.set("userName", userName, {secure:true});
-    Cookies.set("userEmail", userEmail, {secure:true});
-    Cookies.set("userBornDate", userBornDate, {secure:true});
+function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m){
+    Cookies.set(String(userEmail) + "-" + "userId", userId, {secure:true});
+    Cookies.set(String(userEmail) + "-" + "userPass", userPass, {secure:true});
+    Cookies.set(String(userEmail) + "-" + "userName", userName, {secure:true});
+    Cookies.set(String(userEmail) + "-" + "userEmail", userEmail, {secure:true});
+    Cookies.set(String(userEmail) + "-" + "userBornDate", userBornDate, {secure:true});
+    Cookies.set(String(userEmail) + "-" + "chckMusica", chckMusica, {secure:true});
+    Cookies.set(String(userEmail) + "-" + "chckCombates", chckCombates, {secure:true});
+    Cookies.set(String(userEmail) + "-" + "chckHobbits", chckHobbits, {secure:true});
+    Cookies.set(String(userEmail) + "-" + "chckUc3m", chckUc3m, {secure:true});
 }
 
 $(document).ready(function(){
@@ -44,57 +48,67 @@ $(document).ready(function(){
     //Funciones para la validacion de expresiones regulares
     $.validator.addMethod(
         "userPass",
-        function(value, element) {
-            return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
+        function(value) {
+            return /^[a-zA-Z0-9]+$/.test(value);
         },
         "<br>El formato no es valido, se admiten letras y numeros (8 maximo)"
     );
 
     $.validator.addMethod(
         "userEmail",
-        function(value, element) {
-            return this.optional(element) || /^[a-zA-Z0-9]+@{1}[a-zA-Z0-9]+(\.{1})[a-zA-Z0-9]+$/.test(value);
+        function(value) {
+            return /^[a-zA-Z0-9]+@{1}[a-zA-Z0-9]+(\.{1})[a-zA-Z0-9]+$/.test(value);
         },
         "<br>El formato no es valido, debe ser del tipo: nombre@dominio.extensión"
     );
 
     $.validator.addMethod(
         "userBornDate",
-        function(value, element) {
-            return this.optional(element) || /^^([0-2][0-9]|3[0-1])(\/)(0[1-9]|1[0-2])\2(\d{4})$/.test(value);
+        function(value) {
+            return /^^([0-2][0-9]|3[0-1])(\/)(0[1-9]|1[0-2])\2(\d{4})$/.test(value);
         },
         "<br>El formato no es valido, debe ser del tipo: dd/mm/aaaa"
     );
 
     $.validator.addMethod(
         "userEmailDup",
-        function(value, element) {
-            let x = Cookies.get("userEmail");
-            if(value == x || element == x){
-                return true;
+        function(value) {
+            if (Cookies.get(String(value) + "-" + "userEmail") == value){
+                $("#dupEmail").show();
+                return false;
             }
-            return false;
+            return true;
         },
-        "<br>Email duplicado"
     );
+
     
     //Validacion del formulario de alta
     var validator = $("#signUp-form").validate({
         submitHandler: function(){
-            let userEmailaux = Cookies.get("userEmail");
-            if (userEmailaux == $("#userEmail").val()){
-                $("#dupEmail").show();
+            $("#signUp-form").hide(); 
+            let userId = $("#userId").val();
+            let userPass = $("#userPass").val();
+            let userName = $("#userName").val();
+            let userEmail = $("#userEmail").val();
+            let userBornDate = $("#userBornDate").val()
+            let chckMusica = false;
+            let chckCombates = false;
+            let chckHobbits = false;
+            let chckUc3m = false;
+            if ($("#chckMusica").is(":checked")){
+                chckMusica = true;
             }
-            else if(userEmailaux != $("#userEmail").val()){
-                $("#signUp-form").hide(); 
-                var userId = $("#userId").val();
-                var userPass = $("#userPass").val();
-                var userName = $("#userName").val();
-                var userEmail = $("#userEmail").val();
-                var userBornDate = $("#userBornDate").val()
-                setSignUpCookie(userId, userPass, userName, userEmail, userBornDate);
-                $("#signUpOk-form").show();
+            if ($("#chckCombates").is(":checked")){
+                chckCombates = true;
             }
+            if ($("#chckHobbits").is(":checked")){
+                chckHobbits = true;
+            }
+            if ($("#chckUc3m").is(":checked")){
+                chckUc3m = true;
+            }
+            setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m);
+            $("#signUpOk-form").show(); 
         },
         rules: {
             userId: "required",
@@ -107,7 +121,7 @@ $(document).ready(function(){
             userEmail: {
                 required: true, 
                 userEmail: true,
-                userEmailDup: false,
+                userEmailDup: true,
             },
             userBornDate: {
                 required: true, 
