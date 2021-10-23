@@ -1,24 +1,10 @@
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(";");
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == " ") {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-}
 
-function setCookie(cname, cvalue, exdays) {
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    let expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate){
+    Cookies.set("userId", userId);
+    Cookies.set("userPass", userPass);
+    Cookies.set("userName", userName);
+    Cookies.set("userEmail", userEmail);
+    Cookies.set("userBornDate", userBornDate);
 }
 
 $(document).ready(function(){
@@ -35,6 +21,10 @@ $(document).ready(function(){
 
     // Boton de singUp
     $("#signUp-btn").click(function(){
+        Cookies.set("prueba", "prueba");
+        document.cookie = "nueva ";
+        var x = Cookies.get("prueba");
+        alert(x);
         $("#signUp-form").show(); 
     });
     //Cierre
@@ -79,6 +69,17 @@ $(document).ready(function(){
         },
         "<br>El formato no es valido, debe ser del tipo: dd/mm/aaaa"
     );
+
+    $.validator.addMethod(
+        "userEmailDup",
+        function(value) {
+            if(value == true){
+                return true;
+            }
+            return false;
+        },
+        "<br>Email duplicado"
+    );
     
     //Validacion del formulario de alta
     var validator = $("#signUp-form").validate({
@@ -86,6 +87,7 @@ $(document).ready(function(){
             $("#signUp-form").hide(); 
             $("#signUpOk-form").show();
             $("#signUp-form").trigger("reset"); 
+            setSignUpCookie($("#userId").val(), $("#userPass").val(), $("#userName").val(), $("#userEmail").val(), $("#userBornDate").val());
         },
         rules: {
             userId: "required",

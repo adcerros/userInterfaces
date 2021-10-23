@@ -4,6 +4,7 @@
     <head>
         <script src="jquery-3.6.0.min.js"></script>
         <script src="mainpage.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
         <link rel="stylesheet" href="style/mainpage.css" type="text/css" media="all">
         <title>Visit middle earth</title>
@@ -30,7 +31,7 @@
             <p class="form-p">Email</p>
             <p class="form-input"><input id="userEmail" name="userEmail" class="formTextBoxes" type="text" placeholder="(Obligatorio)" required></p>
             <p class="form-p">Fecha de nacimiento</p>
-            <p class="form-input"><input name="userBornDate" class="formTextBoxes" type="text" placeholder="(Obligatorio)" required></p>
+            <p class="form-input"><input id="userBornDate" name="userBornDate" class="formTextBoxes" type="text" placeholder="(Obligatorio)" required></p>
             <div>
                 <p class="form-input">
                     <input id="userProfileImage" name="userProfileImage" type="file" name="userProfileImg" style="display:none;"/>
