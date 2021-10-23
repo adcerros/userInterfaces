@@ -87,13 +87,13 @@ $(document).ready(function(){
             }
             else if(userEmailaux != $("#userEmail").val()){
                 $("#signUp-form").hide(); 
-                $("#signUpOk-form").show();
                 var userId = $("#userId").val();
                 var userPass = $("#userPass").val();
                 var userName = $("#userName").val();
                 var userEmail = $("#userEmail").val();
                 var userBornDate = $("#userBornDate").val()
                 setSignUpCookie(userId, userPass, userName, userEmail, userBornDate);
+                $("#signUpOk-form").show();
             }
         },
         rules: {
