@@ -1,10 +1,10 @@
 
 function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate){
-    Cookies.set("userId", userId);
-    Cookies.set("userPass", userPass);
-    Cookies.set("userName", userName);
-    Cookies.set("userEmail", userEmail);
-    Cookies.set("userBornDate", userBornDate);
+    Cookies.set("userId", userId, {secure:true});
+    Cookies.set("userPass", userPass, {secure:true});
+    Cookies.set("userName", userName, {secure:true});
+    Cookies.set("userEmail", userEmail, {secure:true});
+    Cookies.set("userBornDate", userBornDate, {secure:true});
 }
 
 $(document).ready(function(){
@@ -21,10 +21,6 @@ $(document).ready(function(){
 
     // Boton de singUp
     $("#signUp-btn").click(function(){
-        Cookies.set("prueba", "prueba");
-        document.cookie = "nueva ";
-        var x = Cookies.get("prueba");
-        alert(x);
         $("#signUp-form").show(); 
     });
     //Cierre
@@ -72,8 +68,9 @@ $(document).ready(function(){
 
     $.validator.addMethod(
         "userEmailDup",
-        function(value) {
-            if(value == true){
+        function(value, element) {
+            let x = Cookies.get("userEmail");
+            if(value == x || element == x){
                 return true;
             }
             return false;
@@ -84,10 +81,20 @@ $(document).ready(function(){
     //Validacion del formulario de alta
     var validator = $("#signUp-form").validate({
         submitHandler: function(){
-            $("#signUp-form").hide(); 
-            $("#signUpOk-form").show();
-            $("#signUp-form").trigger("reset"); 
-            setSignUpCookie($("#userId").val(), $("#userPass").val(), $("#userName").val(), $("#userEmail").val(), $("#userBornDate").val());
+            let userEmailaux = Cookies.get("userEmail");
+            if (userEmailaux == $("#userEmail").val()){
+                $("#dupEmail").show();
+            }
+            else if(userEmailaux != $("#userEmail").val()){
+                $("#signUp-form").hide(); 
+                $("#signUpOk-form").show();
+                var userId = $("#userId").val();
+                var userPass = $("#userPass").val();
+                var userName = $("#userName").val();
+                var userEmail = $("#userEmail").val();
+                var userBornDate = $("#userBornDate").val()
+                setSignUpCookie(userId, userPass, userName, userEmail, userBornDate);
+            }
         },
         rules: {
             userId: "required",
@@ -100,6 +107,7 @@ $(document).ready(function(){
             userEmail: {
                 required: true, 
                 userEmail: true,
+                userEmailDup: false,
             },
             userBornDate: {
                 required: true, 
@@ -121,7 +129,12 @@ $(document).ready(function(){
     //Cierre boton confirmacion registro
     $("#clsSignInOk-form").click(function(){
         $("#signUpOk-form").hide();
-    });  
+    }); 
+    
+    //Cierre boton email duplicado
+    $("#clsDupEmail").click(function(){
+        $("#dupEmail").hide();
+    }); 
 });
 
 
