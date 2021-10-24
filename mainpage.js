@@ -1,15 +1,39 @@
-
-function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m){
+var result;
+function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, userProfileImage, chckMusica , chckCombates, chckHobbits, chckUc3m){
     Cookies.set(String(userEmail) + "-" + "userId", userId, {secure:true});
     Cookies.set(String(userEmail) + "-" + "userPass", userPass, {secure:true});
     Cookies.set(String(userEmail) + "-" + "userName", userName, {secure:true});
     Cookies.set(String(userEmail) + "-" + "userEmail", userEmail, {secure:true});
     Cookies.set(String(userEmail) + "-" + "userBornDate", userBornDate, {secure:true});
+    Cookies.set(String(userEmail) + "-" + "userProfileImage", userProfileImage, {secure:true});
     Cookies.set(String(userEmail) + "-" + "chckMusica", chckMusica, {secure:true});
     Cookies.set(String(userEmail) + "-" + "chckCombates", chckCombates, {secure:true});
     Cookies.set(String(userEmail) + "-" + "chckHobbits", chckHobbits, {secure:true});
     Cookies.set(String(userEmail) + "-" + "chckUc3m", chckUc3m, {secure:true});
 }
+
+function showUserProfile(userEmail, userProfileImage){
+    
+    if (userProfileImage != undefined){
+        loadImage(userProfileImage);
+        $("#userId-info").show();
+        $("#userImage-div").show();
+    }
+    $("#userId-info").show();
+    $("#userImage-div").show();
+}
+
+function loadImage(userProfileImage){
+    var reader = new FileReader();
+    reader.onload = loadImageFile;
+    reader.readAsDataURL(userProfileImage);
+}
+
+function loadImageFile(value){
+    result = value.target.result;
+    $("#userImage").attr("src",result);
+}
+
 
 $(document).ready(function(){
 
@@ -42,6 +66,11 @@ $(document).ready(function(){
     $("#saveSignUpData-btn").click(function(){
         $("#signUp-form").trigger("submit");
     }); 
+
+    //Carga imagen de perfil
+    // $("#userProfileImage").change(function(value){
+    //     loadImage(value);
+    // });
 
 
 
@@ -91,6 +120,7 @@ $(document).ready(function(){
             let userName = $("#userName").val();
             let userEmail = $("#userEmail").val();
             let userBornDate = $("#userBornDate").val()
+            let userProfileImage = document.getElementById("userProfileImage").files[0];
             let chckMusica = false;
             let chckCombates = false;
             let chckHobbits = false;
@@ -107,8 +137,11 @@ $(document).ready(function(){
             if ($("#chckUc3m").is(":checked")){
                 chckUc3m = true;
             }
-            setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m);
+            setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, userProfileImage, chckMusica , chckCombates, chckHobbits, chckUc3m);
+            showUserProfile(userId, userProfileImage)   
             $("#signUpOk-form").show(); 
+            $("#logIn-btn").hide();
+            $("#signUp-btn").hide();
         },
         rules: {
             userId: "required",
