@@ -111,6 +111,7 @@ $(document).ready(function(){
     //Carga imagen usuario
     $(document).on("change", "#userProfileImage", function() {
         saveImage($("#userId").val(), document.getElementById("userProfileImage").files[0]);
+        $("#loadedImage").show();
       });
     
     //Validacion del formulario de alta
@@ -122,7 +123,6 @@ $(document).ready(function(){
             let userName = $("#userName").val();
             let userEmail = $("#userEmail").val();
             let userBornDate = $("#userBornDate").val()
-            let userProfileImage = document.getElementById("userProfileImage").files[0];
             let chckMusica = false;
             let chckCombates = false;
             let chckHobbits = false;
