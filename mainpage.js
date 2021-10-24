@@ -1,29 +1,30 @@
 
-function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, userProfileImage, chckMusica , chckCombates, chckHobbits, chckUc3m){
-    Cookies.set(String(userEmail) + "-" + "userId", userId, {secure:true});
-    Cookies.set(String(userEmail) + "-" + "userPass", userPass, {secure:true});
-    Cookies.set(String(userEmail) + "-" + "userName", userName, {secure:true});
-    Cookies.set(String(userEmail) + "-" + "userEmail", userEmail, {secure:true});
-    Cookies.set(String(userEmail) + "-" + "userBornDate", userBornDate, {secure:true});
-    Cookies.set(String(userEmail) + "-" + "chckMusica", chckMusica, {secure:true});
-    Cookies.set(String(userEmail) + "-" + "chckCombates", chckCombates, {secure:true});
-    Cookies.set(String(userEmail) + "-" + "chckHobbits", chckHobbits, {secure:true});
-    Cookies.set(String(userEmail) + "-" + "chckUc3m", chckUc3m, {secure:true});
+function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m){
+    Cookies.set(String(userId) + "-" + "userId", userId, {secure:true});
+    Cookies.set(String(userId) + "-" + "userPass", userPass, {secure:true});
+    Cookies.set(String(userId) + "-" + "userName", userName, {secure:true});
+    Cookies.set(String(userId) + "-" + "userEmail", userEmail, {secure:true});
+    Cookies.set(String(userId) + "-" + "userBornDate", userBornDate, {secure:true});
+    Cookies.set(String(userId) + "-" + "chckMusica", chckMusica, {secure:true});
+    Cookies.set(String(userId) + "-" + "chckCombates", chckCombates, {secure:true});
+    Cookies.set(String(userId) + "-" + "chckHobbits", chckHobbits, {secure:true});
+    Cookies.set(String(userId) + "-" + "chckUc3m", chckUc3m, {secure:true});
 }
 
-function showUserProfile(userEmail){
-    userProfileImage = localStorage.getItem(userEmail);
+function showUserProfile(userId){
+    userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
     if (userProfileImage != null){
         $("#userImage").attr("src",userProfileImage);
     }
+    document.getElementById("#userId-p").innerHTML = userId;
     $("#userId-info").show();
     $("#userImage-div").show();
 }
 
-function saveImage(userEmail, userProfileImage){
+function saveImage(userId, userProfileImage){
     var reader = new FileReader();
     reader.onload = function(){
-        localStorage.setItem(userEmail, reader.result);
+        localStorage.setItem(userId + "-" +"profileImg", reader.result);
     }
     reader.readAsDataURL(userProfileImage);
 }
@@ -61,13 +62,6 @@ $(document).ready(function(){
         $("#signUp-form").trigger("submit");
     }); 
 
-    //Carga imagen de perfil
-    // $("#userProfileImage").change(function(value){
-    //     saveImage(value);
-    // });
-
-
-
     //Funciones para la validacion de expresiones regulares
     $.validator.addMethod(
         "userPass",
@@ -104,6 +98,20 @@ $(document).ready(function(){
         },
     );
 
+    //Cierre boton confirmacion registro
+    $("#clsSignInOk-form").click(function(){
+        $("#signUpOk-form").hide();
+    }); 
+    
+    //Cierre boton email duplicado
+    $("#clsDupEmail").click(function(){
+        $("#dupEmail").hide();
+    }); 
+
+    //Carga imagen usuario
+    $(document).on("change", "#userProfileImage", function() {
+        saveImage($("#userId").val(), document.getElementById("userProfileImage").files[0]);
+      });
     
     //Validacion del formulario de alta
     var validator = $("#signUp-form").validate({
@@ -131,10 +139,8 @@ $(document).ready(function(){
             if ($("#chckUc3m").is(":checked")){
                 chckUc3m = true;
             }
-            saveImage(userEmail, userProfileImage);
-            alert("prueba");
-            setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, userProfileImage, chckMusica , chckCombates, chckHobbits, chckUc3m);
-            showUserProfile(userEmail)   
+            setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m);
+            showUserProfile(userId);   
             $("#signUpOk-form").show(); 
             $("#logIn-btn").hide();
             $("#signUp-btn").hide();
@@ -169,14 +175,5 @@ $(document).ready(function(){
         errorElement : 'span'  
     });
 
-    //Cierre boton confirmacion registro
-    $("#clsSignInOk-form").click(function(){
-        $("#signUpOk-form").hide();
-    }); 
-    
-    //Cierre boton email duplicado
-    $("#clsDupEmail").click(function(){
-        $("#dupEmail").hide();
-    }); 
 });
 
