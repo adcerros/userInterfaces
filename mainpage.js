@@ -9,6 +9,7 @@ function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, ch
     Cookies.set(String(userId) + "-" + "chckCombates", chckCombates, {secure:true});
     Cookies.set(String(userId) + "-" + "chckHobbits", chckHobbits, {secure:true});
     Cookies.set(String(userId) + "-" + "chckUc3m", chckUc3m, {secure:true});
+    Cookies.set(String(userEmail) + "-" + "userEmail", userEmail, {secure:true});
 }
 
 function showUserProfile(userId){
@@ -17,8 +18,12 @@ function showUserProfile(userId){
         $("#userImage").attr("src",userProfileImage);
     }
     document.getElementById("#userId-p").innerHTML = userId;
+    $("#logIn-btn").hide();
+    $("#signUp-btn").hide();
+    $("#auxDiv").hide();
     $("#userId-info").show();
     $("#userImage-div").show();
+    $("#logout-btn").show();
 }
 
 function saveImage(userId, userProfileImage){
@@ -108,17 +113,30 @@ $(document).ready(function(){
         $("#dupEmail").hide();
     }); 
 
+    //Cierre de sesion
+    $("#logout-btn").click(function(){
+        $("#userId-info").hide();
+        $("#userImage-div").hide();
+        $("#logout-btn").hide();
+        $("#logIn-btn").show();
+        $("#auxDiv").show();
+        $("#signUp-btn").show();
+        $("#signUp-form").trigger("reset");
+        validator.resetForm();
+        $("#loadedImage").hide();
+    }); 
+
     //Carga imagen usuario
     $(document).on("change", "#userProfileImage", function() {
         saveImage($("#userId").val(), document.getElementById("userProfileImage").files[0]);
         $("#loadedImage").show();
-      });
+    });
     
     //Validacion del formulario de alta
     var validator = $("#signUp-form").validate({
         submitHandler: function(){
             $("#signUp-form").hide(); 
-            let userId = $("#userId").val();
+            var userId = $("#userId").val();
             let userPass = $("#userPass").val();
             let userName = $("#userName").val();
             let userEmail = $("#userEmail").val();
@@ -142,8 +160,6 @@ $(document).ready(function(){
             setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m);
             showUserProfile(userId);   
             $("#signUpOk-form").show(); 
-            $("#logIn-btn").hide();
-            $("#signUp-btn").hide();
         },
         rules: {
             userId: "required",
