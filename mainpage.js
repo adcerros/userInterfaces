@@ -13,6 +13,7 @@ function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, ch
 }
 
 function showUserProfile(userId){
+    // Se carga la imagen del usuario
     let userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
     if (userProfileImage != null){
         $("#userImage").attr("src",userProfileImage);
@@ -20,10 +21,13 @@ function showUserProfile(userId){
     else{
         $("#userImage").attr("src","./images/mainpage/default-icon.png");
     }
+    // Se cambia el nombre por defecto del id en la interfaz
     document.getElementById("#userId-p").innerHTML = userId;
+    // Se oculta la interfaz estandar
     $("#logIn-btn").hide();
     $("#signUp-btn").hide();
     $("#auxDiv").hide();
+    // Se muestra la interfaz del usuario
     $("#userId-info").show();
     $("#userImage-div").show();
     $("#logout-btn").show();
@@ -118,12 +122,15 @@ $(document).ready(function(){
 
     //Cierre de sesion
     $("#logout-btn").click(function(){
+        //Se oculta la interfaz de usuario
         $("#userId-info").hide();
         $("#userImage-div").hide();
         $("#logout-btn").hide();
+        //Se muestra la interfaz estandar
         $("#logIn-btn").show();
         $("#auxDiv").show();
         $("#signUp-btn").show();
+        //Se reinician los formularios
         $("#signUp-form").trigger("reset");
         validator.resetForm();
         $("#logIn-form").trigger("reset");
@@ -210,8 +217,6 @@ $(document).ready(function(){
             let cookiesPass = Cookies.get(String(logInId) + "-" + "userPass");
             if(logInPass != cookiesPass){
                 $("#dupEmail").show(); 
-                $("#logIn-form").trigger("reset");
-                logInValidator.resetForm();
             } 
             else{
                 $("#logIn-form").hide();
