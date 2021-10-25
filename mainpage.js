@@ -13,9 +13,12 @@ function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, ch
 }
 
 function showUserProfile(userId){
-    userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
+    let userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
     if (userProfileImage != null){
         $("#userImage").attr("src",userProfileImage);
+    }
+    else{
+        $("#userImage").attr("src","./images/mainpage/default-icon.png");
     }
     document.getElementById("#userId-p").innerHTML = userId;
     $("#logIn-btn").hide();
@@ -123,6 +126,8 @@ $(document).ready(function(){
         $("#signUp-btn").show();
         $("#signUp-form").trigger("reset");
         validator.resetForm();
+        $("#logIn-form").trigger("reset");
+        logInValidator.resetForm();
         $("#loadedImage").hide();
     }); 
 
@@ -187,6 +192,41 @@ $(document).ready(function(){
             userEmail: "<br>Por favor, introduce un mail valido (nombre@dominio.extensión)",
             userBornDate: "<br>Por favor, introduce tu fecha de nacimiento (dd/mm/aaaa)",
             chckTerms: "Tienes que aceptar los terminos de uso<br>"
+        },
+        errorElement : 'span'  
+    });
+
+
+    //Boton de submit formulario de logIn
+    $("#savelogInData-btn").click(function(){
+        $("#logIn-form").trigger("submit");
+    }); 
+
+
+    var logInValidator = $("#logIn-form").validate({
+        submitHandler: function(){
+            let logInId = $("#logInId").val();
+            let logInPass = $("#logInPass").val();
+            let cookiesPass = Cookies.get(String(logInId) + "-" + "userPass");
+            if(logInPass != cookiesPass){
+                $("#dupEmail").show(); 
+                $("#logIn-form").trigger("reset");
+                logInValidator.resetForm();
+            } 
+            else{
+                $("#logIn-form").hide();
+                $("#signUpOk-form").show();  
+                showUserProfile(logInId);  
+            }
+        },
+        rules: {
+            logInId: "required",
+            logInPass: "required"
+        },
+        messages: {
+            logInId: "<br>Por favor, introduce tu nombre de usuario registrado",
+            logInPass: "<br>Por favor, introduce una contraseña",
+            
         },
         errorElement : 'span'  
     });

@@ -14,10 +14,12 @@
         <form id="logIn-form" class="standard-form">
             <button id="clslogIn-btn" class="cross-p" style="margin-left:86%;" type="button"><label for="clslogIn-form">X</label></button>
             <p class="form-p" style="margin-top:5%;">Usuario</p>
-            <p class="form-p"><input id="logInId" class="formTextBoxes" type="text" name="Usuario"></p>
+            <p class="form-p"><input id="logInId" class="formTextBoxes" type="text" name="logInId" required></p>
             <p class="form-p">Contraseña</p>
-            <p class="form-p"><input id="logInPass" class="formTextBoxes" type="text" name="Contraseña"></p>
-            <div><p class="form-p" style="margin-bottom:10%;"><input class="submit-btn" type="button" value="CONFIRMAR"></p></div>
+            <p class="form-p"><input id="logInPass" class="formTextBoxes" type="password" name="logInPass" required></p>
+            <div><p class="form-p" style="margin-bottom:10%;">
+                <button id="savelogInData-btn" class="submit-btn" type="button"><label for="savelogInData-btn">CONFIRMAR</label></button>   
+            </p></div>
         </form> 
 
         <form id="signUp-form" class="signUp-form" style="border-radius: 1.5%;">
@@ -53,7 +55,7 @@
         </form>
 
         <!-- Registro con exito-->
-        <div id="signUpOk-form" class="standard-form" style="margin-top:50%; background-color: black">
+        <div id="signUpOk-form" class="standard-form" style="margin-top:60%; background-color: black">
             <p id="clsSignInOk-form" class="cross-p" style="margin-left:85%; margin-bottom: 1%; color: white;">X</p>
             <div class="final-frodo-div"><img src=images/mainpage/signUpOk.gif class="responsiveimg"></div>
             <p class="form-p" style=" color: white; margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">Registrado con exito</p>
