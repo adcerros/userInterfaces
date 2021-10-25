@@ -553,10 +553,7 @@ iframe{
 
 /* POP-UPS */
 .messages{
-    background-color:black;
-    border-style: solid;
-    border-color: white;
-    border-width: 0.1vw;
+    background-color:rgb(7, 7, 7);
     display : none;
     position: fixed;
     top: 30%;
@@ -573,10 +570,7 @@ iframe{
 }
 
 .standard-form{
-    background-color:black;
-    border-style: solid;
-    border-color: white;
-    border-width: 0.1vw;
+    background-color:rgb(7, 7, 7);
     display : none;
     position: absolute;
     top: 30%;
@@ -586,10 +580,7 @@ iframe{
 }
 
 .signUp-form{
-    background-color:black;
-    border-style: solid;
-    border-color: white;
-    border-width: 0.1vw;
+    background-color:rgb(7, 7, 7);
     display : none;
     position: absolute;
     top: 25%;
