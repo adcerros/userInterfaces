@@ -66,7 +66,7 @@ $(document).ready(function(){
     //Boton de borrar formulario de signUp
     $("#deleteSignUpData-btn").click(function(){
         $("#signUp-form").trigger("reset");
-        validator.resetForm();
+        signUpValidator.resetForm();
     }); 
     
     //Boton de submit formulario de signUp
@@ -132,7 +132,7 @@ $(document).ready(function(){
         $("#signUp-btn").show();
         //Se reinician los formularios
         $("#signUp-form").trigger("reset");
-        validator.resetForm();
+        signUpValidator.resetForm();
         $("#logIn-form").trigger("reset");
         logInValidator.resetForm();
         $("#loadedImage").hide();
@@ -145,7 +145,7 @@ $(document).ready(function(){
     });
     
     //Validacion del formulario de alta
-    var validator = $("#signUp-form").validate({
+    var signUpValidator = $("#signUp-form").validate({
         submitHandler: function(){
             $("#signUp-form").hide(); 
             var userId = $("#userId").val();
