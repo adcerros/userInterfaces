@@ -135,6 +135,11 @@ $(document).ready(function(){
 
     //Cierre de sesion
     $("#logOut-btn").click(function(){
+        $("#logOutConfirm").show();
+    }); 
+
+    $("#confirmLogOut-btn").click(function(){
+        $("#logOutConfirm").hide();
         //Se oculta la interfaz de usuario
         $("#userId-info").hide();
         $("#userImage-div").hide();
@@ -152,6 +157,14 @@ $(document).ready(function(){
         $("#loadedImage").hide();
     }); 
 
+    //Cancelar cierre de sesion
+    $("#dontConfirmLogOut-btn").click(function(){
+        $("#logOutConfirm").hide();
+    }); 
+
+    $("#clsLogOutConfirm").click(function(){
+        $("#logOutConfirm").hide();
+    });
 
     //Cierre del mensaje de confirmacion de logOut
     $("#clsLogOutOk").click(function(){
