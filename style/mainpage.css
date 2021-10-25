@@ -552,31 +552,47 @@ iframe{
 
 
 /* POP-UPS */
+.messages{
+    background-color:black;
+    display : none;
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    border-radius:5%;
+}
+.messages > p{
+    color: white
+}
+
+.messages > button{
+    color: white
+}
+
 .standard-form{
-    background-color:white;
+    background-color:black;
     display : none;
     position: absolute;
-    margin-top: 15%;
+    top: 30%;
+    left: 30%;
     width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
     border-radius:5%;
 }
 
 .signUp-form{
-    background-color:white;
+    background-color:black;
     display : none;
     position: absolute;
-    margin-top: 15%;
+    top: 25%;
+    left: 25%;
     width: 50%;
-    margin-left: 25%;
-    margin-right: 25%;
     border-radius:5%;
 }
 
 .errOnField{
     display: none;
     font-family: 'Helvetica';
+    font-weight: lighter;
     font-size: calc(0.5em + 0.5vw);
     padding-left: 5%;
     padding-right: 5%;
@@ -586,16 +602,18 @@ iframe{
 
 .form-p{
     font-family: 'Helvetica';
+    font-weight: lighter;
     font-size: calc(0.65em + 0.65vw);
     padding-left: 5%;
     padding-right: 5%;
     margin-top: 5%;
     text-align: center;
-    color: black;
+    color: white;
 }
 
 .form-input{
     font-family: 'Helvetica';
+    font-weight: lighter;
     font-size: calc(0.65em + 0.65vw);
     padding-left: 5%;
     padding-right: 5%;
@@ -610,7 +628,7 @@ iframe{
     padding: 1%;
     width:90%;
     color: black;
-    border-color: black;
+    border-color: white;
     font-family:'Geneva';
     text-align: center;
 }
@@ -618,36 +636,40 @@ iframe{
 
 /* Estilo del boton de logIn */
 .submit-btn{
+    font-weight: lighter;
     margin:1%;
     padding:1.5%;
     font-size: calc(0.65em + 0.65vw);
-    background-color:grey;
+    background-color: #b5b8b1;
     border-radius: 5%;
+    border-color:  #b5b8b1;
     color:white;
 }
 
 .cross-p{
     margin-top: 3%;
     font-family: 'Helvetica';
+    font-weight: lighter;
     font-size: calc(0.85em + 0.85vw);
     text-align: center;
-    color: black;
+    color: white;
     border: none;
     background-color: transparent;
 }
 
 .checklist{
     font-family: 'Helvetica';
+    font-weight: lighter;
     font-size: calc(0.55em + 0.55vw);
     margin-top: -1%;
     padding-left: 5%;
     padding-right: 5%;
     margin-bottom: 3%;
     text-align: center;
-    color: black;
+    color: white;
 }
 
-.final-frodo-div{
+.message-div{
     margin-top: -8%;
     justify-content: center;
     height: auto; 

@@ -19,7 +19,7 @@ function showUserProfile(userId){
         $("#userImage").attr("src",userProfileImage);
     }
     else{
-        $("#userImage").attr("src","./images/default-icon.png");
+        $("#userImage").attr("src","./images/common/default-icon.png");
     }
     // Se cambia el nombre por defecto del id en la interfaz
     document.getElementById("#userId-p").innerHTML = userId;
@@ -30,7 +30,7 @@ function showUserProfile(userId){
     // Se muestra la interfaz del usuario
     $("#userId-info").show();
     $("#userImage-div").show();
-    $("#logout-btn").show();
+    $("#logOut-btn").show();
 }
 
 function saveImage(userId, userProfileImage){
@@ -62,6 +62,7 @@ $(document).ready(function(){
     $("#clsSignUp-btn").click(function(){
         $("#signUp-form").hide();
     });  
+
 
     //Boton de borrar formulario de signUp
     $("#deleteSignUpData-btn").click(function(){
@@ -104,32 +105,45 @@ $(document).ready(function(){
         function(value) {
             if (Cookies.get(String(value) + "-" + "userEmail") == value){
                 $("#dupEmail").show();
+                $("#signUp-form").hide();
                 return false;
             }
             return true;
         },
     );
 
-    //Cierre boton confirmacion registro
+    //Cierre mensaje confirmacion registro
     $("#clsSignInOk-form").click(function(){
         $("#signUpOk-form").hide();
     }); 
     
-    //Cierre boton email duplicado
+    //Cierre mensaje email duplicado
     $("#clsDupEmail").click(function(){
         $("#dupEmail").hide();
+        $("#signUp-form").show();
+    }); 
+
+    //Cierre contraseña erronea
+    $("#clsBadLogIn").click(function(){
+        $("#badLogIn").hide();
+    }); 
+
+    //Cierre mensaje loginOk
+    $("#clsLogInOk").click(function(){
+        $("#logInOk").hide();
     }); 
 
     //Cierre de sesion
-    $("#logout-btn").click(function(){
+    $("#logOut-btn").click(function(){
         //Se oculta la interfaz de usuario
         $("#userId-info").hide();
         $("#userImage-div").hide();
-        $("#logout-btn").hide();
+        $("#logOut-btn").hide();
         //Se muestra la interfaz estandar
         $("#logIn-btn").show();
         $("#auxDiv").show();
         $("#signUp-btn").show();
+        $("#logOutOk").show(); 
         //Se reinician los formularios
         $("#signUp-form").trigger("reset");
         signUpValidator.resetForm();
@@ -137,6 +151,12 @@ $(document).ready(function(){
         logInValidator.resetForm();
         $("#loadedImage").hide();
     }); 
+
+
+    //Cierre del mensaje de confirmacion de logOut
+    $("#clsLogOutOk").click(function(){
+        $("#logOutOk").hide();
+    });  
 
     //Carga imagen usuario
     $(document).on("change", "#userProfileImage", function() {
@@ -216,11 +236,11 @@ $(document).ready(function(){
             let logInPass = $("#logInPass").val();
             let cookiesPass = Cookies.get(String(logInId) + "-" + "userPass");
             if(logInPass != cookiesPass){
-                $("#dupEmail").show(); 
+                $("#badLogIn").show(); 
             } 
             else{
                 $("#logIn-form").hide();
-                $("#signUpOk-form").show();  
+                $("#logInOk").show();  
                 showUserProfile(logInId);  
             }
         },
