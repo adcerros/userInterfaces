@@ -110,7 +110,7 @@ img.responsivelogobot {
 .bigflexheader > div {
     background-color: black;
     padding: 2%;
-    font-size: calc(0.7em + 0.7vw);
+    font-size: 2.5vw;
     font-family: 'Helvetica';
     font-weight: lighter;
     color: white;
@@ -118,7 +118,7 @@ img.responsivelogobot {
 
 /* Estilo de los botones del header*/
 .header-btn{
-    font-size: calc(0.7em + 0.7vw);
+    font-size: 2.5vw;
     background-color:black;
     border: none;
     border-radius: none;

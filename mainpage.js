@@ -19,7 +19,7 @@ function showUserProfile(userId){
         $("#userImage").attr("src",userProfileImage);
     }
     else{
-        $("#userImage").attr("src","./images/mainpage/default-icon.png");
+        $("#userImage").attr("src","./images/default-icon.png");
     }
     // Se cambia el nombre por defecto del id en la interfaz
     document.getElementById("#userId-p").innerHTML = userId;
