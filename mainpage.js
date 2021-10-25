@@ -1,4 +1,4 @@
-
+//Configuracion de las cookies de registro
 function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m){
     Cookies.set(String(userId) + "-" + "userId", userId, {secure:true});
     Cookies.set(String(userId) + "-" + "userPass", userPass, {secure:true});
@@ -12,6 +12,7 @@ function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, ch
     Cookies.set(String(userEmail) + "-" + "userEmail", userEmail, {secure:true});
 }
 
+//Cambia la interfaz y pasa a modo usuario
 function showUserProfile(userId){
     // Se carga la imagen del usuario
     let userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
@@ -33,6 +34,7 @@ function showUserProfile(userId){
     $("#logOut-btn").show();
 }
 
+// Funcion para guardar la imagen en el localStorage
 function saveImage(userId, userProfileImage){
     var reader = new FileReader();
     reader.onload = function(){
@@ -44,25 +46,55 @@ function saveImage(userId, userProfileImage){
 
 $(document).ready(function(){
 
+    // LOGIN /////////////////////////////////////////////////
     // Boton de login
     $("#logIn-btn").click(function(){
         $("#logIn-form").show(); 
+        $("#signUp-form").hide(); 
     });
     //Cierre
     $("#clslogIn-btn").click(function(){
         $("#logIn-form").hide(); 
     });
 
+    //Cierre contraseña erronea
+    $("#clsBadLogIn").click(function(){
+        $("#badLogIn").hide();
+        $("#logIn-form").show(); 
+    }); 
 
+    //Cierre id erronea
+    $("#clsBadLogInId").click(function(){
+        $("#badLogInId").hide();
+        $("#logIn-form").show(); 
+    }); 
+
+    //Boton de submit formulario de logIn
+    $("#savelogInData-btn").click(function(){
+        $("#logIn-form").trigger("submit");
+    }); 
+
+    //Cierre mensaje loginOk
+    $("#clsLogInOk").click(function(){
+        $("#logInOk").hide();
+    }); 
+
+    // SIGNUP /////////////////////////////////////////////////
     // Boton de singUp
     $("#signUp-btn").click(function(){
         $("#signUp-form").show(); 
+        $("#logIn-form").hide(); 
     });
     //Cierre
     $("#clsSignUp-btn").click(function(){
         $("#signUp-form").hide();
     });  
-
+    
+    //Carga imagen usuario
+    $(document).on("change", "#userProfileImage", function() {
+        saveImage($("#userId").val(), document.getElementById("userProfileImage").files[0]);
+        $("#loadedImage").show();
+    });
 
     //Boton de borrar formulario de signUp
     $("#deleteSignUpData-btn").click(function(){
@@ -75,44 +107,7 @@ $(document).ready(function(){
         $("#signUp-form").trigger("submit");
     }); 
 
-    //Funciones para la validacion de expresiones regulares
-    $.validator.addMethod(
-        "userPass",
-        function(value) {
-            return /^[a-zA-Z0-9]+$/.test(value);
-        },
-        "<br>El formato no es valido, se admiten letras y numeros (8 maximo)"
-    );
-
-    $.validator.addMethod(
-        "userEmail",
-        function(value) {
-            return /^[a-zA-Z0-9]+@{1}[a-zA-Z0-9]+(\.{1})[a-zA-Z0-9]+$/.test(value);
-        },
-        "<br>El formato no es valido, debe ser del tipo: nombre@dominio.extensión"
-    );
-
-    $.validator.addMethod(
-        "userBornDate",
-        function(value) {
-            return /^^([0-2][0-9]|3[0-1])(\/)(0[1-9]|1[0-2])\2(\d{4})$/.test(value);
-        },
-        "<br>El formato no es valido, debe ser del tipo: dd/mm/aaaa"
-    );
-
-    $.validator.addMethod(
-        "userEmailDup",
-        function(value) {
-            if (Cookies.get(String(value) + "-" + "userEmail") == value){
-                $("#dupEmail").show();
-                $("#signUp-form").hide();
-                return false;
-            }
-            return true;
-        },
-    );
-
-    //Cierre mensaje confirmacion registro
+    //Cierre mensaje confirmacion signUp
     $("#clsSignInOk-form").click(function(){
         $("#signUpOk-form").hide();
     }); 
@@ -123,16 +118,7 @@ $(document).ready(function(){
         $("#signUp-form").show();
     }); 
 
-    //Cierre contraseña erronea
-    $("#clsBadLogIn").click(function(){
-        $("#badLogIn").hide();
-    }); 
-
-    //Cierre mensaje loginOk
-    $("#clsLogInOk").click(function(){
-        $("#logInOk").hide();
-    }); 
-
+    // LOGOUT //////////////////////////////////////////////////////
     //Cierre de sesion
     $("#logOut-btn").click(function(){
         $("#logOutConfirm").show();
@@ -170,13 +156,49 @@ $(document).ready(function(){
     $("#clsLogOutOk").click(function(){
         $("#logOutOk").hide();
     });  
-
-    //Carga imagen usuario
-    $(document).on("change", "#userProfileImage", function() {
-        saveImage($("#userId").val(), document.getElementById("userProfileImage").files[0]);
-        $("#loadedImage").show();
-    });
     
+
+    //Funciones para la validacion de expresiones regulares
+    // Comprobacion de la expresion regular de la contraseña
+    $.validator.addMethod(
+        "userPass",
+        function(value) {
+            return /^[a-zA-Z0-9]+$/.test(value);
+        },
+        "<br>El formato no es valido, se admiten letras y numeros (8 maximo)"
+    );
+
+    // Comprobacion de la expresion regular del email
+    $.validator.addMethod(
+        "userEmail",
+        function(value) {
+            return /^[a-zA-Z0-9]+@{1}[a-zA-Z0-9]+(\.{1})[a-zA-Z0-9]+$/.test(value);
+        },
+        "<br>El formato no es valido, debe ser del tipo: nombre@dominio.extensión"
+    );
+
+    // Comprobacion de la expresion regular de la feha de nacimiento
+    $.validator.addMethod(
+        "userBornDate",
+        function(value) {
+            return /^^([0-2][0-9]|3[0-1])(\/)(0[1-9]|1[0-2])\2(\d{4})$/.test(value);
+        },
+        "<br>El formato no es valido, debe ser del tipo: dd/mm/aaaa"
+    );
+
+    // Comprobacion de email duplicado
+    $.validator.addMethod(
+        "userEmailDup",
+        function(value) {
+            if (Cookies.get(String(value) + "-" + "userEmail") == value){
+                $("#dupEmail").show();
+                $("#signUp-form").hide();
+                return false;
+            }
+            return true;
+        },
+    );
+
     //Validacion del formulario de alta
     var signUpValidator = $("#signUp-form").validate({
         submitHandler: function(){
@@ -236,20 +258,20 @@ $(document).ready(function(){
         errorElement : 'span'  
     });
 
-
-    //Boton de submit formulario de logIn
-    $("#savelogInData-btn").click(function(){
-        $("#logIn-form").trigger("submit");
-    }); 
-
-
+    //Validacion del formulario de login
     var logInValidator = $("#logIn-form").validate({
         submitHandler: function(){
             let logInId = $("#logInId").val();
+            let cookiesId = Cookies.get(String(logInId) + "-" + "userId");
             let logInPass = $("#logInPass").val();
             let cookiesPass = Cookies.get(String(logInId) + "-" + "userPass");
-            if(logInPass != cookiesPass){
-                $("#badLogIn").show(); 
+            if(logInId != cookiesId){
+                $("#badLogInId").show();
+                $("#logIn-form").hide(); 
+            } 
+            else if(logInPass != cookiesPass){
+                $("#badLogIn").show();
+                $("#logIn-form").hide(); 
             } 
             else{
                 $("#logIn-form").hide();
