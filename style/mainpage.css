@@ -554,12 +554,15 @@ iframe{
 /* POP-UPS */
 .messages{
     background-color:black;
+    border-style: solid;
+    border-color: white;
+    border-width: 0.1vw;
     display : none;
     position: fixed;
     top: 30%;
     left: 30%;
     width: 40%;
-    border-radius:5%;
+    border-radius:1vw;
 }
 .messages > p{
     color: white
@@ -571,22 +574,28 @@ iframe{
 
 .standard-form{
     background-color:black;
+    border-style: solid;
+    border-color: white;
+    border-width: 0.1vw;
     display : none;
     position: absolute;
     top: 30%;
     left: 30%;
     width: 40%;
-    border-radius:5%;
+    border-radius:1vw;
 }
 
 .signUp-form{
     background-color:black;
+    border-style: solid;
+    border-color: white;
+    border-width: 0.1vw;
     display : none;
     position: absolute;
     top: 25%;
     left: 25%;
     width: 50%;
-    border-radius:5%;
+    border-radius:1vw;
 }
 
 .errOnField{
@@ -617,8 +626,8 @@ iframe{
     font-size: calc(0.65em + 0.65vw);
     padding-left: 5%;
     padding-right: 5%;
-    margin-bottom: 3%;
-    margin-top: -1%;
+    margin-bottom: 0.5vw;
+    margin-top: 0.5vw;
     text-align: center;
     color: black;
 }
@@ -626,6 +635,7 @@ iframe{
 .formTextBoxes{
     font-size: calc(0.5em + 0.5vw);
     padding: 1%;
+    border-radius: 1vw;
     width:90%;
     color: black;
     border-color: white;
@@ -637,12 +647,15 @@ iframe{
 /* Estilo del boton de logIn */
 .submit-btn{
     font-weight: lighter;
-    margin:1%;
-    padding:1.5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-top: 3%;
+    margin-bottom: 1%;
+    width: 90%;
     font-size: calc(0.65em + 0.65vw);
-    background-color: #b5b8b1;
-    border-radius: 5%;
-    border-color:  #b5b8b1;
+    background-color: rgb(255, 166, 0);
+    border-radius: 1vw;
+    border-color: rgb(255, 166, 0);
     color:white;
 }
 
@@ -676,7 +689,7 @@ iframe{
     display: flex;
     width: 100%;
     margin: 0%;
-    border-radius: 7%;
+    border-radius: 1vw;
 }
 /* Formato de los errores de validacion */
 span.error{color: red; font-size: 0.7em; }

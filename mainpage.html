@@ -19,12 +19,12 @@
             <p class="form-p"><input id="logInId" class="formTextBoxes" type="text" name="logInId" required></p>
             <p class="form-p">Contraseña</p>
             <p class="form-p"><input id="logInPass" class="formTextBoxes" type="password" name="logInPass" required></p>
-            <div><p class="form-p" style="margin-bottom:10%;">
+            <div><p class="form-p" style="margin-bottom:15%; margin-top:10%">
                 <button id="savelogInData-btn" class="submit-btn" type="button"><label for="savelogInData-btn">CONFIRMAR</label></button>   
             </p></div>
         </form> 
         <!-- form de signUp -->
-        <form id="signUp-form" class="signUp-form" style="border-radius: 1.5%;">
+        <form id="signUp-form" class="signUp-form">
             <button id="clsSignUp-btn" class="cross-p" style="margin-left:87%;" type="button"><label for="clsSignUp-form">X</label></button>
             <p class="form-p" style="margin-top:5%;">Nombre de usuario</p>
             <p class="form-input"><input id="userId" name="userId" class="formTextBoxes" type="text" placeholder="(Obligatorio)" required></p>
@@ -36,12 +36,12 @@
             <p class="form-input"><input id="userEmail" name="userEmail" class="formTextBoxes" type="text" placeholder="(Obligatorio)" required></p>
             <p class="form-p">Fecha de nacimiento</p>
             <p class="form-input"><input id="userBornDate" name="userBornDate" class="formTextBoxes" type="text" placeholder="(Obligatorio)" required></p>
-            <p class="form-p">Imagen de perfil</p>
+            <p class="form-p" style="margin-bottom:2%;">Imagen de perfil</p>
             <div>
                 <p class="form-input">
                     <input id="userProfileImage" name="userProfileImage" type="file" style="display:none;"/>
                     <button class="submit-btn" type="button"><label for="userProfileImage">Select file</label></button>
-                    <p id="loadedImage" class="form-p" style="display:none; margin-bottom:-2%; margin-top:-3%;"><img src="./images/common/ok-icon.png" alt="ok-icon" style="width: 5%; height:5%"></p>
+                    <p id="loadedImage" class="form-p" style="display:none; margin-bottom:-2%; margin-top:1%;"><img src="./images/common/ok-icon.png" alt="ok-icon" style="width: 5%; height:5%"></p>
                 </p>
             </div>
             <p class="form-p" style="margin-bottom:5%; margin-top:5%;">Intereses personales</p>
@@ -49,10 +49,10 @@
             <p class="checklist"><input id="chckCombates" name="chckCombates" type="checkbox" value="true"><label for="chckCombates">Combates a espada</label></p>
             <p class="checklist"><input id="chckHobbits" name="chckHobbits" type="checkbox" value="true"><label for="chckHobbits">Hierba de los hobbits</label></p>
             <p class="checklist"><input id="chckUc3m" name="chckUc3m" type="checkbox" value="true"><label for="chckUc3m">Soy profesor/a de la Uc3m</label></p>
-            <p class="form-p" style="margin-top:7%; margin-bottom:-2%;"><input id="chckTerms" name="chckTerms" type="checkbox" value="true" required><label for="chckTerms">He leido y acepto los terminos y condiciones</label></p>
+            <p class="form-p" style="margin-top:10%; margin-bottom:-2%;"><input id="chckTerms" name="chckTerms" type="checkbox" value="true" required><label for="chckTerms">He leido y acepto los terminos y condiciones</label></p>
             <div><p class="form-p" style="margin-bottom:5%;">
                 <button id="saveSignUpData-btn" class="submit-btn" type="button"><label for="saveSignUpData-btn">GUARDAR</label></button>
-                <button id="deleteSignUpData-btn" class="submit-btn" style="background-color: #6c6960; border-color: #6c6960;" type="button"><label for="deleteSignUpData-btn">BORRAR</label></button>
+                <button id="deleteSignUpData-btn" class="submit-btn" style="background-color: rgb(240, 100, 0); border-color: rgb(240, 100, 0);" type="button"><label for="deleteSignUpData-btn">BORRAR</label></button>
             </p></div> 
         </form>
 
@@ -99,7 +99,7 @@
             <p class="form-p" style="margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">¿Seguro que quieres cerrar sesion?</p>
             <div><p class="form-p" style="margin-bottom:5%;">
                 <button id="confirmLogOut-btn" class="submit-btn" type="button"><label for="confirmLogOut-btn">CONFIRMAR</label></button>
-                <button id="dontConfirmLogOut-btn" class="submit-btn" style="background-color: #6c6960; border-color: #6c6960;" type="button"><label for="dontConfirmLogOut-btn">CANCELAR</label></button>
+                <button id="dontConfirmLogOut-btn" class="submit-btn" style="background-color:rgb(240, 100, 0); border-color:rgb(240, 100, 0);" type="button"><label for="dontConfirmLogOut-btn">CANCELAR</label></button>
             </p></div> 
         </div> 
 
