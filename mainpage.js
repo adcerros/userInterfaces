@@ -10,6 +10,7 @@ function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, ch
     Cookies.set(String(userId) + "-" + "chckHobbits", chckHobbits, {secure:true});
     Cookies.set(String(userId) + "-" + "chckUc3m", chckUc3m, {secure:true});
     Cookies.set(String(userEmail) + "-" + "userEmail", userEmail, {secure:true});
+    Cookies.set(String(userEmail) + "-" + "numberOfExperiences", 0, {secure:true});
 }
 
 //Cambia la interfaz y pasa a modo usuario
@@ -44,6 +45,18 @@ function saveImage(userId, userProfileImage){
     reader.readAsDataURL(userProfileImage);
 }
 
+
+// Funcion para actializar la imagen del usuario
+function changeAndSaveImage(userId, userProfileImage){
+    var reader = new FileReader();
+    reader.onload = function(){
+        d = new Date();
+        localStorage.setItem(userId + "-" +"profileImg", reader.result);
+        $("#profileImage").attr("src", reader.result);
+        $("#userImage").attr("src", reader.result); 
+    }
+    reader.readAsDataURL(userProfileImage);
+}
 
 $(document).ready(function(){
 
@@ -181,6 +194,80 @@ $(document).ready(function(){
         $("#optionsBar-btn").show();
         $("#auxoptionsBar-btn").hide();
     }); 
+
+    //Cambio de intereses
+    $("#changeProfileInterest-btn").click(function(){
+        $("#changeProfileInterest-form").show();
+        $("#myProfile").hide();
+    }); 
+
+    //Cierre
+    $("#clschangeProfileInterest-btn").click(function(){
+        $("#changeProfileInterest-form").hide();
+        $("#myProfile").show();
+    }); 
+
+    //Almacenmiento del cambio de intereses
+    $("#changeProfileInterest-form").validate({
+        submitHandler: function(){
+            $("#signUp-form").hide();
+            $("#changeProfileInterest-form").hide();
+            let userId = Cookies.get("CurrentUser");
+            let chckMusica = false;
+            let chckCombates = false;
+            let chckHobbits = false;
+            let chckUc3m = false;
+            if ($("#changeMusica").is(":checked")){
+                chckMusica = true;
+            }
+            if ($("#changeCombates").is(":checked")){
+                chckCombates = true;
+            }
+            if ($("#changeHobbits").is(":checked")){
+                chckHobbits = true;
+            }
+            if ($("#changeUc3m").is(":checked")){
+                chckUc3m = true;
+            }
+            Cookies.set(String(userId) + "-" + "chckMusica", chckMusica, {secure:true});
+            Cookies.set(String(userId) + "-" + "chckCombates", chckCombates, {secure:true});
+            Cookies.set(String(userId) + "-" + "chckHobbits", chckHobbits, {secure:true});
+            Cookies.set(String(userId) + "-" + "chckUc3m", chckUc3m, {secure:true});
+            //Se muestran los cambios
+            document.getElementById("profileHobbits").innerHTML = ""; 
+            document.getElementById("profileUc3m").innerHTML = ""; 
+            document.getElementById("profileCombat").innerHTML = "";
+            document.getElementById("profileMusic").innerHTML = "";  
+            if (chckMusica == true){
+                document.getElementById("profileMusic").innerHTML = "Musica popular de Gondor";          
+            }  
+            if (chckCombates == true){
+                document.getElementById("profileCombat").innerHTML = "Combates a espada";
+            } 
+            if (chckHobbits == true){
+                document.getElementById("profileHobbits").innerHTML = "Hierba de los hobbits";        
+            } 
+            if (chckUc3m == true){
+                document.getElementById("profileUc3m").innerHTML = "Soy profesor/a de la Uc3m";       
+            } 
+            $("#myProfile").show(); 
+            $("#changeProfileInterest-form").trigger("reset");
+        }
+    }); 
+
+    //Boton de submit cambio de intereses
+    $("#saveProfileInterest-btn").click(function(){
+        $("#changeProfileInterest-form").trigger("submit");
+    }); 
+
+    //Cambia imagen usuario
+    $(document).on("change", "#changeuserProfileImage", function() {
+        let userId = Cookies.get("CurrentUser");
+        var newImage =  document.getElementById("changeuserProfileImage").files[0];
+        if(newImage != null){
+            changeAndSaveImage(userId, newImage);
+        }
+    });
 
     // SECCION MI PERFIL /////////////////////////////////////////////////
     $("#profile-btn").click(function(){

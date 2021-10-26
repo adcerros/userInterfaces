@@ -106,9 +106,12 @@
         <div id="myProfile" class="standard-form">
             <button id="clsmyProfile-btn" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#10006;</button>
             <p class="form-p" style="margin-top:5%; margin-bottom:5%;"><img src="" id="profileImage" style="height:100%; width:100%;"></p>
-            <div><p class="form-p" style="margin-bottom:5%;">
-                <button id="changeProfileImg-btn" class="submit-btn" type="button"><label for="changeProfileImg-btn">Cambiar imagen de perfil</label></button>
-            </p></div> 
+            <div>
+                <p class="form-input">
+                    <input id="changeuserProfileImage" name="changeuserProfileImage" type="file" style="display:none;"/>
+                    <button class="submit-btn" type="button"><label for="changeuserProfileImage">Cambiar imagen de perfil</label></button>
+                </p>
+            </div>
             <div><p id="profileId" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p></div>
             <div><p class="form-p" style="margin-bottom:5%;">
                 <button id="changeProfileId-btn" class="submit-btn" type="button"><label for="changeProfileId-btn">Cambiar nombre de usuario</label></button>
@@ -123,10 +126,22 @@
             <p id="profileHobbits" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p>
             <p id="profileUc3m" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p>
             <div><p class="form-p" style="margin-bottom:5%;">
-                <button id="changeProfileInterest-btn" class="submit-btn" type="button"><label for="changeProfileInterest-btn">Cambiar intereses</label></button>
+                <button id="changeProfileInterest-btn" class="submit-btn" type="button">
+                <label for="changeProfileInterest-btn">Cambiar intereses</label></button>
             </p></div> 
         </div> 
-
+        <!-- Cambiar intereses del usuario -->
+        <form id="changeProfileInterest-form" class="messages">
+            <button id="clschangeProfileInterest-btn" class="cross-p" style="margin-left:87%;" type="button"><label for="clschangeProfileInterest-btn">&#10006;</label></button>
+            <p class="form-p" style="margin-bottom:5%; margin-top:5%;">Intereses personales</p>
+            <p class="checklist"><input id="changeMusica" name="changeMusica" type="checkbox" value="true"><label for="changeMusica">Musica popular de Gondor</label></p>
+            <p class="checklist"><input id="changeCombates" name="changeCombates" type="checkbox" value="true"><label for="changeCombates">Combates a espada</label></p>
+            <p class="checklist"><input id="changeHobbits" name="changeHobbits" type="checkbox" value="true"><label for="changeHobbits">Hierba de los hobbits</label></p>
+            <p class="checklist"><input id="changeUc3m" name="changeUc3m" type="checkbox" value="true"><label for="changeUc3m">Soy profesor/a de la Uc3m</label></p>
+            <div><p class="form-p" style="margin-bottom:5%;">
+                <button id="saveProfileInterest-btn" class="submit-btn" type="button"><label for="saveProfileInterest-btn">GUARDAR</label></button>
+            </p></div> 
+        </form>
         <!-- CABECERA-->   
         <header>
             <div class= "bigflexheader">
