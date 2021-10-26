@@ -23,7 +23,8 @@ function showUserProfile(userId){
         $("#userImage").attr("src","./images/common/default-icon.png");
     }
     // Se cambia el nombre por defecto del id en la interfaz
-    document.getElementById("#userId-p").innerHTML = userId;
+    document.getElementById("userId-p").innerHTML = userId;
+    Cookies.set("CurrentUser", userId, {secure:true});
     // Se oculta la interfaz estandar
     $("#logIn-btn").hide();
     $("#signUp-btn").hide();
@@ -31,7 +32,7 @@ function showUserProfile(userId){
     // Se muestra la interfaz del usuario
     $("#userId-info").show();
     $("#userImage-div").show();
-    $("#logOut-btn").show();
+    $("#optionsBar-btn").show();
 }
 
 // Funcion para guardar la imagen en el localStorage
@@ -123,13 +124,17 @@ $(document).ready(function(){
     $("#logOut-btn").click(function(){
         $("#logOutConfirm").show();
     }); 
-
+ 
     $("#confirmLogOut-btn").click(function(){
+        Cookies.set("CurrentUser", "", {secure:true});
         $("#logOutConfirm").hide();
         //Se oculta la interfaz de usuario
         $("#userId-info").hide();
         $("#userImage-div").hide();
-        $("#logOut-btn").hide();
+        $("#optionsBar-btn").hide();
+        $("#optionsBar").hide();
+        $("#auxoptionsBar-btn").hide();
+        $("#myProfile").hide();
         //Se muestra la interfaz estandar
         $("#logIn-btn").show();
         $("#auxDiv").show();
@@ -158,6 +163,74 @@ $(document).ready(function(){
     });  
     
 
+    // MENU OPTIONS //////////////////////////////////////////////////////
+    $("#optionsBar-btn").click(function(){
+        $("#optionsBar").show();
+        $("#optionsBar-btn").hide();
+        $("#auxoptionsBar-btn").show();
+    }); 
+    //Cierre
+    $("#clsOptions-btn").click(function(){
+        $("#optionsBar").hide();
+        $("#optionsBar-btn").show();
+        $("#auxoptionsBar-btn").hide();
+    }); 
+
+    $("#auxoptionsBar-btn").click(function(){
+        $("#optionsBar").hide();
+        $("#optionsBar-btn").show();
+        $("#auxoptionsBar-btn").hide();
+    }); 
+
+    // SECCION MI PERFIL /////////////////////////////////////////////////
+    $("#profile-btn").click(function(){
+        $("#myProfile").show();
+        // Se cargan los datos
+        let userId = Cookies.get("CurrentUser");
+        let userProfileImage = localStorage.getItem(userId + "-" + "profileImg");
+        let userPass = Cookies.get(userId + "-" + "userPass");
+        let userName = Cookies.get(userId + "-" + "userName");
+        let userEmail = Cookies.get(userId + "-" + "userEmail");
+        let userBornDate = Cookies.get(userId + "-" + "userBornDate");
+        let userMusic = Cookies.get(userId + "-" + "chckMusica");
+        let userCombat = Cookies.get(userId + "-" + "chckCombates");
+        let userHobbits = Cookies.get(userId + "-" + "chckHobbits");
+        let userUc3m = Cookies.get(userId + "-" + "chckUc3m");
+        if (userProfileImage != null){
+            $("#profileImage").attr("src",userProfileImage);
+        }
+        else{
+            $("#profileImage").attr("src", "./images/common/default-icon.png");
+        }
+        document.getElementById("profileId").innerHTML = "Nombre de usuario: " + userId;
+        document.getElementById("profilePass").innerHTML = "Contraseña: " + userPass;
+        document.getElementById("profileName").innerHTML = "Nombre y apellidos: " + userName;
+        document.getElementById("profileEmail").innerHTML = "Email: " + userEmail;
+        document.getElementById("profileBornDate").innerHTML = "Fecha de nacimiento: " + userBornDate;
+        document.getElementById("profileHobbits").innerHTML = ""; 
+        document.getElementById("profileUc3m").innerHTML = ""; 
+        document.getElementById("profileCombat").innerHTML = "";
+        document.getElementById("profileMusic").innerHTML = "";  
+        if (userMusic == String(true)){
+            document.getElementById("profileMusic").innerHTML = "Musica popular de Gondor";          
+        }  
+        if (userCombat == String(true)){
+            document.getElementById("profileCombat").innerHTML = "Combates a espada";
+        } 
+        if (userHobbits == String(true)){
+            document.getElementById("profileHobbits").innerHTML = "Hierba de los hobbits";        
+        } 
+        if (userUc3m == String(true)){
+            document.getElementById("profileUc3m").innerHTML = "Soy profesor/a de la Uc3m";       
+        } 
+
+        $("#userProfileImage").attr("src",userProfileImage);
+    }); 
+
+    $("#clsmyProfile-btn").click(function(){
+        $("#myProfile").hide();
+    }); 
+    
     //Funciones para la validacion de expresiones regulares
     // Comprobacion de la expresion regular de la contraseña
     $.validator.addMethod(

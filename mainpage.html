@@ -14,7 +14,7 @@
         <!-- FORMULARIOS DE LOGIN Y SIGNUP//////////////////////////////////////////////// -->
         <!-- form de logIn -->
         <form id="logIn-form" class="standard-form">
-            <button id="clslogIn-btn" class="cross-p" style="margin-left:86%;" type="button"><label for="clslogIn-form">X</label></button>
+            <button id="clslogIn-btn" class="cross-p" style="margin-left:86%;" type="button"><label for="clslogIn-form">&#10006;</label></button>
             <p class="form-p" style="margin-top:5%;">Usuario</p>
             <p class="form-p"><input id="logInId" class="formTextBoxes" type="text" name="logInId" required></p>
             <p class="form-p">Contraseña</p>
@@ -25,7 +25,7 @@
         </form> 
         <!-- form de signUp -->
         <form id="signUp-form" class="signUp-form">
-            <button id="clsSignUp-btn" class="cross-p" style="margin-left:87%;" type="button"><label for="clsSignUp-form">X</label></button>
+            <button id="clsSignUp-btn" class="cross-p" style="margin-left:87%;" type="button"><label for="clsSignUp-form">&#10006;</label></button>
             <p class="form-p" style="margin-top:5%;">Nombre de usuario</p>
             <p class="form-input"><input id="userId" name="userId" class="formTextBoxes" type="text" placeholder="(Obligatorio)" required></p>
             <p class="form-p">Contraseña</p>
@@ -59,70 +59,104 @@
         <!-- MENSAJES-->
         <!-- Registro con exito-->
         <div id="signUpOk-form" class="messages">
-            <button id="clsSignInOk-form" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">X</button>
+            <button id="clsSignInOk-form" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#10006;</button>
             <div class="message-div"><img src=images/common/signUpOk.gif class="responsiveimg"></div>
             <p class="form-p" style="margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">Registrado con exito</p>
         </div> 
         <!-- Email duplicado-->
         <div id="dupEmail" class="messages">
-            <button id="clsDupEmail" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">X</button>
+            <button id="clsDupEmail" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#10006;</button>
             <div class="message-div" style="margin-bottom:0%; margin-top:0%;"><img src=images/common/dup-email.gif class="responsiveimg"></div>
             <p class="form-p" style="margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">Lo sentimos, ya existe una cuenta asociada a ese email</p>
         </div> 
         <!-- Login correcto-->
         <div id="logInOk" class="messages">
-            <button id="clsLogInOk" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">X</button>
+            <button id="clsLogInOk" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#10006;</button>
             <div class="message-div" style="margin-bottom:0%; margin-top:0%;"><img src=images/common/happy-frodo.gif class="responsiveimg"></div>
             <p class="form-p" style="margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">Has iniciado sesion</p>
         </div> 
         <!-- LoginIncorrecto - el Id no existe-->
         <div id="badLogInId" class="messages">
-            <button id="clsBadLogInId" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">X</button>
+            <button id="clsBadLogInId" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#10006;</button>
             <div class="message-div" style="margin-bottom:0%; margin-top:0%;"><img src=images/common/badPassword.gif class="responsiveimg"></div>
             <p class="form-p" style="margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">Ese nombre de usuario no esta registrado</p>
         </div> 
         <!-- LoginIncorrecto - la constraseña no es correcta-->
         <div id="badLogIn" class="messages">
-            <button id="clsBadLogIn" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">X</button>
+            <button id="clsBadLogIn" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#10006;</button>
             <div class="message-div" style="margin-bottom:0%; margin-top:0%;"><img src=images/common/badPassword.gif class="responsiveimg"></div>
             <p class="form-p" style="margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">La contraseña no es correcta</p>
         </div> 
         <!-- LogOut correcto-->
         <div id="logOutOk" class="messages">
-            <button id="clsLogOutOk" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">X</button>
+            <button id="clsLogOutOk" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#10006;</button>
             <div class="message-div" style="margin-bottom:0%; margin-top:0%;"><img src=images/common/final-frodo.gif class="responsiveimg"></div>
             <p class="form-p" style="margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">Has cerrado sesion</p>
         </div> 
         <!-- Confirmacion de logout-->
         <div id="logOutConfirm" class="messages">
-            <button id="clsLogOutConfirm" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">X</button>
+            <button id="clsLogOutConfirm" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#10006;</button>
             <p class="form-p" style="margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">¿Seguro que quieres cerrar sesion?</p>
             <div><p class="form-p" style="margin-bottom:5%;">
                 <button id="confirmLogOut-btn" class="submit-btn" type="button"><label for="confirmLogOut-btn">CONFIRMAR</label></button>
                 <button id="dontConfirmLogOut-btn" class="submit-btn" style="background-color:rgb(240, 100, 0); border-color:rgb(240, 100, 0);" type="button"><label for="dontConfirmLogOut-btn">CANCELAR</label></button>
             </p></div> 
         </div> 
+        <!-- Mi perfil-->
+        <div id="myProfile" class="standard-form">
+            <button id="clsmyProfile-btn" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#10006;</button>
+            <p class="form-p" style="margin-top:5%; margin-bottom:5%;"><img src="" id="profileImage" style="height:100%; width:100%;"></p>
+            <div><p class="form-p" style="margin-bottom:5%;">
+                <button id="changeProfileImg-btn" class="submit-btn" type="button"><label for="changeProfileImg-btn">Cambiar imagen de perfil</label></button>
+            </p></div> 
+            <div><p id="profileId" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p></div>
+            <div><p class="form-p" style="margin-bottom:5%;">
+                <button id="changeProfileId-btn" class="submit-btn" type="button"><label for="changeProfileId-btn">Cambiar nombre de usuario</label></button>
+            </p></div> 
+            <p id="profilePass" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p>
+            <p id="profileName" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p>
+            <p id="profileEmail" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p>
+            <p id="profileBornDate" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p>
+            <p class="form-p" style="margin-top:10%; margin-bottom:5%; font-size: calc(0.65em + 0.65vw);">Intereses:</p>
+            <p id="profileMusic" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p>
+            <p id="profileCombat" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p>
+            <p id="profileHobbits" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p>
+            <p id="profileUc3m" class="form-p" style="margin-top:5%; margin-bottom:5%;"></p>
+            <div><p class="form-p" style="margin-bottom:5%;">
+                <button id="changeProfileInterest-btn" class="submit-btn" type="button"><label for="changeProfileInterest-btn">Cambiar intereses</label></button>
+            </p></div> 
+        </div> 
 
         <!-- CABECERA-->   
         <header>
-        <div class= "bigflexheader">
-            <!--Modo sin registro (por defecto)--> 
-            <div><a href="mainpage.html"><img src="images/logo.png" class="responsivelogotop" alt="logo de la web"></a></div>
-            <div style="margin-left: -10%;"><button class="header-btn" id="home-btn" type="button"><label for="home-btn">Home</label></button></div>
-            <div><button class="header-btn" id="about-btn" type="button"><label for="about-btn">About</label></button></div>
-            <div><button class="header-btn" id="contact-btn" type="button" style="margin-right:-30%"><label for="contact-btn">Contact</label></button></div>
-            <div id="auxDiv" style="width: 5%;"></div>
-            <div><button class="header-btn" id="logIn-btn" type="button"><label for="logIn-btn">LOG IN</label></button></div>
-            <div><button class="header-btn" id="signUp-btn" type="button"><label for="signUp-btn">SIGN UP</label></button></div>
-            
-            <!--Modo usuario registrado--> 
-            <div id="userId-info" class="header-btn" style="display: none;"><p id="#userId-p">userId</p></div>
-            <div class="header-btn" style="display: none; width: 7%; height:7%; min-height:6%; min-width: 6%;" id="userImage-div"><img src="./images/common/default-icon.png" id="userImage" style="height:100%; width:100%;"></div>
-            <div><button class="header-btn" id="logOut-btn" type="button" style="display: none;"><label for="logOut-btn">LOG OUT</label></button></div>    
-        </div>
+            <div class= "bigflexheader">
+                <!--Modo sin registro (por defecto)--> 
+                <div><a href="mainpage.html"><img src="images/logo.png" class="responsivelogotop" alt="logo de la web"></a></div>
+                <div style="margin-left: -10%;"><button class="header-btn" id="home-btn" type="button"><label for="home-btn">Home</label></button></div>
+                <div><button class="header-btn" id="about-btn" type="button"><label for="about-btn">About</label></button></div>
+                <div><button class="header-btn" id="contact-btn" type="button" style="margin-right:-30%"><label for="contact-btn">Contact</label></button></div>
+                <div id="auxDiv" style="width: 5%;"></div>
+                <div><button class="header-btn" id="logIn-btn" type="button"><label for="logIn-btn">LOG IN</label></button></div>
+                <div><button class="header-btn" id="signUp-btn" type="button"><label for="signUp-btn">SIGN UP</label></button></div>
+                
+                <!--Modo usuario registrado--> 
+                <div id="userId-info" class="header-btn" style="display: none;"><p id="userId-p">userId</p></div>
+                <div class="header-btn" style="display: none; width: 7%; height:7%; min-height:6%; min-width: 6%;" id="userImage-div"><img src="./images/common/default-icon.png" id="userImage" style="height:100%; width:100%;"></div>
+                <div style="margin-left: -1%;"><button class="header-btn" id="optionsBar-btn" type="button" style="display: none; font-size:4vw;"><label for="optionsBar-btn">&#9776;</label></button></div> 
+                <div style="margin-left: -3%;"><button class="header-btn" id="auxoptionsBar-btn" type="button" style="display: none; font-size:4vw;"><label for="auxoptionsBar-btn">&#9778;</label></button></div>       
+            </div>
+            <div id="optionsBar">
+                <div><button class="options-btn" id="profile-btn" type="button"><label for="profile-btn">Mi perfil</label></button></div>
+                <hr class="solid">
+                <div><button class="options-btn" id="experiences-btn" type="button"><label for="experiences-btn">Mis experiencias</label></button></div>
+                <hr class="solid">
+                <div><button class="options-btn" id="logOut-btn" type="button"><label for="logOut-btn">LOG OUT</label></button></div> 
+                <hr class="solid">
+                <div><button class="options-btn" id="clsOptions-btn" type="button" style="margin-bottom: 1.5%;"><label for="clsOptions-btn" style="font-size: 2.5vw;">&#8963;</label></button></div> 
+            </div>
         </header>
         <!--Primera seccion-->
-        <section>
+        <section style="margin-top:-1%;">
             <object type="image/svg+xml" data="images/tierra_media.svg" tarjet=bla></object>
         </section>
 
