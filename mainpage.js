@@ -1,16 +1,11 @@
+
+
 //Configuracion de las cookies de registro
 function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m){
-    Cookies.set(String(userId) + "-" + "userId", userId, {secure:true});
-    Cookies.set(String(userId) + "-" + "userPass", userPass, {secure:true});
-    Cookies.set(String(userId) + "-" + "userName", userName, {secure:true});
-    Cookies.set(String(userId) + "-" + "userEmail", userEmail, {secure:true});
-    Cookies.set(String(userId) + "-" + "userBornDate", userBornDate, {secure:true});
-    Cookies.set(String(userId) + "-" + "chckMusica", chckMusica, {secure:true});
-    Cookies.set(String(userId) + "-" + "chckCombates", chckCombates, {secure:true});
-    Cookies.set(String(userId) + "-" + "chckHobbits", chckHobbits, {secure:true});
-    Cookies.set(String(userId) + "-" + "chckUc3m", chckUc3m, {secure:true});
+    let userData = { "pass": userPass, "name": userName, "email": userEmail, "bornDate": userBornDate, "musica": chckMusica , "combates": chckCombates, "hobbits": chckHobbits, "uc3m": chckUc3m, "numberOfExperiences": 0};
     Cookies.set(String(userEmail) + "-" + "userEmail", userEmail, {secure:true});
-    Cookies.set(String(userEmail) + "-" + "numberOfExperiences", 0, {secure:true});
+    Cookies.set(String(userId), JSON.stringify(userData), {secure:true});
+    // var prueba = JSON.parse(Cookies.get(userId));
 }
 
 //Cambia la interfaz y pasa a modo usuario
@@ -25,7 +20,7 @@ function showUserProfile(userId){
     }
     // Se cambia el nombre por defecto del id en la interfaz
     document.getElementById("userId-p").innerHTML = userId;
-    Cookies.set("CurrentUser", userId, {secure:true});
+    Cookies.set("currentUser", userId, {secure:true});
     // Se oculta la interfaz estandar
     $("#logIn-btn").hide();
     $("#signUp-btn").hide();
@@ -139,7 +134,7 @@ $(document).ready(function(){
     }); 
  
     $("#confirmLogOut-btn").click(function(){
-        Cookies.set("CurrentUser", "", {secure:true});
+        Cookies.set("currentUser", "", {secure:true});
         $("#logOutConfirm").hide();
         //Se oculta la interfaz de usuario
         $("#userId-info").hide();
@@ -212,7 +207,7 @@ $(document).ready(function(){
         submitHandler: function(){
             $("#signUp-form").hide();
             $("#changeProfileInterest-form").hide();
-            let userId = Cookies.get("CurrentUser");
+            let userId = Cookies.get("currentUser");
             let chckMusica = false;
             let chckCombates = false;
             let chckHobbits = false;
@@ -229,29 +224,34 @@ $(document).ready(function(){
             if ($("#changeUc3m").is(":checked")){
                 chckUc3m = true;
             }
-            Cookies.set(String(userId) + "-" + "chckMusica", chckMusica, {secure:true});
-            Cookies.set(String(userId) + "-" + "chckCombates", chckCombates, {secure:true});
-            Cookies.set(String(userId) + "-" + "chckHobbits", chckHobbits, {secure:true});
-            Cookies.set(String(userId) + "-" + "chckUc3m", chckUc3m, {secure:true});
-            //Se muestran los cambios
-            document.getElementById("profileHobbits").innerHTML = ""; 
-            document.getElementById("profileUc3m").innerHTML = ""; 
-            document.getElementById("profileCombat").innerHTML = "";
-            document.getElementById("profileMusic").innerHTML = "";  
-            if (chckMusica == true){
-                document.getElementById("profileMusic").innerHTML = "Musica popular de Gondor";          
-            }  
-            if (chckCombates == true){
-                document.getElementById("profileCombat").innerHTML = "Combates a espada";
-            } 
-            if (chckHobbits == true){
-                document.getElementById("profileHobbits").innerHTML = "Hierba de los hobbits";        
-            } 
-            if (chckUc3m == true){
-                document.getElementById("profileUc3m").innerHTML = "Soy profesor/a de la Uc3m";       
-            } 
-            $("#myProfile").show(); 
-            $("#changeProfileInterest-form").trigger("reset");
+            var userCookie = Cookies.get(userId)
+            if (userCookie != null){
+                let userData = JSON.parse(userCookie);
+                userData.musica = chckMusica;
+                userData.combates = chckCombates;
+                userData.hobbits = chckHobbits;
+                userData.uc3m = chckUc3m;
+                Cookies.set(String(userId), JSON.stringify(userData), {secure:true});
+                //Se muestran los cambios
+                document.getElementById("profileHobbits").innerHTML = ""; 
+                document.getElementById("profileUc3m").innerHTML = ""; 
+                document.getElementById("profileCombat").innerHTML = "";
+                document.getElementById("profileMusic").innerHTML = "";  
+                if (chckMusica == true){
+                    document.getElementById("profileMusic").innerHTML = "Musica popular de Gondor";          
+                }  
+                if (chckCombates == true){
+                    document.getElementById("profileCombat").innerHTML = "Combates a espada";
+                } 
+                if (chckHobbits == true){
+                    document.getElementById("profileHobbits").innerHTML = "Hierba de los hobbits";        
+                } 
+                if (chckUc3m == true){
+                    document.getElementById("profileUc3m").innerHTML = "Soy profesor/a de la Uc3m";       
+                } 
+                $("#myProfile").show(); 
+                $("#changeProfileInterest-form").trigger("reset");
+            }
         }
     }); 
 
@@ -262,27 +262,32 @@ $(document).ready(function(){
 
     //Cambia imagen usuario
     $(document).on("change", "#changeuserProfileImage", function() {
-        let userId = Cookies.get("CurrentUser");
+        let userId = Cookies.get("currentUser");
         var newImage =  document.getElementById("changeuserProfileImage").files[0];
         if(newImage != null){
             changeAndSaveImage(userId, newImage);
         }
     });
 
+    //Cambio de Id
+    $("#changeProfileId-btn").click(function(){
+        $("#changeProfileId-form").show();
+        $("#myProfile").hide();
+    }); 
+
+    //Cierre
+    $("#clschangeProfileId-btn").click(function(){
+        $("#changeProfileId-form").hide();
+        $("#myProfile").show();
+    }); 
+
     // SECCION MI PERFIL /////////////////////////////////////////////////
     $("#profile-btn").click(function(){
         $("#myProfile").show();
         // Se cargan los datos
-        let userId = Cookies.get("CurrentUser");
+        let userId = Cookies.get("currentUser");
         let userProfileImage = localStorage.getItem(userId + "-" + "profileImg");
-        let userPass = Cookies.get(userId + "-" + "userPass");
-        let userName = Cookies.get(userId + "-" + "userName");
-        let userEmail = Cookies.get(userId + "-" + "userEmail");
-        let userBornDate = Cookies.get(userId + "-" + "userBornDate");
-        let userMusic = Cookies.get(userId + "-" + "chckMusica");
-        let userCombat = Cookies.get(userId + "-" + "chckCombates");
-        let userHobbits = Cookies.get(userId + "-" + "chckHobbits");
-        let userUc3m = Cookies.get(userId + "-" + "chckUc3m");
+        let userData = JSON.parse(Cookies.get(userId));
         if (userProfileImage != null){
             $("#profileImage").attr("src",userProfileImage);
         }
@@ -290,24 +295,24 @@ $(document).ready(function(){
             $("#profileImage").attr("src", "./images/common/default-icon.png");
         }
         document.getElementById("profileId").innerHTML = "Nombre de usuario: " + userId;
-        document.getElementById("profilePass").innerHTML = "Contraseña: " + userPass;
-        document.getElementById("profileName").innerHTML = "Nombre y apellidos: " + userName;
-        document.getElementById("profileEmail").innerHTML = "Email: " + userEmail;
-        document.getElementById("profileBornDate").innerHTML = "Fecha de nacimiento: " + userBornDate;
+        document.getElementById("profilePass").innerHTML = "Contraseña: " + userData.pass;
+        document.getElementById("profileName").innerHTML = "Nombre y apellidos: " + userData.name;
+        document.getElementById("profileEmail").innerHTML = "Email: " + userData.email;
+        document.getElementById("profileBornDate").innerHTML = "Fecha de nacimiento: " + userData.bornDate;
         document.getElementById("profileHobbits").innerHTML = ""; 
         document.getElementById("profileUc3m").innerHTML = ""; 
         document.getElementById("profileCombat").innerHTML = "";
         document.getElementById("profileMusic").innerHTML = "";  
-        if (userMusic == String(true)){
+        if (userData.musica == true){
             document.getElementById("profileMusic").innerHTML = "Musica popular de Gondor";          
         }  
-        if (userCombat == String(true)){
+        if (userData.combates == true){
             document.getElementById("profileCombat").innerHTML = "Combates a espada";
         } 
-        if (userHobbits == String(true)){
+        if (userData.hobbits == true){
             document.getElementById("profileHobbits").innerHTML = "Hierba de los hobbits";        
         } 
-        if (userUc3m == String(true)){
+        if (userData.uc3m == true){
             document.getElementById("profileUc3m").innerHTML = "Soy profesor/a de la Uc3m";       
         } 
 
@@ -422,22 +427,25 @@ $(document).ready(function(){
     var logInValidator = $("#logIn-form").validate({
         submitHandler: function(){
             let logInId = $("#logInId").val();
-            let cookiesId = Cookies.get(String(logInId) + "-" + "userId");
-            let logInPass = $("#logInPass").val();
-            let cookiesPass = Cookies.get(String(logInId) + "-" + "userPass");
-            if(logInId != cookiesId){
+            var userCookie = Cookies.get(logInId)
+            if (userCookie != null){
+                let userData = JSON.parse(userCookie);
+                let logInPass = $("#logInPass").val();
+                if(logInPass != userData.pass){
+                    $("#badLogIn").show();
+                    $("#logIn-form").hide(); 
+                } 
+                else{
+                    $("#logIn-form").hide();
+                    $("#logInOk").show();  
+                    showUserProfile(logInId);  
+                }
+            }
+            else{
                 $("#badLogInId").show();
                 $("#logIn-form").hide(); 
-            } 
-            else if(logInPass != cookiesPass){
-                $("#badLogIn").show();
-                $("#logIn-form").hide(); 
-            } 
-            else{
-                $("#logIn-form").hide();
-                $("#logInOk").show();  
-                showUserProfile(logInId);  
             }
+
         },
         rules: {
             logInId: "required",
