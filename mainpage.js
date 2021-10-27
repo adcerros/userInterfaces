@@ -429,12 +429,12 @@ $(document).ready(function(){
             $("#myNewExperiences").prepend("<div id=experience-" + userData.numberOfExperiences + "></div>")
             // Se añade el texto y la imagen
             $("#experience-" + userData.numberOfExperiences).append("<hr class=experiencehr></hr>");
-            $("#experience-" + userData.numberOfExperiences).append("<p class=form-p>" + experienceTitle + "</p>");
+            $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experienceTitle + "</p>");
             // Carga de imagen
             if (experienceImage == null | experienceImage == undefined){
-                $("#experience-" + userData.numberOfExperiences).append("<p class=form-p style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src='./images/common/default-icon.png' class=responsiveimg></img></p>");
-                $("#experience-" + userData.numberOfExperiences).append("<p class=form-p>" + experiencePlace + "</p>");
-                $("#experience-" + userData.numberOfExperiences).append("<p class=form-p style=margin-bottom:5%;>" + experienceDescription + "</p>");
+                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src='./images/common/default-icon.png' class=responsiveimg></img></p>");
+                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experiencePlace + "</p>");
+                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-bottom:5%;>" + experienceDescription + "</p>");
                 $("#experience-" + userData.numberOfExperiences).append(          
                     "<div><p class=form-p style=margin-bottom:10%;>" + 
                         "<button class=deleteExperience-btn type=button onclick=deleteExperience(" + userData.numberOfExperiences +") >" +

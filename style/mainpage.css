@@ -646,6 +646,19 @@ iframe{
     color: white;
 }
 
+.experiencesText{
+    word-wrap: break-word;
+    display: inline-block;
+    font-family: 'Helvetica';
+    font-weight: lighter;
+    font-size: calc(0.65em + 0.65vw);
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 5%;
+    text-align: center;
+    color: white;
+}
+
 .form-input{
     font-family: 'Helvetica';
     font-weight: lighter;
