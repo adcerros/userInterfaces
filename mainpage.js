@@ -14,12 +14,12 @@ function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, ch
 function showUserProfile(userId){
     // Se carga la imagen del usuario
     let userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
-    if (userProfileImage != "null"){
-        $("#userImage").attr("src",userProfileImage);
+    if (userProfileImage == "null" | userProfileImage == null | userProfileImage == undefined){
+        localStorage.setItem(userId + "-" +"profileImg", "null");
+        $("#userImage").attr("src","./images/common/default-icon.png");
     }
     else{
-        localStorage.setItem(userId + "-" +"profileImg", null);
-        $("#userImage").attr("src","./images/common/default-icon.png");
+        $("#userImage").attr("src",userProfileImage);
     }
     // Se cambia el nombre por defecto del id en la interfaz
     document.getElementById("userId-p").innerHTML = userId;
@@ -380,54 +380,62 @@ $(document).ready(function(){
     }); 
 
 
-    //Almacenmiento de experiencias
-    $("#addExperience-form").validate({
-        submitHandler: function(){
-            $("#addExperience-form").hide();
-            $("#loadedExperienceImage").hide();
-            // Lectura de datos
-            let userId = Cookies.get("currentUser");
-            let userExperiences = JSON.parse(localStorage.getItem(userId + "-" + "experiences"));
-            let experienceTitle = $("#experienceTitle").val();
-            let experienceDescription = $("#experienceDescription").val();
-            let experiencePlace = $("#experiencePlace").val();
-            let experienceImage = document.getElementById("experienceImage").files[0]
-            var reader = new FileReader();
-            // Carga de imagen
-            var image;
-            if (experienceImage == undefined){
-                experienceImage = "./images/common/default-icon.png";
-            }
-            reader.onload = function(){
-                image = reader.result;
-            }
-            reader.readAsDataURL(experienceImage);
-            // Almacenamiento de la experiencia
-            if (image == null){
-                image = "null";
-            }
-            var experience = {experienceTitle, experienceDescription, experiencePlace, image};
-            userExperiences.push(experience);
-            localStorage.setItem(userId + "-" + "experiences", userExperiences);
-            $("#myExperiences").show(); 
-        },
-        messages: {
-            experienceTitle: "<br>Por favor, introduce el titulo de la experiencia",
-            experienceDescription: "<br>Por favor, introduce la descripcion de la experiencia",
-            experiencePlace: "<br>Por favor, introduce el lugar de la experiencia",
-        },
-        errorElement : 'span'  
-        }); 
+    // //Almacenmiento del experiencias
+    // $("#addExperience-form").validate({
+    //     submitHandler: function(){
+    //         $("#addExperience-form").hide();
+    //         $("#loadedExperienceImage").hide();
+    //         // Lectura de datos
+    //         let userId = Cookies.get("currentUser");
+    //         let userExperiences = JSON.parse(localStorage.getItem(userId + "-" + "experiences"));
+    //         let experienceTitle = $("#experienceTitle").val();
+    //         let experienceDescription = $("#experienceDescription").val();
+    //         let experiencePlace = $("#experiencePlace").val();
+    //         let experienceImage = document.getElementById("experienceImage").files[0]
+    //         var reader = new FileReader();
+    //         // Carga de imagen
+    //         var image;
+    //         if (experienceImage == null | experienceImage == undefined){
+    //             experienceImage = "./images/common/default-icon.png";
+    //         }
+    //         reader.onload = function(){
+    //             image = reader.result;
+    //         }
+    //         reader.readAsDataURL(experienceImage);
+    //         // Almacenamiento de la experiencia
+    //         if (image == null){
+    //             image = "null";
+    //         }
+    //         var experience = {experienceTitle, experienceDescription, experiencePlace, image};
+    //         userExperiences.push(experience);
+    //         localStorage.setItem(userId + "-" + "experiences", userExperiences);
     
-        //Boton de submit añadir experiencias
-        $("#saveExperience-btn").click(function(){
-            $("#addExperience-form").trigger("submit");
-        }); 
     
-        //Tick de imagen cargada
-        $(document).on("change", "#experienceImage", function() {
-            $("#loadedExperienceImage").show();
-        });
+    
+    //         //Se añade el nuevo bloque
+    
+    //         //Se muestran los cambios
+    
+            
+    //         $("#myExperiences").show(); 
+    //     },
+    //     messages: {
+    //         experienceTitle: "<br>Por favor, introduce el titulo de la experiencia",
+    //         experienceDescription: "<br>Por favor, introduce la descripcion de la experiencia",
+    //         experiencePlace: "<br>Por favor, introduce el lugar de la experiencia",
+    //     },
+    //     errorElement : 'span'  
+    //     }); 
+    
+    //     //Boton de submit añadir experiencias
+    //     $("#saveExperience-btn").click(function(){
+    //         $("#addExperience-form").trigger("submit");
+    //     }); 
+    
+    //     //Tick de imagen cargada
+    //     $(document).on("change", "#experienceImage", function() {
+    //         $("#loadedExperienceImage").show();
+    //     });
 
 
     // VALIDACIONES DE FORMULARIOS //////////////////////////////////////////
