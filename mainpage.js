@@ -1,12 +1,8 @@
-
-
 //Configuracion de las cookies de registro
 function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m){
     let userData = { "pass": userPass, "name": userName, "email": userEmail, "bornDate": userBornDate, "musica": chckMusica , "combates": chckCombates, "hobbits": chckHobbits, "uc3m": chckUc3m, "numberOfExperiences": 0};
     Cookies.set(String(userEmail) + "-" + "userEmail", userEmail, {secure:true});
     Cookies.set(String(userId), JSON.stringify(userData), {secure:true});
-    var userExperiences = new Array();
-    localStorage.setItem(userId + "-" + "experiences", JSON.stringify(userExperiences));
     
 }
 
@@ -54,6 +50,18 @@ function changeAndSaveImage(userId, userProfileImage){
         $("#userImage").attr("src", reader.result); 
     }
     reader.readAsDataURL(userProfileImage);
+}
+
+// Eliminar experiencias
+function deleteExperience(numberOfExperience){
+    $("#experience-" + numberOfExperience).empty();
+    let userId = Cookies.get("currentUser");
+    let userCookie = Cookies.get(userId);
+    let userData = JSON.parse(userCookie);
+    userData.numberOfExperience--;
+    Cookies.set(String(userId), JSON.stringify(userData), {secure:true});
+    $("#myExperiences").hide(); 
+    $("#experienceDeleted").show(); 
 }
 
 $(document).ready(function(){
@@ -146,6 +154,7 @@ $(document).ready(function(){
         $("#optionsBar").hide();
         $("#auxoptionsBar-btn").hide();
         $("#myProfile").hide();
+        $("#myNewExperiences").empty();
         //Se muestra la interfaz estandar
         $("#logIn-btn").show();
         $("#auxDiv").show();
@@ -250,7 +259,7 @@ $(document).ready(function(){
             if (chckUc3m == true){
                 document.getElementById("profileUc3m").innerHTML = "Soy profesor/a de la Uc3m";       
             } 
-            $("#myProfile").show(); 
+            $("#updatedInfo").show(); 
             $("#changeProfileInterest-form").trigger("reset");          
         }
     }); 
@@ -266,6 +275,8 @@ $(document).ready(function(){
         var newImage =  document.getElementById("changeuserProfileImage").files[0];
         if(newImage != null){
             changeAndSaveImage(userId, newImage);
+            $("#myProfile").hide();
+            $("#updatedInfo").show(); 
         }
     });
 
@@ -308,7 +319,7 @@ $(document).ready(function(){
             //Se muestran los cambios
             document.getElementById("userId-p").innerHTML = newuserId;    
             document.getElementById("profileId").innerHTML = newuserId;        
-            $("#myProfile").show(); 
+            $("#updatedInfo").show(); 
             $("#changeProfileId-form").trigger("reset");  
         },
         messages: {
@@ -316,6 +327,12 @@ $(document).ready(function(){
         },
         errorElement : 'span'  
     }); 
+
+    // Confirmacion de cambios
+    $("#clsupdatedInfo").click(function(){
+        $("#updatedInfo").hide(); 
+        $("#myProfile").show(); 
+    });
 
     // SECCION MI PERFIL /////////////////////////////////////////////////
     $("#profile-btn").click(function(){
@@ -388,35 +405,44 @@ $(document).ready(function(){
             let userId = Cookies.get("currentUser");
             let userCookie = Cookies.get(userId);
             let userData = JSON.parse(userCookie);
-            let userExperiences = JSON.parse(localStorage.getItem(userId + "-" + "experiences"));
+            userData.numberOfExperiences++;
+            Cookies.set(String(userId), JSON.stringify(userData), {secure:true});
             let experienceTitle = $("#experienceTitle").val();
             let experienceDescription = $("#experienceDescription").val();
             let experiencePlace = $("#experiencePlace").val();
             let experienceImage = document.getElementById("experienceImage").files[0]
             var reader = new FileReader();
+            $("#myNewExperiences").prepend("<div id=experience-" + userData.numberOfExperiences + "></div>")
+            // Se añade el texto y la imagen
+            $("#experience-" + userData.numberOfExperiences).append("<hr class=experiencehr></hr>");
+            $("#experience-" + userData.numberOfExperiences).append("<p class=form-p>" + experienceTitle + "</p>");
             // Carga de imagen
             if (experienceImage == null | experienceImage == undefined){
-                experienceImage = "./images/common/default-icon.png";
+                $("#experience-" + userData.numberOfExperiences).append("<p class=form-p style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src='./images/common/default-icon.png' class=responsiveimg></img></p>");
+                $("#experience-" + userData.numberOfExperiences).append("<p class=form-p>" + experiencePlace + "</p>");
+                $("#experience-" + userData.numberOfExperiences).append("<p class=form-p style=margin-bottom:5%;>" + experienceDescription + "</p>");
+                $("#experience-" + userData.numberOfExperiences).append(          
+                    "<div><p class=form-p style=margin-bottom:10%;>" + 
+                        "<button class=deleteExperience-btn type=button onclick=deleteExperience(" + userData.numberOfExperiences +") >" +
+                        "<label for=deleteExperience-btn>Eliminar experiencia</label></button>" +
+                    "</p></div>");
             }
-            reader.onloadend = function(){
-                localStorage.setItem(userId + "-" + "experience" + userData.numberOfExperiences, reader.result);
+            else{
+                reader.onloadend = function(){
+                    $("#experience-" + userData.numberOfExperiences).append("<p class=form-p style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src=" + "'" + reader.result + "'" + "class=responsiveimg></img></p>");
+                    $("#experience-" + userData.numberOfExperiences).append("<p class=form-p>" + experiencePlace + "</p>");
+                    $("#experience-" + userData.numberOfExperiences).append("<p class=form-p style=margin-bottom:5%;>" + experienceDescription + "</p>");
+                    $("#experience-" + userData.numberOfExperiences).append(          
+                        "<div><p class=form-p style=margin-bottom:10%;>" + 
+                        "<button class=deleteExperience-btn type=button onclick=deleteExperience(" + userData.numberOfExperiences +") >" +
+                        "<label for=deleteExperience-btn>Eliminar experiencia</label></button>" +
+                    "</p></div>");
+                }
+                reader.readAsDataURL(experienceImage);
             }
-            reader.readAsDataURL(experienceImage);
-            userData.numberOfExperiences++;
-            Cookies.set(String(userId), JSON.stringify(userData), {secure:true});
-            // Almacenamiento de la experiencia
-            var experience = [experienceTitle, experienceDescription, experiencePlace];
-            userExperiences.push(experience);
-            localStorage.setItem(userId + "-" + "experiences", JSON.stringify(userExperiences));
-    
-    
-    
-            //Se añade el nuevo bloque
-    
-            //Se muestran los cambios
-    
-            
-            $("#myExperiences").show(); 
+            //Se muestran los cambios  
+            $("#experienceAdded").show(); 
+            $("#addExperience-form").trigger("reset");
         },
         messages: {
             experienceTitle: "<br>Por favor, introduce el titulo de la experiencia",
@@ -426,6 +452,18 @@ $(document).ready(function(){
         errorElement : 'span'  
         }); 
     
+        //Confirmacion experiencia añadida
+        $("#clsexperienceAdded").click(function(){
+            $("#experienceAdded").hide();
+            $("#myExperiences").show();
+        }); 
+
+        //Confirmacion experiencia eliminada
+        $("#clsexperienceDeleted").click(function(){
+            $("#experienceDeleted").hide();
+            $("#myExperiences").show();
+        }); 
+
         //Boton de submit añadir experiencias
         $("#saveExperience-btn").click(function(){
             $("#addExperience-form").trigger("submit");

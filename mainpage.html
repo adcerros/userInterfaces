@@ -105,12 +105,13 @@
             </p></div> 
         </form>
         <!-- MIS EXPERIENCIAS ///////////////////////////////-->
-        <div id="myExperiences" class="messages">
+        <div id="myExperiences" class="signUp-form">
             <button id="clsmyExperiences-btn" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#x292C;</button>           
-            <div><p class="form-p" style="margin-bottom:5%;">
+            <div><p class="form-p" style="margin-bottom:10%;">
                 <button id="addExperience-btn" class="submit-btn" type="button">
-                <label for="addExperience-btn">Añade una experiencia</label></button>
+                <label for="addExperience-btn">Añade una nueva experiencia</label></button>
             </p></div> 
+        <div id="myNewExperiences"></div>
         </div> 
         <!-- Añadir experiencias -->
         <form id="addExperience-form" class="signUp-form">
@@ -178,6 +179,24 @@
                 <button id="confirmLogOut-btn" class="submit-btn" type="button"><label for="confirmLogOut-btn">CONFIRMAR</label></button>
                 <button id="dontConfirmLogOut-btn" class="submit-btn" style="background-color:rgb(240, 100, 0); border-color:rgb(240, 100, 0);" type="button"><label for="dontConfirmLogOut-btn">CANCELAR</label></button>
             </p></div> 
+        </div> 
+        <!-- Experiencia guardada-->
+        <div id="experienceAdded" class="messages">
+            <button id="clsexperienceAdded" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#x292C;</button>
+            <div class="message-div"><img src=images/common/signUpOk.gif class="responsiveimg"></div>
+            <p class="form-p" style="margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">Experiencia añadida</p>
+        </div> 
+        <!-- Informacion actualizada-->
+        <div id="updatedInfo" class="messages">
+            <button id="clsupdatedInfo" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#x292C;</button>
+            <div class="message-div" style="margin-bottom:0%; margin-top:0%;"><img src=images/common/happy-frodo.gif class="responsiveimg"></div>
+            <p class="form-p" style="margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">Informacion actualizada</p>
+        </div> 
+        <!-- Experiencia eliminada-->
+        <div id="experienceDeleted" class="messages">
+            <button id="clsexperienceDeleted" class="cross-p" type="button" style="margin-left:85%; margin-bottom: 1%;">&#x292C;</button>
+            <div class="message-div"><img src=images/common/final-frodo.gif class="responsiveimg"></div>
+            <p class="form-p" style="margin-top:5%; margin-bottom:5%; font-size: calc(0.55em + 0.55vw);">Experiencia eliminada</p>
         </div> 
         <!-- CABECERA-->   
         <header>

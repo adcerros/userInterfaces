@@ -156,6 +156,13 @@ img.responsivelogobot {
     width: 60%;
 }
 
+.experiencehr{
+    color: white;
+    margin-top: 5vw;
+    margin-bottom: 5vw;
+    width: 60%;
+}
+
 /*Boxes footer*/
 .bigflexfooter {
     margin-left: 5%;
@@ -675,6 +682,20 @@ iframe{
     background-color: rgb(255, 166, 0);
     border-radius: 1vw;
     border-color: rgb(255, 166, 0);
+    color:white;
+}
+
+.deleteExperience-btn{
+    font-weight: lighter;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-top: 3%;
+    margin-bottom: 1%;
+    width: 60%;
+    font-size: calc(0.55em + 0.55vw);
+    background-color: rgb(240, 100, 0);
+    border-radius: 1vw;
+    border-color: rgb(240, 100, 0);;
     color:white;
 }
 
