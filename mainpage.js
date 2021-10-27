@@ -2,8 +2,7 @@
 function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m){
     let userData = { "pass": userPass, "name": userName, "email": userEmail, "bornDate": userBornDate, "musica": chckMusica , "combates": chckCombates, "hobbits": chckHobbits, "uc3m": chckUc3m, "numberOfExperiences": 0};
     Cookies.set(String(userEmail) + "-" + "userEmail", userEmail, {secure:true});
-    Cookies.set(String(userId), JSON.stringify(userData), {secure:true});
-    
+    Cookies.set(String(userId), JSON.stringify(userData), {secure:true});   
 }
 
 //Cambia la interfaz y pasa a modo usuario
@@ -135,6 +134,12 @@ $(document).ready(function(){
     //Cierre mensaje email duplicado
     $("#clsDupEmail").click(function(){
         $("#dupEmail").hide();
+        $("#signUp-form").show();
+    }); 
+
+    //Cierre mensaje id duplicado
+    $("#clsdupUserIdSignUp").click(function(){
+        $("#dupUserIdSignUp").hide();
         $("#signUp-form").show();
     }); 
 
@@ -292,6 +297,12 @@ $(document).ready(function(){
         $("#myProfile").show();
     }); 
 
+    //Cierre usuario duplicado
+    $("#clsdupUserIdchangeId").click(function(){
+        $("#dupUserIdchangeId").hide();
+        $("#changeProfileId-form").show();
+    }); 
+
     //Boton de submit cambio de Id
     $("#saveProfileId-btn").click(function(){
         $("#changeProfileId-form").trigger("submit");
@@ -321,6 +332,12 @@ $(document).ready(function(){
             document.getElementById("profileId").innerHTML = newuserId;        
             $("#updatedInfo").show(); 
             $("#changeProfileId-form").trigger("reset");  
+        },
+        rules: {
+            changeuserId:{
+                required: true,
+                userIdDupChangeId: true
+            }
         },
         messages: {
             changeuserId: "<br>Por favor, introduce tu nuevo nombre de usuario",
@@ -517,6 +534,32 @@ $(document).ready(function(){
         },
     );
 
+    // Comprobacion de Id duplicado en el signUp
+    $.validator.addMethod(
+        "userIdDupSignUp",
+        function(value) {
+            if (Cookies.get(String(value)) != null){
+                $("#dupUserIdSignUp").show();
+                $("#signUp-form").hide();
+                return false;
+            }
+            return true;
+        },
+    );
+
+    // Comprobacion de Id duplicado en el cambio de nombre
+    $.validator.addMethod(
+        "userIdDupChangeId",
+        function(value) {
+            if (Cookies.get(String(value)) != null){
+                $("#dupUserIdchangeId").show();
+                $("#changeProfileId-form").hide();
+                return false;
+            }
+            return true;
+        },
+    );
+
     //Validacion del formulario de alta
     var signUpValidator = $("#signUp-form").validate({
         submitHandler: function(){
@@ -547,7 +590,10 @@ $(document).ready(function(){
             $("#signUpOk-form").show(); 
         },
         rules: {
-            userId: "required",
+            userId:{
+                required: true,
+                userIdDupSignUp: true
+            },
             userPass: {
                 required: true, 
                 userPass: true,
