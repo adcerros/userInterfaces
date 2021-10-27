@@ -310,7 +310,11 @@ $(document).ready(function(){
             document.getElementById("profileId").innerHTML = newuserId;        
             $("#myProfile").show(); 
             $("#changeProfileId-form").trigger("reset");  
-        }
+        },
+        messages: {
+            changeuserId: "<br>Por favor, introduce tu nuevo nombre de usuario",
+        },
+        errorElement : 'span'  
     }); 
 
     // SECCION MI PERFIL /////////////////////////////////////////////////
