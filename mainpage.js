@@ -324,9 +324,6 @@ $(document).ready(function(){
             let userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
             localStorage.setItem(newuserId + "-" + "profileImg", userProfileImage);
             localStorage.removeItem(userId + "-" + "profileImg", null);
-            let userExperiences = localStorage.getItem(userId + "-" +"experiences");
-            localStorage.setItem(newuserId + "-" + "experiences", userExperiences);
-            localStorage.removeItem(userId + "-" + "experiences", null);
             //Se muestran los cambios
             document.getElementById("userId-p").innerHTML = newuserId;    
             document.getElementById("profileId").innerHTML = newuserId;        
