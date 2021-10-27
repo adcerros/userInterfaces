@@ -359,6 +359,29 @@ $(document).ready(function(){
         $("#myProfile").hide();
     }); 
     
+    // MIS EXPERIENCIAS ////////////////////////////////////////////////////
+    $("#experiences-btn").click(function(){
+        $("#myExperiences").show();
+    }); 
+    //Cierre
+    $("#clsmyExperiences-btn").click(function(){
+        $("#myExperiences").hide();
+    });
+    
+    // Añadir experiencia
+    $("#addExperience-btn").click(function(){
+        $("#addExperience-form").show();
+        $("#myExperiences").hide();
+    }); 
+    //Cierre
+    $("#clsaddExperience-btn").click(function(){
+        $("#addExperience-form").hide();
+        $("#myExperiences").show();
+    }); 
+
+
+
+    // VALIDACIONES DE FORMULARIOS //////////////////////////////////////////
     //Funciones para la validacion de expresiones regulares
     // Comprobacion de la expresion regular de la contraseña
     $.validator.addMethod(
