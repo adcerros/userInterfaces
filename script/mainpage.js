@@ -577,17 +577,10 @@ $(document).ready(function(){
             document.getElementById("description" + j).innerHTML = experiencesDescriptions[j]; 
         }
         //Se ocultan las no seleccionadas recorriendo desde las seleccionadas
-        for (j = 0; j < numberOfDefaultExperiences; j++){
-            if(j < showExps.length){
-                $("#img" + j).show(); 
-                $("#title" + j).show();
-                $("#description" + j).show();
-            }
-            else{
+        for (j = showExps.length; j < numberOfDefaultExperiences; j++){
                 $("#img" + j).hide(); 
                 $("#title" + j).hide();
                 $("#description" + j).hide();
-            }
         }
     });
 
