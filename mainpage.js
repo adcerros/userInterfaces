@@ -509,18 +509,25 @@ $(document).ready(function(){
 
     // FILTRADO DE EXPERIENCIAS //////////////////////////////////////////////
     $("#filterExperiences-btn").click(function(){
-        let keywords = $("#keywords").val();;
-        if (keywords == ""){
-            alert("nulo");
-        } 
-        else{
-            let i = 0;
-            alert(document.getElementById("exp010"));
-            while(document.getElementById("exp" + i) != null){
-
-            }
+        let keywords = $("#keywords").val();
+        let i = 0;
+        while(document.getElementById("exp" + i) != null){
+            $("#exp" + i).show(); 
+            i++;
         }
+        let j = 0;
+        while(document.getElementById("exp" + j) != null){
+            let currentElement = document.getElementById("exp" + j) 
+            if (currentElement.textContent != null){
+                if(currentElement.textContent.search(keywords) == -1){
+                    $("#exp" + j).hide();  
+                }
+            }
+            j++;
+        }
+    
     });
+
     // VALIDACIONES DE FORMULARIOS //////////////////////////////////////////
     //Funciones para la validacion de expresiones regulares
     // Comprobacion de la expresion regular de la contraseña
