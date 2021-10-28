@@ -23619,12 +23619,12 @@ qiQWyETqMQ5EHQjTwwNM9Thl3ZHT2HAAO0nInT24Q2uZMkn9hwLKj5D11woRlnr+7DhVSJgE9g7O
 mN9jrIMbdOnTA2RlmR0x/9k=">
 </image>
 <a>
-	<circle onclick="window.parent.showOnPopup('../gondor&amp;Rohan.html')" class="st0" cx="2089.2" cy="1960.9" r="536"/>
+	<circle onclick="window.parent.showOnPopup('./gondor&amp;Rohan.html')" class="st0" cx="2089.2" cy="1960.9" r="536"/>
 </a>
 <a>
-	<circle onclick="window.parent.showOnPopup('../comarca.html')" class="st0" cx="1260.8" cy="764.9" r="536"/>
+	<circle onclick="window.parent.showOnPopup('./comarca.html')" class="st0" cx="1260.8" cy="764.9" r="536"/>
 </a>
 <a>
-	<circle onclick="window.parent.showOnPopup('../mordor.html')" class="st0" cx="3223.1" cy="2217.8" r="536"/>
+	<circle onclick="window.parent.showOnPopup('./mordor.html')" class="st0" cx="3223.1" cy="2217.8" r="536"/>
 </a>
 </svg>
