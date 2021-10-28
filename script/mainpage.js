@@ -538,7 +538,13 @@ $(document).ready(function(){
     $("#filterExperiences-btn").click(function(){
         let keywords = $("#keywords").val();
         //Se muestra el searching for:
-        $("#searchingForDiv").show();
+        if (keywords != ""){
+            document.getElementById("searchingForText").innerHTML = "Filtrando por : " + String(keywords).toLowerCase();
+            $("#searchingForDiv").show();
+        }
+        else{
+            $("#searchingForDiv").hide();
+        }
         var hiddenExps = new Array();
         var showExps = new Array();
         // Se muestran todas por si hay alguna oculta y se almacenan el numero de experiencias y el numero de bloques
@@ -556,7 +562,8 @@ $(document).ready(function(){
         // Se almacen las posiciones donde estan las experiencias a ocultar y a mostrar
         for(let j = 0; j < numberOfDefaultExperiences; j++){
             let currentElement = document.getElementById("exp" + j);
-            if(currentElement.textContent.search(keywords) == -1){
+            currentElement = String(currentElement.textContent).toLowerCase();
+            if(currentElement.search(String(keywords).toLowerCase()) == -1){
                 hiddenExps.push(j)
             }
             else{
@@ -593,9 +600,10 @@ $(document).ready(function(){
         }
     });
 
-    //Cierre del searching for y reinicio de el filtrado
+    //Cierre del searching for y reinicio del filtrado
     $("#clssearchingForBtn").click(function(){
         $("#searchingForDiv").hide(); 
+        $("#keywords").val("");
         resetExperiences();
     });
 
