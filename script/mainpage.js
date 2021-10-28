@@ -11,7 +11,7 @@ function showUserProfile(userId){
     let userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
     if (userProfileImage == "null" | userProfileImage == null | userProfileImage == undefined){
         localStorage.setItem(userId + "-" +"profileImg", "null");
-        $("#userImage").attr("src","../images/common/default-icon.png");
+        $("#userImage").attr("src",'./images/common/default-icon.png');
     }
     else{
         $("#userImage").attr("src",userProfileImage);
@@ -367,7 +367,7 @@ $(document).ready(function(){
             $("#profileImage").attr("src",userProfileImage);
         }
         else{
-            $("#profileImage").attr("src", "../images/common/default-icon.png");
+            $("#profileImage").attr("src", './images/common/default-icon.png');
         }
         document.getElementById("profileId").innerHTML = "Nombre de usuario: " + userId;
         document.getElementById("profilePass").innerHTML = "Contraseña: " + userData.pass;
@@ -440,7 +440,7 @@ $(document).ready(function(){
             $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experienceTitle + "</p>");
             // Carga de imagen
             if (experienceImage == null | experienceImage == undefined){
-                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src='../images/common/default-icon.png' class=responsiveimg></img></p>");
+                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src='./images/common/default-icon.png' class=responsiveimg></img></p>");
                 $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experiencePlace + "</p>");
                 $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-bottom:5%;>" + experienceDescription + "</p>");
                 $("#experience-" + userData.numberOfExperiences).append(          
