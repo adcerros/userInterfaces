@@ -1,93 +1,3 @@
-//Configuracion de las cookies de registro
-function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m){
-    let userData = { "pass": userPass, "name": userName, "email": userEmail, "bornDate": userBornDate, "musica": chckMusica , "combates": chckCombates, "hobbits": chckHobbits, "uc3m": chckUc3m, "numberOfExperiences": 0};
-    Cookies.set(String(userEmail) + "-" + "userEmail", userEmail, {secure:true});
-    Cookies.set(String(userId), JSON.stringify(userData), {secure:true});   
-}
-
-//Cambia la interfaz y pasa a modo usuario
-function showUserProfile(userId){
-    // Se carga la imagen del usuario
-    let userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
-    if (userProfileImage == "null" | userProfileImage == null | userProfileImage == undefined){
-        localStorage.setItem(userId + "-" +"profileImg", "null");
-        $("#userImage").attr("src",'./images/common/default-icon.png');
-    }
-    else{
-        $("#userImage").attr("src",userProfileImage);
-    }
-    // Se cambia el nombre por defecto del id en la interfaz
-    document.getElementById("userId-p").innerHTML = userId;
-    Cookies.set("currentUser", userId, {secure:true});
-    // Se oculta la interfaz estandar
-    $("#logIn-btn").hide();
-    $("#signUp-btn").hide();
-    $("#auxDiv").hide();
-    // Se muestra la interfaz del usuario
-    $("#userId-info").show();
-    $("#userImage-div").show();
-    $("#optionsBar-btn").show();
-}
-
-// Funcion para guardar la imagen en el localStorage
-function saveImage(userId, userProfileImage){
-    var reader = new FileReader();
-    reader.onload = function(){
-        localStorage.setItem(userId + "-" +"profileImg", reader.result);
-    }
-    reader.readAsDataURL(userProfileImage);
-}
-
-
-// Funcion para actualizar la imagen del usuario
-function changeAndSaveImage(userId, userProfileImage){
-    var reader = new FileReader();
-    reader.onload = function(){
-        d = new Date();
-        localStorage.setItem(userId + "-" +"profileImg", reader.result);
-        $("#profileImage").attr("src", reader.result);
-        $("#userImage").attr("src", reader.result); 
-    }
-    reader.readAsDataURL(userProfileImage);
-}
-
-// Eliminar experiencias
-function deleteExperience(numberOfExperience){
-    $("#experience-" + numberOfExperience).empty();
-    let userId = Cookies.get("currentUser");
-    let userCookie = Cookies.get(userId);
-    let userData = JSON.parse(userCookie);
-    userData.numberOfExperience--;
-    Cookies.set(String(userId), JSON.stringify(userData), {secure:true});
-    $("#myExperiences").hide(); 
-    $("#experienceDeleted").show(); 
-}
-
-// Muestra las paginas secundarias en popups
-function showOnPopup(path){
-    $("#secondaryFrame").attr("src",path);
-    $("#secondaryOnPopUp").show();
-}
-
-//Muestra las experiencias en popups
-function showExperienceOnPopup(path){
-    $("#secondaryExperiencesFrame").attr("src",path);
-    $("#secondaryExperienceOnPopUp").show();
-}
-
-//Reinicia las experiencias
-function resetExperiences() {
-    let i = 0;
-    while (document.getElementById("exp" + i) != null) {
-        $("#img" + i).show();
-        $("#title" + i).show();
-        $("#description" + i).show();
-        i++;
-    }
-    return i;
-}
-
-
 $(document).ready(function(){
     // LOGIN /////////////////////////////////////////////////
     // Boton de login
@@ -249,48 +159,7 @@ $(document).ready(function(){
             $("#signUp-form").hide();
             $("#changeProfileInterest-form").hide();
             // Se cargan los datos que ha introducido el usuario
-            let userId = Cookies.get("currentUser");
-            let chckMusica = false;
-            let chckCombates = false;
-            let chckHobbits = false;
-            let chckUc3m = false;
-            if ($("#changeMusica").is(":checked")){
-                chckMusica = true;
-            }
-            if ($("#changeCombates").is(":checked")){
-                chckCombates = true;
-            }
-            if ($("#changeHobbits").is(":checked")){
-                chckHobbits = true;
-            }
-            if ($("#changeUc3m").is(":checked")){
-                chckUc3m = true;
-            }
-            let userData = JSON.parse(Cookies.get(userId));
-            userData.musica = chckMusica;
-            userData.combates = chckCombates;
-            userData.hobbits = chckHobbits;
-            userData.uc3m = chckUc3m;
-            Cookies.set(String(userId), JSON.stringify(userData), {secure:true});
-            //Se muestran los cambios
-            document.getElementById("profileHobbits").innerHTML = ""; 
-            document.getElementById("profileUc3m").innerHTML = ""; 
-            document.getElementById("profileCombat").innerHTML = "";
-            document.getElementById("profileMusic").innerHTML = "";  
-            if (chckMusica == true){
-                document.getElementById("profileMusic").innerHTML = "Musica popular de Gondor";          
-            }  
-            if (chckCombates == true){
-                document.getElementById("profileCombat").innerHTML = "Combates a espada";
-            } 
-            if (chckHobbits == true){
-                document.getElementById("profileHobbits").innerHTML = "Hierba de los hobbits";        
-            } 
-            if (chckUc3m == true){
-                document.getElementById("profileUc3m").innerHTML = "Soy profesor/a de la Uc3m";       
-            } 
-            $("#updatedInfo").show(); 
-            $("#changeProfileInterest-form").trigger("reset");          
+            changeUserInterest();          
         }
     }); 
 
@@ -337,21 +206,7 @@ $(document).ready(function(){
     $("#changeProfileId-form").validate({
         submitHandler: function(){
             $("#changeProfileId-form").hide();
-            let userId = Cookies.get("currentUser");
-            let userData = JSON.parse(Cookies.get(userId));
-            let newuserId = $("#changeuserId").val();
-            //Se crea la nueva cookie
-            Cookies.set("currentUser", newuserId);
-            Cookies.set(String(newuserId), JSON.stringify(userData), {secure:true});
-            //Se destruye la antigua
-            Cookies.set(String(userId), null, {expires:0});
-            //Se cambian los datos de las imagenes
-            let userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
-            localStorage.setItem(newuserId + "-" + "profileImg", userProfileImage);
-            localStorage.removeItem(userId + "-" + "profileImg", null);
-            //Se muestran los cambios
-            document.getElementById("userId-p").innerHTML = newuserId;    
-            document.getElementById("profileId").innerHTML = newuserId;        
+            changeUserId();        
             $("#updatedInfo").show(); 
             $("#changeProfileId-form").trigger("reset");  
         },
@@ -383,37 +238,7 @@ $(document).ready(function(){
         let userId = Cookies.get("currentUser");
         let userProfileImage = localStorage.getItem(userId + "-" + "profileImg");
         let userData = JSON.parse(Cookies.get(userId));
-        // Se carga la imagen de perfil por almacenada, si no existe se carga la imagen por defecto
-        if (userProfileImage != "null"){
-            $("#profileImage").attr("src",userProfileImage);
-        }
-        else{
-            $("#profileImage").attr("src", './images/common/default-icon.png');
-        }
-        // Se muestran los datos modificando el texto
-        document.getElementById("profileId").innerHTML = "Nombre de usuario: " + userId;
-        document.getElementById("profilePass").innerHTML = "Contraseña: " + userData.pass;
-        document.getElementById("profileName").innerHTML = "Nombre y apellidos: " + userData.name;
-        document.getElementById("profileEmail").innerHTML = "Email: " + userData.email;
-        document.getElementById("profileBornDate").innerHTML = "Fecha de nacimiento: " + userData.bornDate;
-        document.getElementById("profileHobbits").innerHTML = ""; 
-        document.getElementById("profileUc3m").innerHTML = ""; 
-        document.getElementById("profileCombat").innerHTML = "";
-        document.getElementById("profileMusic").innerHTML = "";  
-        // Comprobacion de intereses
-        if (userData.musica == true){
-            document.getElementById("profileMusic").innerHTML = "Musica popular de Gondor";          
-        }  
-        if (userData.combates == true){
-            document.getElementById("profileCombat").innerHTML = "Combates a espada";
-        } 
-        if (userData.hobbits == true){
-            document.getElementById("profileHobbits").innerHTML = "Hierba de los hobbits";        
-        } 
-        if (userData.uc3m == true){
-            document.getElementById("profileUc3m").innerHTML = "Soy profesor/a de la Uc3m";       
-        } 
-
+        loadUserProfile(userProfileImage, userId, userData); 
         $("#userProfileImage").attr("src",userProfileImage);
     }); 
 
@@ -447,46 +272,7 @@ $(document).ready(function(){
             $("#addExperience-form").hide();
             $("#loadedExperienceImage").hide();
             // Lectura de datos
-            let userId = Cookies.get("currentUser");
-            let userCookie = Cookies.get(userId);
-            let userData = JSON.parse(userCookie);
-            userData.numberOfExperiences++;
-            Cookies.set(String(userId), JSON.stringify(userData), {secure:true});
-            let experienceTitle = $("#experienceTitle").val();
-            let experienceDescription = $("#experienceDescription").val();
-            let experiencePlace = $("#experiencePlace").val();
-            let experienceImage = document.getElementById("experienceImage").files[0]
-            var reader = new FileReader();
-            $("#myNewExperiences").prepend("<div id=experience-" + userData.numberOfExperiences + "></div>")
-            // Se añade el texto y la imagen
-            $("#experience-" + userData.numberOfExperiences).append("<hr class=experiencehr></hr>");
-            $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experienceTitle + "</p>");
-            // Carga de imagen
-            // Imagen por defecto
-            if (experienceImage == null | experienceImage == undefined){
-                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src='./images/common/default-icon.png' style=width:50%; class=responsiveimg></img></p>");
-                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experiencePlace + "</p>");
-                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-bottom:5%;>" + experienceDescription + "</p>");
-                $("#experience-" + userData.numberOfExperiences).append(          
-                    "<div><p class=form-p style=margin-bottom:10%;>" + 
-                        "<button class=deleteExperience-btn type=button onclick=deleteExperience(" + userData.numberOfExperiences +") >" +
-                        "<label for=deleteExperience-btn>Eliminar experiencia</label></button>" +
-                    "</p></div>");
-            }
-            // Imagen del usuario
-            else{
-                reader.onloadend = function(){
-                    $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src=" + "'" + reader.result + "'" +  "style=width:50%; class=responsiveimg></img></p>");
-                    $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experiencePlace + "</p>");
-                    $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-bottom:5%;>" + experienceDescription + "</p>");
-                    $("#experience-" + userData.numberOfExperiences).append(          
-                        "<div><p class=form-p style=margin-bottom:10%;>" + 
-                        "<button class=deleteExperience-btn type=button onclick=deleteExperience(" + userData.numberOfExperiences +") >" +
-                        "<label for=deleteExperience-btn>Eliminar experiencia</label></button>" +
-                    "</p></div>");
-                }
-                reader.readAsDataURL(experienceImage);
-            }
+            addExperience();
             //Se muestran los cambios  
             $("#experienceAdded").show(); 
             $("#addExperience-form").trigger("reset");
@@ -536,68 +322,7 @@ $(document).ready(function(){
 
     // FILTRADO DE EXPERIENCIAS //////////////////////////////////////////////
     $("#filterExperiences-btn").click(function(){
-        let keywords = $("#keywords").val();
-        //Se muestra el searching for:
-        if (keywords != ""){
-            document.getElementById("searchingForText").innerHTML = "Filtrando por : " + String(keywords).toLowerCase();
-            $("#searchingForDiv").show();
-        }
-        else{
-            $("#searchingForDiv").hide();
-        }
-        var hiddenExps = new Array();
-        var showExps = new Array();
-        // Se muestran todas por si hay alguna oculta y se almacenan el numero de experiencias y el numero de bloques
-        let numberOfDefaultExperiences = resetExperiences();
-
-        //Se almacenan los textos y las imagenes
-        var experiencesImages = new Array();
-        var experiencesTitles = new Array();
-        var experiencesDescriptions = new Array();
-        for(let j = 0; j < numberOfDefaultExperiences; j++){
-            experiencesImages.push(document.getElementById("img" + j).src);  
-            experiencesTitles.push(document.getElementById("title" + j).textContent);  
-            experiencesDescriptions.push(document.getElementById("description" + j).textContent);  
-        }
-        // Se almacen las posiciones donde estan las experiencias a ocultar y a mostrar
-        for(let j = 0; j < numberOfDefaultExperiences; j++){
-            let currentElement = document.getElementById("exp" + j);
-            currentElement = String(currentElement.textContent).toLowerCase();
-            if(currentElement.search(String(keywords).toLowerCase()) == -1){
-                hiddenExps.push(j)
-            }
-            else{
-                showExps.push(j)
-            } 
-        }
-        // Se reorganizan intercambiando los contenidos entre mostradas y no mostradas
-        var aux;
-        for(let j = 0; j < showExps.length; j++){
-            //Img
-            aux = experiencesImages[j];
-            experiencesImages[j] = experiencesImages[showExps[j]];
-            experiencesImages[showExps[j]] = aux;
-            //Title
-            aux = experiencesTitles[j];
-            experiencesTitles[j] = experiencesTitles[showExps[j]];
-            experiencesTitles[showExps[j]] = aux;
-            //Desc
-            aux = experiencesDescriptions[j];
-            experiencesDescriptions[j] = experiencesDescriptions[showExps[j]];
-            experiencesDescriptions[showExps[j]] = aux;
-        }
-        // Se realiza el cambio en el html
-        for(let j = 0; j < numberOfDefaultExperiences; j++){
-            document.getElementById("img" + j).src = experiencesImages[j]; 
-            document.getElementById("title" + j).innerHTML = experiencesTitles[j];
-            document.getElementById("description" + j).innerHTML = experiencesDescriptions[j]; 
-        }
-        //Se ocultan las no seleccionadas recorriendo desde las seleccionadas
-        for (j = showExps.length; j < numberOfDefaultExperiences; j++){
-                $("#img" + j).hide(); 
-                $("#title" + j).hide();
-                $("#description" + j).hide();
-        }
+        filtreExperiences();
     });
 
     //Cierre del searching for y reinicio del filtrado
@@ -680,27 +405,7 @@ $(document).ready(function(){
     var signUpValidator = $("#signUp-form").validate({
         submitHandler: function(){
             $("#signUp-form").hide(); 
-            var userId = $("#userId").val();
-            let userPass = $("#userPass").val();
-            let userName = $("#userName").val();
-            let userEmail = $("#userEmail").val();
-            let userBornDate = $("#userBornDate").val()
-            let chckMusica = false;
-            let chckCombates = false;
-            let chckHobbits = false;
-            let chckUc3m = false;
-            if ($("#chckMusica").is(":checked")){
-                chckMusica = true;
-            }
-            if ($("#chckCombates").is(":checked")){
-                chckCombates = true;
-            }
-            if ($("#chckHobbits").is(":checked")){
-                chckHobbits = true;
-            }
-            if ($("#chckUc3m").is(":checked")){
-                chckUc3m = true;
-            }
+            var { userId, userPass, userName, userEmail, userBornDate, chckMusica, chckCombates, chckHobbits, chckUc3m } = getSignUpData();
             // Se crean las cookies y se muestra la interfaz del usuario
             setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m);
             showUserProfile(userId);   
@@ -785,3 +490,346 @@ $(document).ready(function(){
     });
 
 });
+
+//Configuracion de las cookies de registro
+function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m){
+    let userData = { "pass": userPass, "name": userName, "email": userEmail, "bornDate": userBornDate, "musica": chckMusica , "combates": chckCombates, "hobbits": chckHobbits, "uc3m": chckUc3m, "numberOfExperiences": 0};
+    Cookies.set(String(userEmail) + "-" + "userEmail", userEmail, {secure:true});
+    Cookies.set(String(userId), JSON.stringify(userData), {secure:true});   
+}
+
+//Cambia la interfaz y pasa a modo usuario
+function showUserProfile(userId){
+    // Se carga la imagen del usuario
+    let userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
+    if (userProfileImage == "null" | userProfileImage == null | userProfileImage == undefined){
+        localStorage.setItem(userId + "-" +"profileImg", "null");
+        $("#userImage").attr("src",'./images/common/default-icon.png');
+    }
+    else{
+        $("#userImage").attr("src",userProfileImage);
+    }
+    // Se cambia el nombre por defecto del id en la interfaz
+    document.getElementById("userId-p").innerHTML = userId;
+    Cookies.set("currentUser", userId, {secure:true});
+    // Se oculta la interfaz estandar
+    $("#logIn-btn").hide();
+    $("#signUp-btn").hide();
+    $("#auxDiv").hide();
+    // Se muestra la interfaz del usuario
+    $("#userId-info").show();
+    $("#userImage-div").show();
+    $("#optionsBar-btn").show();
+}
+
+// Funcion para guardar la imagen en el localStorage
+function saveImage(userId, userProfileImage){
+    var reader = new FileReader();
+    reader.onload = function(){
+        localStorage.setItem(userId + "-" +"profileImg", reader.result);
+    }
+    reader.readAsDataURL(userProfileImage);
+}
+
+
+// Funcion para actualizar la imagen del usuario
+function changeAndSaveImage(userId, userProfileImage){
+    var reader = new FileReader();
+    reader.onload = function(){
+        d = new Date();
+        localStorage.setItem(userId + "-" +"profileImg", reader.result);
+        $("#profileImage").attr("src", reader.result);
+        $("#userImage").attr("src", reader.result); 
+    }
+    reader.readAsDataURL(userProfileImage);
+}
+
+// Eliminar experiencias
+function deleteExperience(numberOfExperience){
+    $("#experience-" + numberOfExperience).empty();
+    let userId = Cookies.get("currentUser");
+    let userCookie = Cookies.get(userId);
+    let userData = JSON.parse(userCookie);
+    userData.numberOfExperience--;
+    Cookies.set(String(userId), JSON.stringify(userData), {secure:true});
+    $("#myExperiences").hide(); 
+    $("#experienceDeleted").show(); 
+}
+
+// Muestra las paginas secundarias en popups
+function showOnPopup(path){
+    $("#secondaryFrame").attr("src",path);
+    $("#secondaryOnPopUp").show();
+}
+
+//Muestra las experiencias en popups
+function showExperienceOnPopup(path){
+    $("#secondaryExperiencesFrame").attr("src",path);
+    $("#secondaryExperienceOnPopUp").show();
+}
+
+//Reinicia las experiencias
+function resetExperiences() {
+    let i = 0;
+    while (document.getElementById("exp" + i) != null) {
+        $("#img" + i).show();
+        $("#title" + i).show();
+        $("#description" + i).show();
+        i++;
+    }
+    return i;
+}
+
+function changeUserInterest() {
+    let { userId, userData, chckMusica, chckCombates, chckHobbits, chckUc3m } = getUserInterestData();
+    // Se cambia la cookie
+    Cookies.set(String(userId), JSON.stringify(userData), { secure: true });
+    //Se muestran los cambios
+    document.getElementById("profileHobbits").innerHTML = "";
+    document.getElementById("profileUc3m").innerHTML = "";
+    document.getElementById("profileCombat").innerHTML = "";
+    document.getElementById("profileMusic").innerHTML = "";
+    if (chckMusica == true) {
+        document.getElementById("profileMusic").innerHTML = "Musica popular de Gondor";
+    }
+    if (chckCombates == true) {
+        document.getElementById("profileCombat").innerHTML = "Combates a espada";
+    }
+    if (chckHobbits == true) {
+        document.getElementById("profileHobbits").innerHTML = "Hierba de los hobbits";
+    }
+    if (chckUc3m == true) {
+        document.getElementById("profileUc3m").innerHTML = "Soy profesor/a de la Uc3m";
+    }
+    $("#updatedInfo").show();
+    $("#changeProfileInterest-form").trigger("reset");
+}
+
+function getUserInterestData() {
+    let userId = Cookies.get("currentUser");
+    let chckMusica = false;
+    let chckCombates = false;
+    let chckHobbits = false;
+    let chckUc3m = false;
+    if ($("#changeMusica").is(":checked")) {
+        chckMusica = true;
+    }
+    if ($("#changeCombates").is(":checked")) {
+        chckCombates = true;
+    }
+    if ($("#changeHobbits").is(":checked")) {
+        chckHobbits = true;
+    }
+    if ($("#changeUc3m").is(":checked")) {
+        chckUc3m = true;
+    }
+    let userData = JSON.parse(Cookies.get(userId));
+    userData.musica = chckMusica;
+    userData.combates = chckCombates;
+    userData.hobbits = chckHobbits;
+    userData.uc3m = chckUc3m;
+    return { userId, userData, chckMusica, chckCombates, chckHobbits, chckUc3m };
+}
+
+function changeUserId() {
+    let userId = Cookies.get("currentUser");
+    let userData = JSON.parse(Cookies.get(userId));
+    let newuserId = $("#changeuserId").val();
+    //Se crea la nueva cookie
+    Cookies.set("currentUser", newuserId);
+    Cookies.set(String(newuserId), JSON.stringify(userData), { secure: true });
+    //Se destruye la antigua
+    Cookies.set(String(userId), null, { expires: 0 });
+    //Se cambian los datos de las imagenes
+    let userProfileImage = localStorage.getItem(userId + "-" + "profileImg");
+    localStorage.setItem(newuserId + "-" + "profileImg", userProfileImage);
+    localStorage.removeItem(userId + "-" + "profileImg", null);
+    //Se muestran los cambios
+    document.getElementById("userId-p").innerHTML = newuserId;
+    document.getElementById("profileId").innerHTML = newuserId;
+}
+
+function loadUserProfile(userProfileImage, userId, userData) {
+    // Se carga la imagen de perfil por almacenada, si no existe se carga la imagen por defecto
+    if (userProfileImage != "null") {
+        $("#profileImage").attr("src", userProfileImage);
+    }
+    else {
+        $("#profileImage").attr("src", './images/common/default-icon.png');
+    }
+    // Se muestran los datos modificando el texto
+    document.getElementById("profileId").innerHTML = "Nombre de usuario: " + userId;
+    document.getElementById("profilePass").innerHTML = "Contraseña: " + userData.pass;
+    document.getElementById("profileName").innerHTML = "Nombre y apellidos: " + userData.name;
+    document.getElementById("profileEmail").innerHTML = "Email: " + userData.email;
+    document.getElementById("profileBornDate").innerHTML = "Fecha de nacimiento: " + userData.bornDate;
+    document.getElementById("profileHobbits").innerHTML = "";
+    document.getElementById("profileUc3m").innerHTML = "";
+    document.getElementById("profileCombat").innerHTML = "";
+    document.getElementById("profileMusic").innerHTML = "";
+    // Comprobacion de intereses
+    if (userData.musica == true) {
+        document.getElementById("profileMusic").innerHTML = "Musica popular de Gondor";
+    }
+    if (userData.combates == true) {
+        document.getElementById("profileCombat").innerHTML = "Combates a espada";
+    }
+    if (userData.hobbits == true) {
+        document.getElementById("profileHobbits").innerHTML = "Hierba de los hobbits";
+    }
+    if (userData.uc3m == true) {
+        document.getElementById("profileUc3m").innerHTML = "Soy profesor/a de la Uc3m";
+    }
+}
+
+function addExperience() {
+    let { userData, experienceTitle, experienceImage, experiencePlace, experienceDescription } = getExperienceData();
+    $("#myNewExperiences").prepend("<div id=experience-" + userData.numberOfExperiences + "></div>");
+    // Se añade el texto y la imagen
+    $("#experience-" + userData.numberOfExperiences).append("<hr class=experiencehr></hr>");
+    $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experienceTitle + "</p>");
+    var reader = new FileReader();
+    // Carga de imagen
+    // Imagen por defecto
+    if (experienceImage == null | experienceImage == undefined | experiencePlace == "") {
+        $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src='./images/common/default-icon.png' style=width:50%; class=responsiveimg></img></p>");
+        $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experiencePlace + "</p>");
+        $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-bottom:5%;>" + experienceDescription + "</p>");
+        $("#experience-" + userData.numberOfExperiences).append(
+            "<div><p class=form-p style=margin-bottom:10%;>" +
+            "<button class=deleteExperience-btn type=button onclick=deleteExperience(" + userData.numberOfExperiences + ") >" +
+            "<label for=deleteExperience-btn>Eliminar experiencia</label></button>" +
+            "</p></div>");
+    }
+    // Imagen del usuario
+    else {
+        reader.onloadend = function () {
+            $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src=" + "'" + reader.result + "'" + "style=width:50%; class=responsiveimg></img></p>");
+            $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experiencePlace + "</p>");
+            $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-bottom:5%;>" + experienceDescription + "</p>");
+            $("#experience-" + userData.numberOfExperiences).append(
+                "<div><p class=form-p style=margin-bottom:10%;>" +
+                "<button class=deleteExperience-btn type=button onclick=deleteExperience(" + userData.numberOfExperiences + ") >" +
+                "<label for=deleteExperience-btn>Eliminar experiencia</label></button>" +
+                "</p></div>");
+        };
+        reader.readAsDataURL(experienceImage);
+    }
+}
+
+function getExperienceData() {
+    let userId = Cookies.get("currentUser");
+    let userCookie = Cookies.get(userId);
+    let userData = JSON.parse(userCookie);
+    userData.numberOfExperiences++;
+    Cookies.set(String(userId), JSON.stringify(userData), { secure: true });
+    let experienceTitle = $("#experienceTitle").val();
+    let experienceDescription = $("#experienceDescription").val();
+    let experiencePlace = $("#experiencePlace").val();
+    let experienceImage = document.getElementById("experienceImage").files[0];
+    return { userData, experienceTitle, experienceImage, experiencePlace, experienceDescription };
+}
+
+function getSignUpData() {
+    var userId = $("#userId").val();
+    let userPass = $("#userPass").val();
+    let userName = $("#userName").val();
+    let userEmail = $("#userEmail").val();
+    let userBornDate = $("#userBornDate").val();
+    let chckMusica = false;
+    let chckCombates = false;
+    let chckHobbits = false;
+    let chckUc3m = false;
+    if ($("#chckMusica").is(":checked")) {
+        chckMusica = true;
+    }
+    if ($("#chckCombates").is(":checked")) {
+        chckCombates = true;
+    }
+    if ($("#chckHobbits").is(":checked")) {
+        chckHobbits = true;
+    }
+    if ($("#chckUc3m").is(":checked")) {
+        chckUc3m = true;
+    }
+    return { userId, userPass, userName, userEmail, userBornDate, chckMusica, chckCombates, chckHobbits, chckUc3m };
+}
+
+function filtreExperiences() {
+    let keywords = $("#keywords").val();
+    //Se muestra el searching for:
+    if (keywords != "") {
+        document.getElementById("searchingForText").innerHTML = "Buscando por : " + "''" +  String(keywords).toLowerCase() + "''" ;
+        $("#searchingForDiv").show();
+    }
+    else {
+        $("#searchingForDiv").hide();
+    }
+    var hiddenExps = new Array();
+    var showExps = new Array();
+    // Se muestran todas por si hay alguna oculta y se almacenan el numero de experiencias y el numero de bloques
+    let numberOfDefaultExperiences = resetExperiences();
+
+    //Se almacenan los textos y las imagenes
+    var { experiencesImages, experiencesTitles, experiencesDescriptions } = saveDefaultExperiences(numberOfDefaultExperiences);
+    // Se almacen las posiciones donde estan las experiencias a ocultar y a mostrar
+    selectExperiences(numberOfDefaultExperiences, keywords, hiddenExps, showExps);
+    // Se reorganizan intercambiando los contenidos entre mostradas y no mostradas
+    refactorExperiencesUi(showExps, experiencesImages, experiencesTitles, experiencesDescriptions, numberOfDefaultExperiences);
+}
+
+function refactorExperiencesUi(showExps, experiencesImages, experiencesTitles, experiencesDescriptions, numberOfDefaultExperiences) {
+    var aux;
+    for (let j = 0; j < showExps.length; j++) {
+        //Img
+        aux = experiencesImages[j];
+        experiencesImages[j] = experiencesImages[showExps[j]];
+        experiencesImages[showExps[j]] = aux;
+        //Title
+        aux = experiencesTitles[j];
+        experiencesTitles[j] = experiencesTitles[showExps[j]];
+        experiencesTitles[showExps[j]] = aux;
+        //Desc
+        aux = experiencesDescriptions[j];
+        experiencesDescriptions[j] = experiencesDescriptions[showExps[j]];
+        experiencesDescriptions[showExps[j]] = aux;
+    }
+    // Se realiza el cambio en el html
+    for (let j = 0; j < numberOfDefaultExperiences; j++) {
+        document.getElementById("img" + j).src = experiencesImages[j];
+        document.getElementById("title" + j).innerHTML = experiencesTitles[j];
+        document.getElementById("description" + j).innerHTML = experiencesDescriptions[j];
+    }
+    //Se ocultan las no seleccionadas recorriendo desde las seleccionadas
+    for (j = showExps.length; j < numberOfDefaultExperiences; j++) {
+        $("#img" + j).hide();
+        $("#title" + j).hide();
+        $("#description" + j).hide();
+    }
+}
+
+function selectExperiences(numberOfDefaultExperiences, keywords, hiddenExps, showExps) {
+    for (let j = 0; j < numberOfDefaultExperiences; j++) {
+        let currentElement = document.getElementById("exp" + j);
+        currentElement = String(currentElement.textContent).toLowerCase();
+        if (currentElement.search(String(keywords).toLowerCase()) == -1) {
+            hiddenExps.push(j);
+        }
+        else {
+            showExps.push(j);
+        }
+    }
+}
+
+function saveDefaultExperiences(numberOfDefaultExperiences) {
+    var experiencesImages = new Array();
+    var experiencesTitles = new Array();
+    var experiencesDescriptions = new Array();
+    for (let j = 0; j < numberOfDefaultExperiences; j++) {
+        experiencesImages.push(document.getElementById("img" + j).src);
+        experiencesTitles.push(document.getElementById("title" + j).textContent);
+        experiencesDescriptions.push(document.getElementById("description" + j).textContent);
+    }
+    return { experiencesImages, experiencesTitles, experiencesDescriptions };
+}
+
