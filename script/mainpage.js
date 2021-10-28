@@ -62,11 +62,14 @@ function deleteExperience(numberOfExperience){
     $("#myExperiences").hide(); 
     $("#experienceDeleted").show(); 
 }
+
+// Muestra las paginas secundarias en popups
 function showOnPopup(path){
     $("#secondaryFrame").attr("src",path);
     $("#secondaryOnPopUp").show();
 }
 
+//Muestra las experiencias en popups
 function showExperienceOnPopup(path){
     $("#secondaryExperiencesFrame").attr("src",path);
     $("#secondaryExperienceOnPopUp").show();
@@ -232,6 +235,7 @@ $(document).ready(function(){
         submitHandler: function(){
             $("#signUp-form").hide();
             $("#changeProfileInterest-form").hide();
+            // Se cargan los datos que ha introducido el usuario
             let userId = Cookies.get("currentUser");
             let chckMusica = false;
             let chckCombates = false;
@@ -338,15 +342,18 @@ $(document).ready(function(){
             $("#updatedInfo").show(); 
             $("#changeProfileId-form").trigger("reset");  
         },
+        // Reglas de la validacion
         rules: {
             changeuserId:{
                 required: true,
                 userIdDupChangeId: true
             }
         },
+        // Mensajes de error
         messages: {
             changeuserId: "<br>Por favor, introduce tu nuevo nombre de usuario",
         },
+        // Estilo de los mensajes de error
         errorElement : 'span'  
     }); 
 
@@ -363,12 +370,14 @@ $(document).ready(function(){
         let userId = Cookies.get("currentUser");
         let userProfileImage = localStorage.getItem(userId + "-" + "profileImg");
         let userData = JSON.parse(Cookies.get(userId));
+        // Se carga la imagen de perfil por almacenada, si no existe se carga la imagen por defecto
         if (userProfileImage != "null"){
             $("#profileImage").attr("src",userProfileImage);
         }
         else{
             $("#profileImage").attr("src", './images/common/default-icon.png');
         }
+        // Se muestran los datos modificando el texto
         document.getElementById("profileId").innerHTML = "Nombre de usuario: " + userId;
         document.getElementById("profilePass").innerHTML = "Contraseña: " + userData.pass;
         document.getElementById("profileName").innerHTML = "Nombre y apellidos: " + userData.name;
@@ -378,6 +387,7 @@ $(document).ready(function(){
         document.getElementById("profileUc3m").innerHTML = ""; 
         document.getElementById("profileCombat").innerHTML = "";
         document.getElementById("profileMusic").innerHTML = "";  
+        // Comprobacion de intereses
         if (userData.musica == true){
             document.getElementById("profileMusic").innerHTML = "Musica popular de Gondor";          
         }  
@@ -439,8 +449,9 @@ $(document).ready(function(){
             $("#experience-" + userData.numberOfExperiences).append("<hr class=experiencehr></hr>");
             $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experienceTitle + "</p>");
             // Carga de imagen
+            // Imagen por defecto
             if (experienceImage == null | experienceImage == undefined){
-                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src='./images/common/default-icon.png' class=responsiveimg></img></p>");
+                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src='./images/common/default-icon.png' style=width:50%; class=responsiveimg></img></p>");
                 $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experiencePlace + "</p>");
                 $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-bottom:5%;>" + experienceDescription + "</p>");
                 $("#experience-" + userData.numberOfExperiences).append(          
@@ -449,9 +460,10 @@ $(document).ready(function(){
                         "<label for=deleteExperience-btn>Eliminar experiencia</label></button>" +
                     "</p></div>");
             }
+            // Imagen del usuario
             else{
                 reader.onloadend = function(){
-                    $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src=" + "'" + reader.result + "'" + "class=responsiveimg></img></p>");
+                    $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src=" + "'" + reader.result + "'" +  "style=width:50%; class=responsiveimg></img></p>");
                     $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experiencePlace + "</p>");
                     $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-bottom:5%;>" + experienceDescription + "</p>");
                     $("#experience-" + userData.numberOfExperiences).append(          
@@ -466,11 +478,13 @@ $(document).ready(function(){
             $("#experienceAdded").show(); 
             $("#addExperience-form").trigger("reset");
         },
+        // Mensajes de error
         messages: {
             experienceTitle: "<br>Por favor, introduce el titulo de la experiencia",
             experienceDescription: "<br>Por favor, introduce la descripcion de la experiencia",
             experiencePlace: "<br>Por favor, introduce el lugar de la experiencia",
         },
+        // Estilo de los mensajes de error
         errorElement : 'span'  
         }); 
 
@@ -511,12 +525,17 @@ $(document).ready(function(){
     $("#filterExperiences-btn").click(function(){
         let keywords = $("#keywords").val();
         let i = 0;
+        let totalExperiences;
+        let hiddenExp = new Array();
+        let showExp = new Array();
+        // Se muestran todas por si hay alguna oculta
         while(document.getElementById("exp" + i) != null){
             $("#img" + i).show(); 
             $("#title" + i).show();
             $("#description" + i).show();
             i++;
         }
+        // Se filtran
         let j = 0;
         while(document.getElementById("exp" + j) != null){
             let currentElement = document.getElementById("exp" + j) 
@@ -525,9 +544,23 @@ $(document).ready(function(){
                     $("#img" + j).hide();  
                     $("#title" + j).hide(); 
                     $("#description" + j).hide(); 
+                    hiddenExp.push(j)
                 }
             }
             j++;
+        }
+        // Reestructuracion de la seccion ad-hoc en funcion de las experiencias ocultas
+        if ((hiddenExp.getIndexOf(0) != -1) & (hiddenExp.getIndexOf(1) != -1) & (hiddenExp.getIndexOf(2) != -1)){
+            $("#expBlock0" + j).hide();  
+        }
+        if ((hiddenExp.getIndexOf(3) != -1) & (hiddenExp.getIndexOf(4) != -1) & (hiddenExp.getIndexOf(5) != -1)){
+            $("#expBlock1" + j).hide();  
+        }
+        if ((hiddenExp.getIndexOf(6) != -1) & (hiddenExp.getIndexOf(7) != -1) & (hiddenExp.getIndexOf(8) != -1)){
+            $("#expBlock2" + j).hide();  
+        }
+        if ((hiddenExp.getIndexOf(9) != -1)){
+            $("#expBlock3" + j).hide();  
         }
     });
 
@@ -624,10 +657,12 @@ $(document).ready(function(){
             if ($("#chckUc3m").is(":checked")){
                 chckUc3m = true;
             }
+            // Se crean las cookies y se muestra la interfaz del usuario
             setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m);
             showUserProfile(userId);   
             $("#signUpOk-form").show(); 
         },
+        // Reglas de la validacion
         rules: {
             userId:{
                 required: true,
@@ -650,6 +685,7 @@ $(document).ready(function(){
             },
             chckTerms: "required"
         },
+        // Mensajes de error
         messages: {
             userId: "<br>Por favor, introduce tu nombre de usuario",
             userPass: "<br>Por favor, introduce una contraseña (letras y numeros, 8 maximo)",
@@ -658,6 +694,7 @@ $(document).ready(function(){
             userBornDate: "<br>Por favor, introduce tu fecha de nacimiento (dd/mm/aaaa)",
             chckTerms: "Tienes que aceptar los terminos de uso<br>"
         },
+        // Estilo de los mensajes de error
         errorElement : 'span'  
     });
 
@@ -666,9 +703,11 @@ $(document).ready(function(){
         submitHandler: function(){
             let logInId = $("#logInId").val();
             let userCookie = Cookies.get(logInId)
+            // El usuario existe
             if (userCookie != null){
                 let userData = JSON.parse(userCookie);
                 let logInPass = $("#logInPass").val();
+                // El usuario y la contraseña no coinciden
                 if(logInPass != userData.pass){
                     $("#badLogIn").show();
                     $("#logIn-form").hide(); 
@@ -679,21 +718,25 @@ $(document).ready(function(){
                     showUserProfile(logInId);  
                 }
             }
+            // Usuario inexistente
             else{
                 $("#badLogInId").show();
                 $("#logIn-form").hide(); 
             }
 
         },
+        // Reglas de la validacion del formulario
         rules: {
             logInId: "required",
             logInPass: "required"
         },
+        // Mensajes de error
         messages: {
             logInId: "<br>Por favor, introduce tu nombre de usuario registrado",
             logInPass: "<br>Por favor, introduce una contraseña",
             
         },
+        // Estilo de los mensajes de error
         errorElement : 'span'  
     });
 
