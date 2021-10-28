@@ -11,7 +11,7 @@ function showUserProfile(userId){
     let userProfileImage = localStorage.getItem(userId + "-" +"profileImg");
     if (userProfileImage == "null" | userProfileImage == null | userProfileImage == undefined){
         localStorage.setItem(userId + "-" +"profileImg", "null");
-        $("#userImage").attr("src","./images/common/default-icon.png");
+        $("#userImage").attr("src","../images/common/default-icon.png");
     }
     else{
         $("#userImage").attr("src",userProfileImage);
@@ -367,7 +367,7 @@ $(document).ready(function(){
             $("#profileImage").attr("src",userProfileImage);
         }
         else{
-            $("#profileImage").attr("src", "./images/common/default-icon.png");
+            $("#profileImage").attr("src", "../images/common/default-icon.png");
         }
         document.getElementById("profileId").innerHTML = "Nombre de usuario: " + userId;
         document.getElementById("profilePass").innerHTML = "Contraseña: " + userData.pass;
@@ -440,7 +440,7 @@ $(document).ready(function(){
             $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experienceTitle + "</p>");
             // Carga de imagen
             if (experienceImage == null | experienceImage == undefined){
-                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src='./images/common/default-icon.png' class=responsiveimg></img></p>");
+                $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src='../images/common/default-icon.png' class=responsiveimg></img></p>");
                 $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experiencePlace + "</p>");
                 $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-bottom:5%;>" + experienceDescription + "</p>");
                 $("#experience-" + userData.numberOfExperiences).append(          
@@ -512,7 +512,9 @@ $(document).ready(function(){
         let keywords = $("#keywords").val();
         let i = 0;
         while(document.getElementById("exp" + i) != null){
-            $("#exp" + i).show(); 
+            $("#img" + i).show(); 
+            $("#title" + i).show();
+            $("#description" + i).show();
             i++;
         }
         let j = 0;
@@ -520,12 +522,13 @@ $(document).ready(function(){
             let currentElement = document.getElementById("exp" + j) 
             if (currentElement.textContent != null){
                 if(currentElement.textContent.search(keywords) == -1){
-                    $("#exp" + j).hide();  
+                    $("#img" + j).hide();  
+                    $("#title" + j).hide(); 
+                    $("#description" + j).hide(); 
                 }
             }
             j++;
         }
-    
     });
 
     // VALIDACIONES DE FORMULARIOS //////////////////////////////////////////

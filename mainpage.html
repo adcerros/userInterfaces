@@ -3,10 +3,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <html>
     <head>
-        <script src="jquery-3.6.0.min.js"></script>
-        <script src="mainpage.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+        <script src="./script/jquery-3.6.0.min.js"></script>
+        <script src="./script/mainpage.js"></script>
+        <script src="./script/js.cookie.min.js"></script>
+        <script src="./script/jquery.validate.min.js"></script>
         <link rel="stylesheet" href="style/mainpage.css" type="text/css" media="all">
         <title>Visit middle earth</title>
     </head>
@@ -267,64 +267,64 @@
             <!--Primera linea-->
             <div class="experiences">
                 <div id="exp0" class="experiencesleft">
-                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/rivendel.jpg" class="responsiveimg" alt="imagen de Rivendel">
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/rivendel.jpg" id="img0" class="responsiveimg" alt="imagen de Rivendel">
                     <p id="title0" onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">Relax en Rivendel</p>
-                    <p id="description0" onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Rivendel es una paraiso del descanso, los amantes de los balnearios y los coffe shops estaran como en casa en este lugar.</p>
+                    <p id="description0" class="subtitle">Rivendel es una paraiso del descanso, los amantes de los balnearios y los coffe shops estaran como en casa en este lugar.</p>
                 </div>
                 <div id="exp1" class="experiencesmid">
-                    <img onclick="showExperienceOnPopup('../gondor&Rohan.html')" src="images/mainpage/isengard.jpg" class="responsiveimg" alt="imagen de Isengard">
+                    <img onclick="showExperienceOnPopup('../gondor&Rohan.html')" src="images/mainpage/isengard.jpg" id="img1" class="responsiveimg" alt="imagen de Isengard">
                     <p id="title1" onclick="showExperienceOnPopup('../gondor&Rohan.html')" class="titlesubtitle">Caminata por Isengard</p>
-                    <p id="description1" onclick="showExperienceOnPopup('../gondor&Rohan.html')" class="subtitle">Disfruta de una tarde de naturaleza en Isengard, la terraza de su torre tiene unas vistas magnificas del Bosque Negro.</p>
+                    <p id="description1" class="subtitle">Disfruta de una tarde de naturaleza en Isengard, la terraza de su torre tiene unas vistas magnificas del Bosque Negro.</p>
                 </div>
                 <div id="exp2" class="experiencesright">
-                    <img onclick="showExperienceOnPopup('../mordor.html')" src="images/mainpage/comarca.jpg" class="responsiveimg" alt="imagen de la Comarca">
+                    <img onclick="showExperienceOnPopup('../mordor.html')" src="images/mainpage/comarca.jpg" id="img2" class="responsiveimg" alt="imagen de la Comarca">
                     <p id="title2" onclick="showExperienceOnPopup('../mordor.html')" class="titlesubtitle">Gastronomia en la Comarca</p>
-                    <p id="description2" onclick="showExperienceOnPopup('../mordor.html')" class="subtitle">Si te gusta la cerveza, andar descalzo, las praderas verdes y no eres una persona especialmente alto este es tu sitio.</p>
+                    <p id="description2" class="subtitle">Si te gusta la cerveza, andar descalzo, las praderas verdes y no eres una persona especialmente alto este es tu sitio.</p>
                 </div>
             </div>
             <!--Segunda linea-->
             <div class="experiences">
                 <div id="exp3" class="experiencesleftnext">
-                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/argonath.jpg" class="responsiveimg" alt="imagen de los Argonath">
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/argonath.jpg" id="img3" class="responsiveimg" alt="imagen de los Argonath">
                     <p id="title3" onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">Piragua por los Argonath</p>
-                    <p id="description3" onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Realiza uno de los descensos mas famosos del mundo, con un final de ensueño en las estatuas de los antiguos reyes.</p>
+                    <p id="description3" class="subtitle">Realiza uno de los descensos mas famosos del mundo, con un final de ensueño en las estatuas de los antiguos reyes.</p>
                 </div>
                 <div id="exp4" class="experiencesmidnext">
-                    <img onclick="showExperienceOnPopup('../gondor&Rohan.html')" src="images/mainpage/mordor.jpg" class="responsiveimg" alt="imagen de Mordor">
+                    <img onclick="showExperienceOnPopup('../gondor&Rohan.html')" src="images/mainpage/mordor.jpg" id="img4" class="responsiveimg" alt="imagen de Mordor">
                     <p id="title4" onclick="showExperienceOnPopup('../gondor&Rohan.html')" class="titlesubtitle">Vulcanologia en Mordor</p>
-                    <p id="description4" onclick="showExperienceOnPopup('../gondor&Rohan.html')" class="subtitle">Con una temperatura mas que agradable, Mordor es el sueño de cualquier aficcionado a los volcanes activos.</p>
+                    <p id="description4" class="subtitle">Con una temperatura mas que agradable, Mordor es el sueño de cualquier aficcionado a los volcanes activos.</p>
                 </div>
                 <div id="exp5" class="experiencesrightnext">
-                    <img onclick="showExperienceOnPopup('../mordor.html')" src="images/mainpage/fangorn.jpg" class="responsiveimg" alt="imagen de Fangorn">
+                    <img onclick="showExperienceOnPopup('../mordor.html')" src="images/mainpage/fangorn.jpg" id="img5" class="responsiveimg" alt="imagen de Fangorn">
                     <p id="title5" onclick="showExperienceOnPopup('../mordor.html')" class="titlesubtitle">Hable con los arboles en Fangorn</p>
-                    <p id="description5" onclick="showExperienceOnPopup('../mordor.html')" class="subtitle">Descubre a los habitantes mas especiales de la Tierra Media en esta visita al bosque de Fangorn.</p>
+                    <p id="description5" class="subtitle">Descubre a los habitantes mas especiales de la Tierra Media en esta visita al bosque de Fangorn.</p>
                 </div>
             </div>
             <!--Tercera linea-->
             <div class="experiences">
                 <div id="exp6" class="experiencesleftnext">
-                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/minasTirith.jpg" class="responsiveimg" alt="imagen de Minas Tirith">
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/minasTirith.jpg" id="img6" class="responsiveimg" alt="imagen de Minas Tirith">
                     <p id="title6" onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">De compras en Minas Tirith</p>
-                    <p id="description6" onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Con mas de 1000 tiendas de marcas reconocidas Minas Tirith hará las delicias de los amantes de la moda.</p>
+                    <p id="description6" class="subtitle">Con mas de 1000 tiendas de marcas reconocidas Minas Tirith hará las delicias de los amantes de la moda.</p>
                 </div>
                 <div id="exp7" class="experiencesmidnext">
-                    <img onclick="showExperienceOnPopup('../gondor&Rohan.html')" src="images/mainpage/montanaSolitaria.jpg" class="responsiveimg" alt="imagen de la Montaña Solitaria">
+                    <img onclick="showExperienceOnPopup('../gondor&Rohan.html')" src="images/mainpage/montanaSolitaria.jpg" id="img7" class="responsiveimg" alt="imagen de la Montaña Solitaria">
                     <p id="title7" onclick="showExperienceOnPopup('../gondor&Rohan.html')" class="titlesubtitle">Escala la Montaña Solitaria</p>
-                    <p id="description7" onclick="showExperienceOnPopup('../gondor&Rohan.html')" class="subtitle">Si no le tienes miedo a las alturas y te gustan los grandes desafíos este es tu sitio.</p>
+                    <p id="description7" class="subtitle">Si no le tienes miedo a las alturas y te gustan los grandes desafíos este es tu sitio.</p>
                 </div>
                 <div id="exp8" class="experiencesrightnext">
-                    <img onclick="showExperienceOnPopup('../mordor.html')" src="images/mainpage/moria.jpg" class="responsiveimg" alt="imagen de Moria">
+                    <img onclick="showExperienceOnPopup('../mordor.html')" src="images/mainpage/moria.jpg" id="img8" class="responsiveimg" alt="imagen de Moria">
                     <p id="title8" onclick="showExperienceOnPopup('../mordor.html')" class="titlesubtitle">Espeleologia en Moria</p>
-                    <p id="description8" onclick="showExperienceOnPopup('../mordor.html')" class="subtitle">No sabemos si esos enanos llegaron al mismisimo centro de la tierra, lo que es seguro es su impactante profundidad.</p>
+                    <p id="description8" class="subtitle">No sabemos si esos enanos llegaron al mismisimo centro de la tierra, lo que es seguro es su impactante profundidad.</p>
                 </div>
             </div>
             <!--Cuarta linea-->
             <div class="experiences">
                 <div class="experiencesleftnext"></div>
                 <div id="exp9" class="experiencesmidnext">
-                    <img onclick="showExperienceOnPopup('../gondor&Rohan.html')" src="images/mainpage/heml.jpg" class="responsiveimg" alt="imagen del Abismo de Heml">
+                    <img onclick="showExperienceOnPopup('../gondor&Rohan.html')" src="images/mainpage/heml.jpg" id="img9" class="responsiveimg" alt="imagen del Abismo de Heml">
                     <p id="title9" onclick="showExperienceOnPopup('../gondor&Rohan.html')" class="titlesubtitle">Asalta el abismo de Helm</p>
-                    <p id="description9" onclick="showExperienceOnPopup('../gondor&Rohan.html')" class="subtitle">Revive esta apasionante batalla de la mano de nuestros especialistas y sienteté un autentico caballero de Rohan.</p>
+                    <p id="description9" class="subtitle">Revive esta apasionante batalla de la mano de nuestros especialistas y sienteté un autentico caballero de Rohan.</p>
                 </div>
                 <div class="experiencesrightnext"></div>
             </div>
