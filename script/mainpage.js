@@ -75,6 +75,19 @@ function showExperienceOnPopup(path){
     $("#secondaryExperienceOnPopUp").show();
 }
 
+//Reinicia las experiencias
+function resetExperiences() {
+    let i = 0;
+    while (document.getElementById("exp" + i) != null) {
+        $("#img" + i).show();
+        $("#title" + i).show();
+        $("#description" + i).show();
+        i++;
+    }
+    return i;
+}
+
+
 $(document).ready(function(){
     // LOGIN /////////////////////////////////////////////////
     // Boton de login
@@ -524,17 +537,13 @@ $(document).ready(function(){
     // FILTRADO DE EXPERIENCIAS //////////////////////////////////////////////
     $("#filterExperiences-btn").click(function(){
         let keywords = $("#keywords").val();
+        //Se muestra el searching for:
+        $("#searchingForDiv").show();
         var hiddenExps = new Array();
         var showExps = new Array();
         // Se muestran todas por si hay alguna oculta y se almacenan el numero de experiencias y el numero de bloques
-        let i = 0;
-        while(document.getElementById("exp" + i) != null){
-            $("#img" + i).show(); 
-            $("#title" + i).show();
-            $("#description" + i).show();
-            i++;
-        }
-        let numberOfDefaultExperiences = i;
+        let numberOfDefaultExperiences = resetExperiences();
+
         //Se almacenan los textos y las imagenes
         var experiencesImages = new Array();
         var experiencesTitles = new Array();
@@ -583,6 +592,13 @@ $(document).ready(function(){
                 $("#description" + j).hide();
         }
     });
+
+    //Cierre del searching for y reinicio de el filtrado
+    $("#clssearchingForBtn").click(function(){
+        $("#searchingForDiv").hide(); 
+        resetExperiences();
+    });
+
 
     // VALIDACIONES DE FORMULARIOS //////////////////////////////////////////
     //Funciones para la validacion de expresiones regulares
