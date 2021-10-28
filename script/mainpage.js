@@ -526,9 +526,12 @@ $(document).ready(function(){
         let keywords = $("#keywords").val();
         let i = 0;
         let totalExperiences;
-        let hiddenExp = new Array();
-        let showExp = new Array();
+        var hiddenExp = new Array();
+        var showExp = new Array();
         // Se muestran todas por si hay alguna oculta
+        for(let k = 0; k < 4 ; k++){
+            $("#expBlock" + k).show(); 
+        }
         while(document.getElementById("exp" + i) != null){
             $("#img" + i).show(); 
             $("#title" + i).show();
@@ -550,17 +553,17 @@ $(document).ready(function(){
             j++;
         }
         // Reestructuracion de la seccion ad-hoc en funcion de las experiencias ocultas
-        if ((hiddenExp.getIndexOf(0) != -1) & (hiddenExp.getIndexOf(1) != -1) & (hiddenExp.getIndexOf(2) != -1)){
-            $("#expBlock0" + j).hide();  
+        if ((hiddenExp.indexOf(0) != -1) & (hiddenExp.indexOf(1) != -1) & (hiddenExp.indexOf(2) != -1)){
+            $("#expBlock0").hide();  
         }
-        if ((hiddenExp.getIndexOf(3) != -1) & (hiddenExp.getIndexOf(4) != -1) & (hiddenExp.getIndexOf(5) != -1)){
-            $("#expBlock1" + j).hide();  
+        if ((hiddenExp.indexOf(3) != -1) & (hiddenExp.indexOf(4) != -1) & (hiddenExp.indexOf(5) != -1)){
+            $("#expBlock1").hide();  
         }
-        if ((hiddenExp.getIndexOf(6) != -1) & (hiddenExp.getIndexOf(7) != -1) & (hiddenExp.getIndexOf(8) != -1)){
-            $("#expBlock2" + j).hide();  
+        if ((hiddenExp.indexOf(6) != -1) & (hiddenExp.indexOf(7) != -1) & (hiddenExp.indexOf(8) != -1)){
+            $("#expBlock2").hide();  
         }
-        if ((hiddenExp.getIndexOf(9) != -1)){
-            $("#expBlock3" + j).hide();  
+        if ((hiddenExp.indexOf(9) != -1)){
+            $("#expBlock3").hide();  
         }
     });
 
