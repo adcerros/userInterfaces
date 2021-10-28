@@ -1,3 +1,4 @@
+/////////////////////////////////  CODIGO JQUERY /////////////////////////////////////////
 $(document).ready(function(){
     // LOGIN /////////////////////////////////////////////////
     // Boton de login
@@ -491,6 +492,8 @@ $(document).ready(function(){
 
 });
 
+/////////////////////////////////  CODIGO JS /////////////////////////////////////////
+
 //Configuracion de las cookies de registro
 function setSignUpCookie(userId, userPass, userName, userEmail, userBornDate, chckMusica , chckCombates, chckHobbits, chckUc3m){
     let userData = { "pass": userPass, "name": userName, "email": userEmail, "bornDate": userBornDate, "musica": chckMusica , "combates": chckCombates, "hobbits": chckHobbits, "uc3m": chckUc3m, "numberOfExperiences": 0};
@@ -580,6 +583,7 @@ function resetExperiences() {
     return i;
 }
 
+// Cambia los intereses del usuario
 function changeUserInterest() {
     let { userId, userData, chckMusica, chckCombates, chckHobbits, chckUc3m } = getUserInterestData();
     // Se cambia la cookie
@@ -605,6 +609,7 @@ function changeUserInterest() {
     $("#changeProfileInterest-form").trigger("reset");
 }
 
+// Se leen los nuevos intereses del usuario
 function getUserInterestData() {
     let userId = Cookies.get("currentUser");
     let chckMusica = false;
@@ -631,6 +636,7 @@ function getUserInterestData() {
     return { userId, userData, chckMusica, chckCombates, chckHobbits, chckUc3m };
 }
 
+//Cambia el id del usuario
 function changeUserId() {
     let userId = Cookies.get("currentUser");
     let userData = JSON.parse(Cookies.get(userId));
@@ -649,6 +655,7 @@ function changeUserId() {
     document.getElementById("profileId").innerHTML = newuserId;
 }
 
+// Se carga la interfaz del usuario con su informacion
 function loadUserProfile(userProfileImage, userId, userData) {
     // Se carga la imagen de perfil por almacenada, si no existe se carga la imagen por defecto
     if (userProfileImage != "null") {
@@ -682,6 +689,7 @@ function loadUserProfile(userProfileImage, userId, userData) {
     }
 }
 
+// Añadir experiencias
 function addExperience() {
     let { userData, experienceTitle, experienceImage, experiencePlace, experienceDescription } = getExperienceData();
     $("#myNewExperiences").prepend("<div id=experience-" + userData.numberOfExperiences + "></div>");
@@ -717,6 +725,7 @@ function addExperience() {
     }
 }
 
+// Lectura de los datos del usuario al insertar experiencias
 function getExperienceData() {
     let userId = Cookies.get("currentUser");
     let userCookie = Cookies.get(userId);
@@ -730,6 +739,7 @@ function getExperienceData() {
     return { userData, experienceTitle, experienceImage, experiencePlace, experienceDescription };
 }
 
+// Lectura de los datos del usuario en el SignUp
 function getSignUpData() {
     var userId = $("#userId").val();
     let userPass = $("#userPass").val();
@@ -755,6 +765,7 @@ function getSignUpData() {
     return { userId, userPass, userName, userEmail, userBornDate, chckMusica, chckCombates, chckHobbits, chckUc3m };
 }
 
+// Filtra los resultados sobre el texto introducido
 function filtreExperiences() {
     let keywords = $("#keywords").val();
     //Se muestra el searching for:
@@ -778,6 +789,7 @@ function filtreExperiences() {
     refactorExperiencesUi(showExps, experiencesImages, experiencesTitles, experiencesDescriptions, numberOfDefaultExperiences);
 }
 
+// Modifica la seccion de experiences tras filtrar los resultados
 function refactorExperiencesUi(showExps, experiencesImages, experiencesTitles, experiencesDescriptions, numberOfDefaultExperiences) {
     var aux;
     for (let j = 0; j < showExps.length; j++) {
@@ -808,6 +820,7 @@ function refactorExperiencesUi(showExps, experiencesImages, experiencesTitles, e
     }
 }
 
+//Selecciona las experencias que deben mostrarse tras el filtrado
 function selectExperiences(numberOfDefaultExperiences, keywords, hiddenExps, showExps) {
     for (let j = 0; j < numberOfDefaultExperiences; j++) {
         let currentElement = document.getElementById("exp" + j);
@@ -821,6 +834,7 @@ function selectExperiences(numberOfDefaultExperiences, keywords, hiddenExps, sho
     }
 }
 
+// Guarda los datos de las experiencias de la tercera seccion para operar con ellos
 function saveDefaultExperiences(numberOfDefaultExperiences) {
     var experiencesImages = new Array();
     var experiencesTitles = new Array();
