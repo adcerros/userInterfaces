@@ -239,9 +239,14 @@
                 <div><button class="options-btn" id="clsOptions-btn" type="button" style="margin-bottom: 1.5%;"><label for="clsOptions-btn" style="font-size: 2.5vw;">&#8963;</label></button></div> 
             </div>
         </header>
+        <!-- Abrir otras paginas como popUps -->
+        <div id="secondaryOnPopUp" class="signUp-form" style="width: 60%; height: 100%; margin-left:-5%;">
+            <button id="clssecondaryOnPopUp" class="cross-p" type="button" style="margin-left:90%; margin-bottom: 1%;">&#x292C;</button>         
+            <iframe style="border: none; margin-bottom: 0%;" id="secondaryFrame" src=""></iframe>
+        </div>
         <!--Primera seccion-->
         <section style="margin-top:-1%;">
-            <object type="image/svg+xml" data="images/tierra_media.svg" tarjet=bla></object>
+            <object id="mainImage" type="image/svg+xml" data="images/tierra_media.svg" tarjet=bla></object>
         </section>
 
         <!--Segunda seccion-->
@@ -253,68 +258,73 @@
 
         <!--Tercera seccion-->
         <section>
+            <!-- Paginas de experiencias en popups -->
+            <div id="secondaryExperienceOnPopUp" class="signUp-form" style="width: 60%; height: 100%; margin-left:-5%; margin-top: 130%;">
+                <button id="clssecondaryExperienceOnPopUp" class="cross-p" type="button" style="margin-left:90%; margin-bottom: 1%;">&#x292C;</button>         
+                <iframe style="border: none; margin-bottom: 0%;" id="secondaryExperiencesFrame" src=""></iframe>
+            </div>
             <header class="title">Experiences</header>
             <!--Primera linea-->
             <div class="experiences">
                 <div class="experiencesleft">
-                    <img src="images/mainpage/rivendel.jpg" class="responsiveimg" alt="imagen de Rivendel">
-                    <p class="titlesubtitle">Relax en Rivendel</p>
-                    <p class="subtitle">Rivendel es una paraiso del descanso, los amantes de los balnearios y los coffe shops estaran como en casa en este lugar.</p>
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/rivendel.jpg" class="responsiveimg" alt="imagen de Rivendel">
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">Relax en Rivendel</p>
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Rivendel es una paraiso del descanso, los amantes de los balnearios y los coffe shops estaran como en casa en este lugar.</p>
                 </div>
                 <div class="experiencesmid">
-                    <img src="images/mainpage/isengard.jpg" class="responsiveimg" alt="imagen de Isengard">
-                    <p class="titlesubtitle">Caminata por Isengard</p>
-                    <p class="subtitle">Disfruta de una tarde de naturaleza en Isengard, la terraza de su torre tiene unas vistas magnificas del Bosque Negro.</p>
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/isengard.jpg" class="responsiveimg" alt="imagen de Isengard">
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">Caminata por Isengard</p>
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Disfruta de una tarde de naturaleza en Isengard, la terraza de su torre tiene unas vistas magnificas del Bosque Negro.</p>
                 </div>
                 <div class="experiencesright">
-                    <img src="images/mainpage/comarca.jpg" class="responsiveimg" alt="imagen de la Comarca">
-                    <p class="titlesubtitle">Gastronomia en la Comarca</p>
-                    <p class="subtitle">Si te gusta la cerveza, andar descalzo, las praderas verdes y no eres una persona especialmente alto este es tu sitio.</p>
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/comarca.jpg" class="responsiveimg" alt="imagen de la Comarca">
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">Gastronomia en la Comarca</p>
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Si te gusta la cerveza, andar descalzo, las praderas verdes y no eres una persona especialmente alto este es tu sitio.</p>
                 </div>
             </div>
             <!--Segunda linea-->
             <div class="experiences">
                 <div class="experiencesleftnext">
-                    <img src="images/mainpage/argonath.jpg" class="responsiveimg" alt="imagen de los Argonath">
-                    <p class="titlesubtitle">Piragua por los Argonath</p>
-                    <p class="subtitle">Realiza uno de los descensos mas famosos del mundo, con un final de ensueño en las estatuas de los antiguos reyes.</p>
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/argonath.jpg" class="responsiveimg" alt="imagen de los Argonath">
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">Piragua por los Argonath</p>
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Realiza uno de los descensos mas famosos del mundo, con un final de ensueño en las estatuas de los antiguos reyes.</p>
                 </div>
                 <div class="experiencesmidnext">
-                    <img src="images/mainpage/mordor.jpg" class="responsiveimg" alt="imagen de Mordor">
-                    <p class="titlesubtitle">Vulcanologia en Mordor</p>
-                    <p class="subtitle">Con una temperatura mas que agradable, Mordor es el sueño de cualquier aficcionado a los volcanes activos.</p>
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/mordor.jpg" class="responsiveimg" alt="imagen de Mordor">
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">Vulcanologia en Mordor</p>
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Con una temperatura mas que agradable, Mordor es el sueño de cualquier aficcionado a los volcanes activos.</p>
                 </div>
                 <div class="experiencesrightnext">
-                    <img src="images/mainpage/fangorn.jpg" class="responsiveimg" alt="imagen de Fangorn">
-                    <p class="titlesubtitle">Hable con los arboles en Fangorn</p>
-                    <p class="subtitle">Descubre a los habitantes mas especiales de la Tierra Media en esta visita al bosque de Fangorn.</p>
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/fangorn.jpg" class="responsiveimg" alt="imagen de Fangorn">
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">Hable con los arboles en Fangorn</p>
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Descubre a los habitantes mas especiales de la Tierra Media en esta visita al bosque de Fangorn.</p>
                 </div>
             </div>
             <!--Tercera linea-->
             <div class="experiences">
                 <div class="experiencesleftnext">
-                    <img src="images/mainpage/minasTirith.jpg" class="responsiveimg" alt="imagen de Minas Tirith">
-                    <p class="titlesubtitle">De compras en Minas Tirith</p>
-                    <p class="subtitle">Con mas de 1000 tiendas de marcas reconocidas Minas Tirith hará las delicias de los amantes de la moda.</p>
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/minasTirith.jpg" class="responsiveimg" alt="imagen de Minas Tirith">
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">De compras en Minas Tirith</p>
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Con mas de 1000 tiendas de marcas reconocidas Minas Tirith hará las delicias de los amantes de la moda.</p>
                 </div>
                 <div class="experiencesmidnext">
-                    <img src="images/mainpage/montanaSolitaria.jpg" class="responsiveimg" alt="imagen de la Montaña Solitaria">
-                    <p class="titlesubtitle">Escala la Montaña Solitaria</p>
-                    <p class="subtitle">Si no le tienes miedo a las alturas y te gustan los grandes desafíos este es tu sitio.</p>
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/montanaSolitaria.jpg" class="responsiveimg" alt="imagen de la Montaña Solitaria">
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">Escala la Montaña Solitaria</p>
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Si no le tienes miedo a las alturas y te gustan los grandes desafíos este es tu sitio.</p>
                 </div>
                 <div class="experiencesrightnext">
-                    <img src="images/mainpage/moria.jpg" class="responsiveimg" alt="imagen de Moria">
-                    <p class="titlesubtitle">Espeleologia en Moria</p>
-                    <p class="subtitle">No sabemos si esos enanos llegaron al mismisimo centro de la tierra, lo que es seguro es su impactante profundidad.</p>
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/moria.jpg" class="responsiveimg" alt="imagen de Moria">
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">Espeleologia en Moria</p>
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">No sabemos si esos enanos llegaron al mismisimo centro de la tierra, lo que es seguro es su impactante profundidad.</p>
                 </div>
             </div>
             <!--Cuarta linea-->
             <div class="experiences">
                 <div class="experiencesleftnext"></div>
                 <div class="experiencesmidnext">
-                    <img src="images/mainpage/heml.jpg" class="responsiveimg" alt="imagen del Abismo de Heml">
-                    <p class="titlesubtitle">Asalta el abismo de Helm</p>
-                    <p class="subtitle">Revive esta apasionante batalla de la mano de nuestros especialistas y sienteté un autentico caballero de Rohan.</p>
+                    <img onclick="showExperienceOnPopup('../comarca.html')" src="images/mainpage/heml.jpg" class="responsiveimg" alt="imagen del Abismo de Heml">
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="titlesubtitle">Asalta el abismo de Helm</p>
+                    <p onclick="showExperienceOnPopup('../comarca.html')" class="subtitle">Revive esta apasionante batalla de la mano de nuestros especialistas y sienteté un autentico caballero de Rohan.</p>
                 </div>
                 <div class="experiencesrightnext"></div>
             </div>

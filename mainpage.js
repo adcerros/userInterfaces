@@ -62,8 +62,26 @@ function deleteExperience(numberOfExperience){
     $("#myExperiences").hide(); 
     $("#experienceDeleted").show(); 
 }
+function showOnPopup(path){
+    $("#secondaryFrame").attr("src",path);
+    $("#secondaryOnPopUp").show();
+}
+
+function showExperienceOnPopup(path){
+    $("#secondaryExperiencesFrame").attr("src",path);
+    $("#secondaryExperienceOnPopUp").show();
+}
 
 $(document).ready(function(){
+    // Cierre de popUps de paginas secundarias
+    $("#clssecondaryOnPopUp").click(function(){
+        $("#secondaryOnPopUp").hide(); 
+    });
+
+    // Cierre de popUps experiencias tercera seccion
+    $("#clssecondaryExperienceOnPopUp").click(function(){
+        $("#secondaryExperienceOnPopUp").hide(); 
+    });
 
     // LOGIN /////////////////////////////////////////////////
     // Boton de login
