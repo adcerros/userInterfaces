@@ -73,16 +73,6 @@ function showExperienceOnPopup(path){
 }
 
 $(document).ready(function(){
-    // Cierre de popUps de paginas secundarias
-    $("#clssecondaryOnPopUp").click(function(){
-        $("#secondaryOnPopUp").hide(); 
-    });
-
-    // Cierre de popUps experiencias tercera seccion
-    $("#clssecondaryExperienceOnPopUp").click(function(){
-        $("#secondaryExperienceOnPopUp").hide(); 
-    });
-
     // LOGIN /////////////////////////////////////////////////
     // Boton de login
     $("#logIn-btn").click(function(){
@@ -461,9 +451,9 @@ $(document).ready(function(){
             }
             else{
                 reader.onloadend = function(){
-                    $("#experience-" + userData.numberOfExperiences).append("<p class=form-p style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src=" + "'" + reader.result + "'" + "class=responsiveimg></img></p>");
-                    $("#experience-" + userData.numberOfExperiences).append("<p class=form-p>" + experiencePlace + "</p>");
-                    $("#experience-" + userData.numberOfExperiences).append("<p class=form-p style=margin-bottom:5%;>" + experienceDescription + "</p>");
+                    $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-top:5%; width:50%; margin-bottom:5%; display:inline-block;><img src=" + "'" + reader.result + "'" + "class=responsiveimg></img></p>");
+                    $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText>" + experiencePlace + "</p>");
+                    $("#experience-" + userData.numberOfExperiences).append("<p class=experiencesText style=margin-bottom:5%;>" + experienceDescription + "</p>");
                     $("#experience-" + userData.numberOfExperiences).append(          
                         "<div><p class=form-p style=margin-bottom:10%;>" + 
                         "<button class=deleteExperience-btn type=button onclick=deleteExperience(" + userData.numberOfExperiences +") >" +
@@ -483,30 +473,54 @@ $(document).ready(function(){
         },
         errorElement : 'span'  
         }); 
-    
-        //Confirmacion experiencia añadida
-        $("#clsexperienceAdded").click(function(){
-            $("#experienceAdded").hide();
-            $("#myExperiences").show();
-        }); 
 
-        //Confirmacion experiencia eliminada
-        $("#clsexperienceDeleted").click(function(){
-            $("#experienceDeleted").hide();
-            $("#myExperiences").show();
-        }); 
+    //Confirmacion experiencia añadida
+    $("#clsexperienceAdded").click(function(){
+        $("#experienceAdded").hide();
+        $("#myExperiences").show();
+    }); 
 
-        //Boton de submit añadir experiencias
-        $("#saveExperience-btn").click(function(){
-            $("#addExperience-form").trigger("submit");
-        }); 
-    
-        //Tick de imagen cargada
-        $(document).on("change", "#experienceImage", function() {
-            $("#loadedExperienceImage").show();
-        });
+    //Confirmacion experiencia eliminada
+    $("#clsexperienceDeleted").click(function(){
+        $("#experienceDeleted").hide();
+        $("#myExperiences").show();
+    }); 
 
+    //Boton de submit añadir experiencias
+    $("#saveExperience-btn").click(function(){
+        $("#addExperience-form").trigger("submit");
+    }); 
 
+    //Tick de imagen cargada
+    $(document).on("change", "#experienceImage", function() {
+        $("#loadedExperienceImage").show();
+    });
+
+    // POP UPS DE PAGINAS SECUNDARIAS ///////////////////////////////
+    // Cierre de popUps de paginas secundarias
+    $("#clssecondaryOnPopUp").click(function(){
+        $("#secondaryOnPopUp").hide(); 
+    });
+
+    // Cierre de popUps experiencias tercera seccion
+    $("#clssecondaryExperienceOnPopUp").click(function(){
+        $("#secondaryExperienceOnPopUp").hide(); 
+    });
+
+    // FILTRADO DE EXPERIENCIAS //////////////////////////////////////////////
+    $("#filterExperiences-btn").click(function(){
+        let keywords = $("#keywords").val();;
+        if (keywords == ""){
+            alert("nulo");
+        } 
+        else{
+            let i = 0;
+            alert(document.getElementById("exp010"));
+            while(document.getElementById("exp" + i) != null){
+
+            }
+        }
+    });
     // VALIDACIONES DE FORMULARIOS //////////////////////////////////////////
     //Funciones para la validacion de expresiones regulares
     // Comprobacion de la expresion regular de la contraseña
