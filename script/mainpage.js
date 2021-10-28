@@ -524,46 +524,70 @@ $(document).ready(function(){
     // FILTRADO DE EXPERIENCIAS //////////////////////////////////////////////
     $("#filterExperiences-btn").click(function(){
         let keywords = $("#keywords").val();
+        var hiddenExps = new Array();
+        var showExps = new Array();
+        // Se muestran todas por si hay alguna oculta y se almacenan el numero de experiencias y el numero de bloques
         let i = 0;
-        let totalExperiences;
-        var hiddenExp = new Array();
-        var showExp = new Array();
-        // Se muestran todas por si hay alguna oculta
-        for(let k = 0; k < 4 ; k++){
-            $("#expBlock" + k).show(); 
-        }
         while(document.getElementById("exp" + i) != null){
             $("#img" + i).show(); 
             $("#title" + i).show();
             $("#description" + i).show();
             i++;
         }
-        // Se filtran
-        let j = 0;
-        while(document.getElementById("exp" + j) != null){
-            let currentElement = document.getElementById("exp" + j) 
-            if (currentElement.textContent != null){
-                if(currentElement.textContent.search(keywords) == -1){
-                    $("#img" + j).hide();  
-                    $("#title" + j).hide(); 
-                    $("#description" + j).hide(); 
-                    hiddenExp.push(j)
-                }
+        let numberOfDefaultExperiences = i;
+        //Se almacenan los textos y las imagenes
+        var experiencesImages = new Array();
+        var experiencesTitles = new Array();
+        var experiencesDescriptions = new Array();
+        for(let j = 0; j < numberOfDefaultExperiences; j++){
+            experiencesImages.push(document.getElementById("img" + j).src);  
+            experiencesTitles.push(document.getElementById("title" + j).textContent);  
+            experiencesDescriptions.push(document.getElementById("description" + j).textContent);  
+        }
+        // Se almacen las posiciones donde estan las experiencias a ocultar y a mostrar
+        for(let j = 0; j < numberOfDefaultExperiences; j++){
+            let currentElement = document.getElementById("exp" + j);
+            if(currentElement.textContent.search(keywords) == -1){
+                hiddenExps.push(j)
             }
-            j++;
+            else{
+                showExps.push(j)
+            } 
         }
-        // Reestructuracion de la seccion ad-hoc en funcion de las experiencias ocultas
-        if ((hiddenExp.indexOf(0) != -1) & (hiddenExp.indexOf(1) != -1) & (hiddenExp.indexOf(2) != -1)){
-            $("#expBlock0").hide();  
+        // Se reorganizan intercambiando los contenidos entre mostradas y no mostradas
+        var aux;
+        for(let j = 0; j < showExps.length; j++){
+            //Img
+            aux = experiencesImages[j];
+            experiencesImages[j] = experiencesImages[showExps[j]];
+            experiencesImages[showExps[j]] = aux;
+            //Title
+            aux = experiencesTitles[j];
+            experiencesTitles[j] = experiencesTitles[showExps[j]];
+            experiencesTitles[showExps[j]] = aux;
+            //Desc
+            aux = experiencesDescriptions[j];
+            experiencesDescriptions[j] = experiencesDescriptions[showExps[j]];
+            experiencesDescriptions[showExps[j]] = aux;
         }
-        if ((hiddenExp.indexOf(3) != -1) & (hiddenExp.indexOf(4) != -1) & (hiddenExp.indexOf(5) != -1)){
-            $("#expBlock1").hide();  
+        // Se realiza el cambio en el html
+        for(let j = 0; j < numberOfDefaultExperiences; j++){
+            document.getElementById("img" + j).src = experiencesImages[j]; 
+            document.getElementById("title" + j).innerHTML = experiencesTitles[j];
+            document.getElementById("description" + j).innerHTML = experiencesDescriptions[j]; 
         }
-        if ((hiddenExp.indexOf(6) != -1) & (hiddenExp.indexOf(7) != -1) & (hiddenExp.indexOf(8) != -1)){
-            $("#expBlock2").hide();  
-        }
-        if ((hiddenExp.indexOf(9) != -1)){
-            $("#expBlock3").hide();  
+        //Se ocultan las no seleccionadas recorriendo desde las seleccionadas
+        for (j = 0; j < numberOfDefaultExperiences; j++){
+            if(j < showExps.length){
+                $("#img" + j).show(); 
+                $("#title" + j).show();
+                $("#description" + j).show();
+            }
+            else{
+                $("#img" + j).hide(); 
+                $("#title" + j).hide();
+                $("#description" + j).hide();
+            }
         }
     });
 
