@@ -333,6 +333,18 @@ $(document).ready(function(){
         resetExperiences();
     });
 
+    // DRAG AND DROP ////////////////////////////////////////////////////////
+    $("#dragZone").droppable();
+    $("#exp0").draggable();
+    $("#exp1").draggable();
+    $("#exp2").draggable();
+    $("#exp3").draggable();
+    $("#exp4").draggable();
+    $("#exp5").draggable();
+    $("#exp6").draggable();
+    $("#exp7").draggable();
+    $("#exp8").draggable();
+    $("#exp9").draggable();
 
     // VALIDACIONES DE FORMULARIOS //////////////////////////////////////////
     //Funciones para la validacion de expresiones regulares

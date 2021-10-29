@@ -7,6 +7,7 @@
         <script src="./script/mainpage.js"></script>
         <script src="./script/js.cookie.min.js"></script>
         <script src="./script/jquery.validate.min.js"></script>
+        <script src="./script/jquery-ui.min.js"></script>
         <link rel="stylesheet" href="style/mainpage.css" type="text/css" media="all">
         <title>Visit middle earth</title>
     </head>
@@ -262,12 +263,8 @@
         </section>
         <!--Tercera seccion-->
         <section>
-            <!-- Paginas de experiencias en popups -->
-            <div id="secondaryExperienceOnPopUp" class="signUp-form" style="width: 60%; height: 100%; margin-left:-5%; margin-top: 140%;">
-                <button id="clssecondaryExperienceOnPopUp" class="cross-p" type="button" style="margin-left:90%; margin-bottom: 1%;">&#x292C;</button>         
-                <iframe style="border: none; margin-bottom: 0%;" id="secondaryExperiencesFrame" src=""></iframe>
-            </div>
             <header class="title">Experiences</header>
+            <div id="dragZone"></div>
             <!--Primera linea-->
             <div id="expBlock0" class="experiences">
                 <div id="exp0" class="experiencesleft">
@@ -332,6 +329,12 @@
                 </div>
                 <div class="experiencesrightnext"></div>
             </div>
+        </div>
+        <!-- Paginas de experiencias en popups -->
+        <div id="secondaryExperienceOnPopUp" class="signUp-form" style="width: 60%; height: 100%; margin-left:-5%; margin-top: 140%;">
+            <button id="clssecondaryExperienceOnPopUp" class="cross-p" type="button" style="margin-left:90%; margin-bottom: 1%;">&#x292C;</button>         
+            <iframe style="border: none; margin-bottom: 0%;" id="secondaryExperiencesFrame" src=""></iframe>
+        </div>
         </section>
 
         <!--Pie de pagina-->
