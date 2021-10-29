@@ -1,4 +1,0 @@
--Solucionar lo de los checkboxes
--Comprobar que los datos estan en el formato que se indica en el enunciado con expresiones regulares
--Añadir cierre de pop ups pulsando fuera de el
--Poner la miniatura de la imagen de perfil cuando se carga en el registro o un tick como que se ha cargado bien
